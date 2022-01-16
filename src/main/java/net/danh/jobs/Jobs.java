@@ -1,12 +1,16 @@
 package net.danh.jobs;
 
+import net.danh.jobs.Events.BlockBreak;
+import net.danh.jobs.Events.Join;
+import net.danh.jobs.Hook.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
-public final class Jobs extends JavaPlugin {
+public final class Jobs extends JavaPlugin implements Listener {
 
 
     private static Jobs instance;
@@ -28,7 +32,7 @@ public final class Jobs extends JavaPlugin {
         }
         if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             getLogger().log(Level.INFO, "Hooked onto PlaceholderAPI");
-            /* new PlaceholderAPI().register();*/
+            new PlaceholderAPI().register();
         } else {
             getServer().getPluginManager().disablePlugin(this);
         }
@@ -37,6 +41,8 @@ public final class Jobs extends JavaPlugin {
         } else {
             getServer().getPluginManager().disablePlugin(this);
         }
+        getServer().getPluginManager().registerEvents(new BlockBreak(), this);
+        getServer().getPluginManager().registerEvents(new Join(), this);
 
 
     }
