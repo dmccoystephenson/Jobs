@@ -95,15 +95,6 @@ public class Commands implements CommandExecutor {
             if (label.equalsIgnoreCase("danhsachnghe")) {
                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("available-jobs")));
             }
-            if (label.equalsIgnoreCase("xemnghe")) {
-                if (args.length > 1) {
-                    if (Files.getInstance().getconfig().getString("players." + args[1]) != null) {
-                        sender.sendMessage(Files.getInstance().convert(Files.getInstance().getconfig().getString("messages.check-job").replace("%job%", Files.getInstance().getdata().getString("players." + args[1])).replace("%player%", args[1])));
-                    } else {
-                        sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("check-error").replace("%player%", args[1])));
-                    }
-                }
-            }
             if (label.equalsIgnoreCase("chonnghe")) {
 
                 if (args.length == 1) {
