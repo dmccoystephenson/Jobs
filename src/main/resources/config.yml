@@ -1,20 +1,17 @@
 miner_values:
-  GOLD_ORE: 3 # money given per mined block all blocks available found here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
-  EMERALD_ORE: 5
-  MOSSY_COBBLESTONE: 1
-  IRON_ORE: 2
+  min: 1
+  max: 10
 treecutter_values:
-  LOG: 2
+  min: 1
+  max: 10
 fishing_values:
   min: 1
   max: 10
 build_values:
-  GRAVEL: 2
-  SAND: 3
-  CLAY: 5
+  min: 1
+  max: 10
 farm_values:
-  WHEAT: 2
-  BEETROT: 2
-  SUGAR: 2
+  min: 1
+  max: 10
 doctor_material: REDSTONE
-debug: false
+debug: true

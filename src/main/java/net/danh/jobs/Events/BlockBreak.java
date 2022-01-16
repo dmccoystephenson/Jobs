@@ -20,50 +20,93 @@ public class BlockBreak implements Listener {
         Block b = e.getBlock();
         Player p = e.getPlayer();
         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("THOMO")) {
-            for (String key : Files.getInstance().getconfig().getConfigurationSection("miner_values").getKeys(false)) {
-                int value = Files.getInstance().getconfig().getInt("miner_values." + key);
-                if (b.getType().equals(Material.getMaterial(key))) {
-                    p.giveExp(value);
-                    if (Files.getInstance().getconfig().getBoolean("debug"))
-                        Jobs.getInstance().getLogger().log(Level.INFO, String.valueOf(p.getName()) + " (" + p.getUniqueId() + ") broke a block " + b.getType() + " located in " + b.getLocation().toString());
+
+            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la tho mo");
+            }
+            if (b.getType() == Material.GOLD_ORE
+                    || b.getType() == Material.EMERALD_ORE
+                    || b.getType() == Material.IRON_ORE
+                    || b.getType() == Material.MOSSY_COBBLESTONE) {
+
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
+                }
+
+                int randomNum = Files.getInstance().getconfig().getInt("miner_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("miner_values.max"));
+
+                p.giveExp(randomNum);
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                 }
             }
         }
         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("THOMOC")) {
-            for (String key : Files.getInstance().getconfig().getConfigurationSection("treecutter_values").getKeys(false)) {
-                int value = Files.getInstance().getconfig().getInt("treecutter_values." + key);
-                if (b.getType().equals(Material.getMaterial(key))) {
-                    p.giveExp(value);
-                    if (Files.getInstance().getconfig().getBoolean("debug"))
-                        Jobs.getInstance().getLogger().log(Level.INFO, String.valueOf(p.getName()) + " (" + p.getUniqueId() + ") broke a block " + b.getType() + " located in " + b.getLocation().toString());
+            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la tho moc");
+            }
+            if (b.getType() == Material.LOG) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra nguyen lieu");
+                }
+                int randomNum = Files.getInstance().getconfig().getInt("treecutter_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("treecutter_values.max"));
+
+                p.giveExp(randomNum);
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                 }
             }
         }
         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("CONGNHAN")) {
-            for (String key : Files.getInstance().getconfig().getConfigurationSection("build_values").getKeys(false)) {
-                int value = Files.getInstance().getconfig().getInt("build_values." + key);
-                if (b.getType().equals(Material.getMaterial(key))) {
-                    p.giveExp(value);
-                    if (Files.getInstance().getconfig().getBoolean("debug"))
-                        Jobs.getInstance().getLogger().log(Level.INFO, String.valueOf(p.getName()) + " (" + p.getUniqueId() + ") broke a block " + b.getType() + " located in " + b.getLocation().toString());
+            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la cong nhan");
+            }
+            if (b.getType() == Material.GRAVEL
+                    || b.getType() == Material.SAND
+                    || b.getType() == Material.CLAY) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra nguyen lieu");
+                }
+                int randomNum = Files.getInstance().getconfig().getInt("build_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("build_values.max"));
+
+                p.giveExp(randomNum);
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                 }
             }
         }
 
         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("NONGDAN")) {
-            if (!(b instanceof Ageable))
+            if (!(b instanceof Ageable)) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Cay khong co tuoii");
+                }
                 return;
+            }
             Ageable ageable = (Ageable) b;
-            if (ageable.getAge() < ageable.getMaximumAge())
+            if (ageable.getAge() < ageable.getMaximumAge()) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Cay chua lon");
+                }
                 return;
+            }
             EntityEquipment equipment = p.getEquipment();
-            if (equipment.getItemInHand().equals(Material.WOOD_HOE) && equipment.getItemInHand().hasItemMeta()) {
-                for (String key : Files.getInstance().getconfig().getConfigurationSection("farm_values").getKeys(false)) {
-                    int value = Files.getInstance().getconfig().getInt("farm_values." + key);
-                    if (b.getType().equals(Material.getMaterial(key))) {
-                        p.giveExp(value);
-                        if (Files.getInstance().getconfig().getBoolean("debug"))
-                            Jobs.getInstance().getLogger().log(Level.INFO, String.valueOf(p.getName()) + " (" + p.getUniqueId() + ") broke a block " + b.getType() + " located in " + b.getLocation().toString());
+            if (equipment.getItemInHand().getType() == Material.WOOD_HOE) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham tren tay");
+                }
+                if (b.getType() == Material.WHEAT
+                        || b.getType() == Material.BEETROOT
+                        || b.getType() == Material.SUGAR) {
+                    if (Files.getInstance().getconfig().getBoolean("debug")) {
+                        Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham thu hoach");
+                    }
+
+                    int randomNum = Files.getInstance().getconfig().getInt("farm_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("farm_values.max"));
+
+                    p.giveExp(randomNum);
+                    if (Files.getInstance().getconfig().getBoolean("debug")) {
+                        Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
                 }
             }

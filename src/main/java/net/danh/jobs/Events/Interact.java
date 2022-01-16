@@ -1,8 +1,7 @@
 package net.danh.jobs.Events;
 
-import com.google.common.io.FileBackedOutputStream;
-import jdk.nashorn.internal.ir.IfNode;
 import net.danh.jobs.Files.Files;
+import net.danh.jobs.Jobs;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -11,21 +10,46 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
+import java.util.logging.Level;
+
 public class Interact implements Listener {
 
     @EventHandler
     public void onRev(PlayerInteractAtEntityEvent e) {
         Player bs = e.getPlayer();
-
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("BACSI")) {
+            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la bac si");
+            }
             if (e.getRightClicked().getType().equals(EntityType.PLAYER)) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Bac si da click phai vao nguoi choi khac");
+                }
                 String name = e.getRightClicked().getName();
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
                 if (bn.getHealth() != bn.getMaxHealth()) {
-                    if (bs.getItemInHand().equals(Material.getMaterial(Files.getInstance().getconfig().getString("doctor_material"))) && bs.getItemInHand().hasItemMeta()) {
+                    if (Files.getInstance().getconfig().getBoolean("debug")) {
+                        Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
+                    }
+                    if (bs.getItemInHand().getType() == Material.getMaterial(Files.getInstance().getconfig().getString("doctor_material"))) {
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Thuoc dung loai");
+                        }
                         bn.setHealth(bn.getHealth() + (bs.getItemInHand().getAmount() / 2));
+
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Da hoi mau");
+                        }
                         bs.setItemInHand(null);
+
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa thuoc");
+                        }
                         bs.giveExp(10);
+
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Het");
+                        }
                     }
                 }
             }
