@@ -88,88 +88,109 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                         }
-                    }
-                }
-            }
 
-            if (label.equalsIgnoreCase("danhsachnghe")) {
-                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("available-jobs")));
-            }
-            if (label.equalsIgnoreCase("chonnghe")) {
-
-                if (args.length == 1) {
-                    if (Files.getInstance().getdata().getString("players." + sender.getName()).equals("KHONGCONGHE")) {
-                        if (args[0].equalsIgnoreCase("THOMO")) {
-                            Files.getInstance().getdata().set("players." + sender.getName(), "THOMO");
-                            Files.getInstance().savedata();
-                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Thợ Mỏ")));
-
-                            return true;
-                        }
-                        if (args[0].equalsIgnoreCase("THOMOC")) {
-                            Files.getInstance().getdata().set("players." + sender.getName(), "THOMOC");
-                            Files.getInstance().savedata();
-                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Thợ Mộc")));
-
-                            return true;
-                        }
-                        if (args[0].equalsIgnoreCase("CONGNHAN")) {
-                            Files.getInstance().getdata().set("players." + sender.getName(), "CONGNHAN");
-                            Files.getInstance().savedata();
-                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Công Nhân")));
-
-                            return true;
-                        }
-
-                        if (args[0].equalsIgnoreCase("NGUDAN")) {
-                            Files.getInstance().getdata().set("players." + sender.getName(), "NGUDAN");
-                            Files.getInstance().savedata();
-                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Ngư Dân")));
-
-                            return true;
-                        }
-
-
-                        if (args[0].equalsIgnoreCase("NONGDAN")) {
-                            Files.getInstance().getdata().set("players." + sender.getName(), "NONGDAN");
-                            Files.getInstance().savedata();
-                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Nông Dân")));
-
-                            return true;
-                        }
-
-                        if (args[0].equalsIgnoreCase("LAOCONG")) {
-                            Files.getInstance().getdata().set("players." + sender.getName(), "LAOCONG");
-                            Files.getInstance().savedata();
-                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Lao Công")));
-
-                            return true;
-                        }
-
-
-                        if (sender.hasPermission("bacsi")) {
-                            if (args[0].equalsIgnoreCase("BACSI")) {
-                                Files.getInstance().getdata().set("players." + sender.getName(), "BACSI");
+                        if (sender.hasPermission("antrom")) {
+                            if (args[0].equalsIgnoreCase("ANTROM")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "ANTROM");
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                        .replaceAll("%job%", "Bác Sĩ")));
+                                        .replaceAll("%job%", "Ăn Trộm")));
 
                                 return true;
                             }
                         }
-                    } else {
-                        sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng gõ /doinghe <tên nghề>"));
+                    }
+                }
+
+                if (label.equalsIgnoreCase("danhsachnghe")) {
+                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("available-jobs")));
+                }
+                if (label.equalsIgnoreCase("chonnghe")) {
+
+                    if (args.length == 1) {
+                        if (Files.getInstance().getdata().getString("players." + sender.getName()).equals("KHONGCONGHE")) {
+                            if (args[0].equalsIgnoreCase("THOMO")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "THOMO");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Thợ Mỏ")));
+
+                                return true;
+                            }
+                            if (args[0].equalsIgnoreCase("THOMOC")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "THOMOC");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Thợ Mộc")));
+
+                                return true;
+                            }
+                            if (args[0].equalsIgnoreCase("CONGNHAN")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "CONGNHAN");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Công Nhân")));
+
+                                return true;
+                            }
+
+                            if (args[0].equalsIgnoreCase("NGUDAN")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "NGUDAN");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Ngư Dân")));
+
+                                return true;
+                            }
+
+
+                            if (args[0].equalsIgnoreCase("NONGDAN")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "NONGDAN");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Nông Dân")));
+
+                                return true;
+                            }
+
+                            if (args[0].equalsIgnoreCase("LAOCONG")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "LAOCONG");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Lao Công")));
+
+                                return true;
+                            }
+
+
+                            if (sender.hasPermission("bacsi")) {
+                                if (args[0].equalsIgnoreCase("BACSI")) {
+                                    Files.getInstance().getdata().set("players." + sender.getName(), "BACSI");
+                                    Files.getInstance().savedata();
+                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                            .replaceAll("%job%", "Bác Sĩ")));
+
+                                    return true;
+                                }
+                            }
+                            if (sender.hasPermission("antrom")) {
+                                if (args[0].equalsIgnoreCase("ANTROM")) {
+                                    Files.getInstance().getdata().set("players." + sender.getName(), "ANTROM");
+                                    Files.getInstance().savedata();
+                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                            .replaceAll("%job%", "Ăn Trộm")));
+
+                                    return true;
+                                }
+                            }
+                        } else {
+                            sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng gõ /doinghe <tên nghề>"));
+                        }
                     }
                 }
             }
         }
+
         return true;
     }
 }
-
