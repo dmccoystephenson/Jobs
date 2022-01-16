@@ -30,11 +30,11 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().getdata().set("players." + sender.getName(), "THOMO");
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Đào Mỏ")));
+                                    .replaceAll("%job%", "Thợ Mỏ")));
 
                             return true;
                         }
-                        if (args[0].equalsIgnoreCase("TIEUPHU")) {
+                        if (args[0].equalsIgnoreCase("THOMOC")) {
                             Files.getInstance().getdata().set("players." + sender.getName(), "THOMOC");
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
@@ -56,6 +56,25 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Ngư Dân")));
+
+                            return true;
+                        }
+
+
+                        if (args[0].equalsIgnoreCase("NONGDAN")) {
+                            Files.getInstance().getdata().set("players." + sender.getName(), "NONGDAN");
+                            Files.getInstance().savedata();
+                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                    .replaceAll("%job%", "Nông Dân")));
+
+                            return true;
+                        }
+
+                        if (args[0].equalsIgnoreCase("LAOCONG")) {
+                            Files.getInstance().getdata().set("players." + sender.getName(), "LAOCONG");
+                            Files.getInstance().savedata();
+                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                    .replaceAll("%job%", "Lao Công")));
 
                             return true;
                         }
@@ -83,11 +102,11 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().getdata().set("players." + sender.getName(), "THOMO");
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                    .replaceAll("%job%", "Đào Mỏ")));
+                                    .replaceAll("%job%", "Thợ Mỏ")));
 
                             return true;
                         }
-                        if (args[0].equalsIgnoreCase("TIEUPHU")) {
+                        if (args[0].equalsIgnoreCase("THOMOC")) {
                             Files.getInstance().getdata().set("players." + sender.getName(), "THOMOC");
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
@@ -109,6 +128,25 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Ngư Dân")));
+
+                            return true;
+                        }
+
+
+                        if (args[0].equalsIgnoreCase("NONGDAN")) {
+                            Files.getInstance().getdata().set("players." + sender.getName(), "NONGDAN");
+                            Files.getInstance().savedata();
+                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                    .replaceAll("%job%", "Nông Dân")));
+
+                            return true;
+                        }
+
+                        if (args[0].equalsIgnoreCase("LAOCONG")) {
+                            Files.getInstance().getdata().set("players." + sender.getName(), "LAOCONG");
+                            Files.getInstance().savedata();
+                            sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                    .replaceAll("%job%", "Lao Công")));
 
                             return true;
                         }
