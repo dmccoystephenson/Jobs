@@ -1,6 +1,7 @@
 package net.danh.jobs;
 
 import net.danh.jobs.Events.BlockBreak;
+import net.danh.jobs.Events.Fishing;
 import net.danh.jobs.Events.Join;
 import net.danh.jobs.Hook.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
@@ -43,6 +44,7 @@ public final class Jobs extends JavaPlugin implements Listener {
         }
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new Join(), this);
+        getServer().getPluginManager().registerEvents(new Fishing(), this);
 
 
     }
