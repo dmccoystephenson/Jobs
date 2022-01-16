@@ -3,6 +3,7 @@ package net.danh.jobs;
 import net.danh.jobs.Commands.Commands;
 import net.danh.jobs.Events.BlockBreak;
 import net.danh.jobs.Events.Fishing;
+import net.danh.jobs.Events.Interact;
 import net.danh.jobs.Events.Join;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Hook.PlaceholderAPI;
@@ -47,6 +48,7 @@ public final class Jobs extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new Join(), this);
         getServer().getPluginManager().registerEvents(new Fishing(), this);
+        getServer().getPluginManager().registerEvents(new Interact(), this);
         getCommand("nghe").setExecutor(new Commands());
         getCommand("chonnghe").setExecutor(new Commands());
         getCommand("doinghe").setExecutor(new Commands());

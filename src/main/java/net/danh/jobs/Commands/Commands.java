@@ -78,6 +78,16 @@ public class Commands implements CommandExecutor {
 
                             return true;
                         }
+                        if (sender.hasPermission("bacsi")) {
+                            if (args[0].equalsIgnoreCase("BACSI")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "BACSI");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Bác Sĩ")));
+
+                                return true;
+                            }
+                        }
                     }
                 }
             }
@@ -94,7 +104,7 @@ public class Commands implements CommandExecutor {
                     }
                 }
             }
-            if (label.equalsIgnoreCase("chonnghe")){
+            if (label.equalsIgnoreCase("chonnghe")) {
 
                 if (args.length == 1) {
                     if (Files.getInstance().getdata().getString("players." + sender.getName()).equals("KHONGCONGHE")) {
@@ -150,6 +160,18 @@ public class Commands implements CommandExecutor {
 
                             return true;
                         }
+
+
+                        if (sender.hasPermission("bacsi")) {
+                            if (args[0].equalsIgnoreCase("BACSI")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "BACSI");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Bác Sĩ")));
+
+                                return true;
+                            }
+                        }
                     } else {
                         sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng gõ /doinghe <tên nghề>"));
                     }
@@ -159,3 +181,4 @@ public class Commands implements CommandExecutor {
         return true;
     }
 }
+

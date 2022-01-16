@@ -16,4 +16,5 @@ farm_values:
   WHEAT: 2
   BEETROT: 2
   SUGAR: 2
+doctor_material: REDSTONE
 debug: false
