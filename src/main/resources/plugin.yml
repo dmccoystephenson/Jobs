@@ -1,0 +1,5 @@
+name: Jobs
+version: '${project.version}'
+main: net.danh.jobs.Jobs
+depend: [Vault, PlaceholderAPI]
+authors: [VoChiDanh]
