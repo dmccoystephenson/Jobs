@@ -37,13 +37,25 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
         if (identifier.equalsIgnoreCase("ten")) {
             if (Files.getInstance().getdata().getString("players." + p.getName()).equals("THOMO")) {
-                return "Thợ Mỏ";
+                return "Đào Mỏ";
             }
             if (Files.getInstance().getdata().getString("players." + p.getName()).equals("TIEUPHU")) {
-                return "Tiều Phu";
+                return "Thợ Mộc";
             }
             if (Files.getInstance().getdata().getString("players." + p.getName()).equals("KHONGCONGHE")) {
                 return "";
+            }
+            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("CONGNHAN")) {
+                return "Công Nhân";
+            }
+            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("NGUDAN")) {
+                return "Ngư Dân";
+            }
+            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("NONGDAN")) {
+                return "Nông Dân";
+            }
+            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("DONRAC")) {
+                return "Dọn Rác";
             }
         }
 

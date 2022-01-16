@@ -3,3 +3,9 @@ version: '${project.version}'
 main: net.danh.jobs.Jobs
 depend: [Vault, PlaceholderAPI]
 authors: [VoChiDanh]
+commands:
+  nghe:
+  chonnghe:
+  doinghe:
+  danhsachnghe:
+  xemnghe:
