@@ -18,11 +18,6 @@ public class Fishing implements Listener {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la ngu dan");
             }
 
-            e.getPlayer().giveExp(Files.getInstance().getconfig().getInt("xp"));
-            if (Files.getInstance().getconfig().getBoolean("debug")) {
-                Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
-            }
-
         }
     }
 }
