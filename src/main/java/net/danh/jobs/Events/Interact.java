@@ -71,7 +71,7 @@ public class Interact implements Listener {
 
                             int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
 
-                            p.giveExp(randomNum);
+                            bs.giveExp(randomNum);
                         } else {
                             bs.sendMessage(Files.getInstance().convert("&cBạn chỉ cần 30 viên thuốc"));
                         }
@@ -128,7 +128,7 @@ public class Interact implements Listener {
 
                         int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
 
-                        p.giveExp(randomNum);
+                        bs.giveExp(randomNum);
 
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Het");
