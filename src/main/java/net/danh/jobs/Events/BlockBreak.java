@@ -4,12 +4,10 @@ import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.EntityEquipment;
 
 import java.util.logging.Level;
 
@@ -77,21 +75,7 @@ public class BlockBreak implements Listener {
         }
 
         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("NONGDAN")) {
-            if (!(b instanceof Ageable)) {
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Cay khong co tuoii");
-                }
-                return;
-            }
-            Ageable ageable = (Ageable) b;
-            if (ageable.getAge() < ageable.getMaximumAge()) {
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Cay chua lon");
-                }
-                return;
-            }
-            EntityEquipment equipment = p.getEquipment();
-            if (equipment.getItemInHand().getType() == Material.WOOD_HOE) {
+            if (p.getItemInHand().getType() == Material.WOOD_HOE) {
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham tren tay");
                 }

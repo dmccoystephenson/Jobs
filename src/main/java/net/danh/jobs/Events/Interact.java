@@ -64,9 +64,12 @@ public class Interact implements Listener {
                             if (Files.getInstance().getconfig().getBoolean("debug")) {
                                 Jobs.getInstance().getLogger().log(Level.INFO, "Da hoi mau");
 
-                                bs.giveExp(10);
-
                             }
+
+
+                            bs.giveExp(10);
+                        } else {
+                            bs.sendMessage(Files.getInstance().convert("&cBạn chỉ cần 30 viên thuốc"));
                         }
                     }
                 }
