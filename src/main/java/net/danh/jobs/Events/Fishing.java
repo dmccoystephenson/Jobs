@@ -17,8 +17,10 @@ public class Fishing implements Listener {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la ngu dan");
             }
-            int randomNum = Files.getInstance().getconfig().getInt("fishing_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("fishing_values.max"));
-            e.getPlayer().giveExp(randomNum);
+
+            int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
+
+            p.giveExp(randomNum);
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
             }

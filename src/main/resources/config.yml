@@ -1,18 +1,6 @@
-miner_values:
+xp:
   min: 1
-  max: 3
-treecutter_values:
-  min: 1
-  max: 3
-fishing_values:
-  min: 1
-  max: 3
-build_values:
-  min: 1
-  max: 3
-farm_values:
-  min: 1
-  max: 3
+  max: 2
 doctor_items:
   MATERIAL: PAPER
   AMOUNT: 1

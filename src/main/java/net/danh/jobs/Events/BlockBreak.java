@@ -31,7 +31,7 @@ public class BlockBreak implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
                 }
 
-                int randomNum = Files.getInstance().getconfig().getInt("miner_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("miner_values.max"));
+                int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
 
                 p.giveExp(randomNum);
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -65,7 +65,8 @@ public class BlockBreak implements Listener {
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra nguyen lieu");
                 }
-                int randomNum = Files.getInstance().getconfig().getInt("build_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("build_values.max"));
+
+                int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
 
                 p.giveExp(randomNum);
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -86,7 +87,7 @@ public class BlockBreak implements Listener {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham thu hoach");
                     }
 
-                    int randomNum = Files.getInstance().getconfig().getInt("farm_values.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("farm_values.max"));
+                    int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
 
                     p.giveExp(randomNum);
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
