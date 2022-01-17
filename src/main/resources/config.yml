@@ -25,6 +25,4 @@ thief_items:
   DISPLAY_NAME: "&eDao Của Cướp"
   LORE1: ""
   LORE2: "&fDùng để cướp đồ nạn nhân"
-adddict_medicine:
-  MATERIAL:
 debug: true
