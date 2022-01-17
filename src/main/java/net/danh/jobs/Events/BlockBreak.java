@@ -27,12 +27,6 @@ public class BlockBreak implements Listener {
                     || b.getType() == Material.EMERALD_ORE
                     || b.getType() == Material.IRON_ORE
                     || b.getType() == Material.MOSSY_COBBLESTONE) {
-                /* TODO
-                 * Tai sao may lai
-                 * deo hoat dong
-                 * co chu?
-                 * */
-
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
                 }
