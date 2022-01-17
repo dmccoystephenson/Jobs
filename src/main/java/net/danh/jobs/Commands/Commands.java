@@ -1,7 +1,11 @@
 package net.danh.jobs.Commands;
 
 import net.danh.jobs.Files.Files;
+import net.danh.jobs.Jobs;
+import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -120,6 +124,7 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Thợ Mỏ")));
+                            EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                             return true;
                         }
@@ -128,6 +133,7 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Thợ Mộc")));
+                            EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                             return true;
                         }
@@ -136,6 +142,7 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Công Nhân")));
+                            EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                             return true;
                         }
@@ -145,6 +152,7 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Ngư Dân")));
+                            EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                             return true;
                         }
@@ -155,6 +163,7 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Nông Dân")));
+                            EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                             return true;
                         }
@@ -164,6 +173,7 @@ public class Commands implements CommandExecutor {
                             Files.getInstance().savedata();
                             sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                     .replaceAll("%job%", "Lao Công")));
+                            EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                             return true;
                         }
@@ -175,6 +185,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Bác Sĩ")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                                 return true;
                             }
@@ -185,6 +196,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Ăn Trộm")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                                 return true;
                             }
@@ -224,6 +236,19 @@ public class Commands implements CommandExecutor {
                     items.setItemMeta(meta);
                     sender.sendMessage(Files.getInstance().convert("&7+1 Vật phẩm"));
                     ((Player) sender).getInventory().addItem(items);
+                }
+            }
+
+            if (args.length == 1) {
+                if (label.equalsIgnoreCase("115")) {
+                    if (((Player) sender).getHealth() >= (((Player) sender).getMaxHealth() / 2)) {
+                        if (Bukkit.getPlayer(args[0]) != null) {
+                            if (Files.getInstance().getdata().getString("players." + Bukkit.getPlayer(args[0]).getName()).equals("BACSI")) {
+                                Bukkit.getPlayer(args[0]).sendMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + ((Player) sender).getPlayer().getLocation().getX() + " " + ((Player) sender).getPlayer().getLocation().getY() + " " + ((Player) sender).getPlayer().getLocation().getZ()));
+                                sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
+                            }
+                        }
+                    }
                 }
             }
         }
