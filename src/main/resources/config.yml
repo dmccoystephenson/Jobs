@@ -1,6 +1,4 @@
-xp:
-  min: 1
-  max: 2
+xp: 1
 doctor_items:
   MATERIAL: PAPER
   AMOUNT: 1

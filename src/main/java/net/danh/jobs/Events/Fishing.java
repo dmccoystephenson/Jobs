@@ -18,9 +18,7 @@ public class Fishing implements Listener {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la ngu dan");
             }
 
-            int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
-
-            e.getPlayer().giveExp(randomNum);
+            e.getPlayer().giveExp(Files.getInstance().getconfig().getInt("xp"));
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
             }

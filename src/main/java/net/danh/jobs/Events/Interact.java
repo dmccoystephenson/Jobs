@@ -34,9 +34,11 @@ public class Interact implements Listener {
                 }
                 String name = e.getRightClicked().getName();
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
-                if (bn.getHealth() != bn.getMaxHealth()) {
+                if (bn.getHealth() >= (bn.getMaxHealth() / 2)) {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
+                    } else {
+                        bn.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a " + Double.valueOf(bn.getHealth()) + "&c nên chưa đủ điều kiện để Bác Sĩ " + bs.getName() + " &chồi phục cho bạn"));
                     }
 
                     ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
@@ -57,23 +59,25 @@ public class Interact implements Listener {
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Thuoc dung loai");
                         }
-                        if (bs.getItemInHand().getAmount() == 30) {
+                        if (bs.getItemInHand().getAmount() != 1) {
+                            bs.getItemInHand().setAmount(bs.getItemInHand().getAmount() - 1);
                             bn.setHealth(bn.getMaxHealth());
-                            bs.setItemInHand(null);
-                            if (Files.getInstance().getconfig().getBoolean("debug")) {
-                                Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa thuoc");
-                            }
-                            if (Files.getInstance().getconfig().getBoolean("debug")) {
-                                Jobs.getInstance().getLogger().log(Level.INFO, "Da hoi mau");
-
-                            }
-
-
-                            int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
-
-                            bs.giveExp(randomNum);
                         } else {
-                            bs.sendMessage(Files.getInstance().convert("&cBạn chỉ cần 30 viên thuốc"));
+                            bs.getInventory().remove(item);
+                            bn.setHealth(bn.getMaxHealth());
+                            bs.sendMessage(Files.getInstance().convert("&eCảm ơn bạn đã cứu bệnh nhân &c" + bn.getName()));
+                            bn.sendMessage(Files.getInstance().convert("&eBạn đã được bác sĩ &c" + bs.getName() + " &ecứu thành công!"));
+                        }
+
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa thuoc");
+                        }
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Da hoi mau");
+
+                        }
+
+                        bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
                         }
                     }
                 }
@@ -81,7 +85,6 @@ public class Interact implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Het");
                 }
             }
-        }
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("ANTROM")) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la an trom");
@@ -92,7 +95,7 @@ public class Interact implements Listener {
                 }
                 String name = e.getRightClicked().getName();
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
-                if (Jobs.economy.getBalance(bn) <= 100) {
+                if (Jobs.economy.getBalance(bn) > 100) {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Nan nhan khong co du tien");
                     }
@@ -112,7 +115,7 @@ public class Interact implements Listener {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Dung loai vu khi an trom");
                         }
 
-                        bs.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(1800, 3));
+                        bs.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(1800 * 20, 3));
                         EconomyResponse er = Jobs.economy.withdrawPlayer(bn, 100);
                         EconomyResponse es = Jobs.economy.depositPlayer(bs, 100);
 
@@ -120,7 +123,7 @@ public class Interact implements Listener {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Da an trom tien");
                         }
                         bs.setItemInHand(null);
-                        bs.giveExp(10);
+                        bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
 
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa dung cu");
