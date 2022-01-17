@@ -201,8 +201,8 @@ public class Commands implements CommandExecutor {
 
                     meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.DISPLAY_NAME")));
                     ArrayList<String> lore = new ArrayList<String>();
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.Lore1")));
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.Lore2")));
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.LORE1")));
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.LORE1")));
                     meta.setLore(lore);
                     items.setItemMeta(meta);
                     sender.sendMessage(Files.getInstance().convert("&7+1 Vật phẩm"));
@@ -218,8 +218,8 @@ public class Commands implements CommandExecutor {
 
                     meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("thief_items.DISPLAY_NAME")));
                     ArrayList<String> lore = new ArrayList<String>();
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("thief_items.Lore1")));
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("thief_items.Lore2")));
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("thief_items.LORE1")));
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("thief_items.LORE1")));
                     meta.setLore(lore);
                     items.setItemMeta(meta);
                     sender.sendMessage(Files.getInstance().convert("&7+1 Vật phẩm"));
