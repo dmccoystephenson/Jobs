@@ -53,6 +53,7 @@ public final class Jobs extends JavaPlugin implements Listener {
         getCommand("danhsachnghe").setExecutor(new Commands());
         getCommand("caydao").setExecutor(new Commands());
         getCommand("thuocbacsi").setExecutor(new Commands());
+        getCommand("115").setExecutor(new Commands());
         Files.getInstance().createconfig();
     }
 
