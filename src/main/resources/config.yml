@@ -1,17 +1,30 @@
 miner_values:
   min: 1
-  max: 10
+  max: 3
 treecutter_values:
   min: 1
-  max: 10
+  max: 3
 fishing_values:
   min: 1
-  max: 10
+  max: 3
 build_values:
   min: 1
-  max: 10
+  max: 3
 farm_values:
   min: 1
-  max: 10
-doctor_material: REDSTONE
+  max: 3
+doctor_items:
+  MATERIAL: PAPER
+  AMOUNT: 1
+  DISPLAY_NAME: "&eThuốc Hồi Phục"
+  LORE1: ""
+  LORE2: "&fDùng để hồi phục sức khỏe bệnh nhân"
+thief_items:
+  MATERIAL: GOLD_SWORD
+  AMOUNT: 1
+  DISPLAY_NAME: "&eDao Của Cướp"
+  LORE1: ""
+  LORE2: "&fDùng để cướp đồ nạn nhân"
+adddict_medicine:
+  MATERIAL:
 debug: true
