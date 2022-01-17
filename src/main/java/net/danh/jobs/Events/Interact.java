@@ -48,23 +48,28 @@ public class Interact implements Listener {
                     items.setItemMeta(meta);
                     Material item = items.getType();
 
-                    if (bs.getItemInHand().getType() == item) {
+                    if (bs.getItemInHand().getType() == null) {
+                        return;
+                    }
+                    if (bs.getItemInHand().getType() != null && bs.getItemInHand().getType() == item) {
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Thuoc dung loai");
                         }
-                        if (bs.getItemInHand().getAmount() == 30)
+                        if (bs.getItemInHand().getAmount() == 30) {
                             bn.setHealth(bn.getMaxHealth());
-                        bs.setItemInHand(null);
-                        if (Files.getInstance().getconfig().getBoolean("debug")) {
-                            Jobs.getInstance().getLogger().log(Level.INFO, "Da hoi mau");
+                            bs.setItemInHand(null);
+                            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                                Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa thuoc");
+                            }
+                            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                                Jobs.getInstance().getLogger().log(Level.INFO, "Da hoi mau");
+
+                                bs.giveExp(10);
+
+                            }
                         }
                     }
                 }
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa thuoc");
-                }
-                bs.giveExp(10);
-
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Het");
                 }
@@ -108,6 +113,7 @@ public class Interact implements Listener {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Da an trom tien");
                         }
                         bs.setItemInHand(null);
+                        bs.giveExp(10);
 
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa dung cu");
