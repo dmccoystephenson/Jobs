@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
@@ -13,7 +14,7 @@ import java.util.logging.Level;
 
 public class BlockBreak implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockBreak(BlockBreakEvent e) {
         Block b = e.getBlock();
         Player p = e.getPlayer();
@@ -26,6 +27,11 @@ public class BlockBreak implements Listener {
                     || b.getType() == Material.EMERALD_ORE
                     || b.getType() == Material.IRON_ORE
                     || b.getType() == Material.MOSSY_COBBLESTONE) {
+                /* TODO
+                 * Tai sao may lai
+                 * deo hoat dong
+                 * co chu?
+                 * */
 
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
@@ -79,9 +85,9 @@ public class BlockBreak implements Listener {
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham tren tay");
                 }
-                if (b.getType() == Material.WHEAT
-                        || b.getType() == Material.BEETROOT
-                        || b.getType() == Material.SUGAR) {
+                if (b.getType() == Material.CROPS
+                        || b.getType() == Material.BEETROOT_BLOCK
+                        || b.getType() == Material.SUGAR_CANE_BLOCK) {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham thu hoach");
                     }
