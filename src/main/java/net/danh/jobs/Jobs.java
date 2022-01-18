@@ -59,7 +59,9 @@ public final class Jobs extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        Files.getInstance().savedata();
+        Files.getInstance().saveconfig();
+        Files.getInstance().savelanguage();
     }
 
 
