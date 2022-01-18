@@ -262,13 +262,15 @@ public class Commands implements CommandExecutor {
             }
             if (label.equalsIgnoreCase("115")) {
                 if (((Player) sender).getHealth() >= (((Player) sender).getMaxHealth() / 2)) {
-                    for (Player p : Bukkit.getOnlinePlayers()) {
+                    for (Player p : Bukkit.getServer().getOnlinePlayers()) {
                         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("BACSI") || Files.getInstance().getdata().getString("players." + p.getName()).equals("CANHSAT")) {
                             p.sendMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + ((Player) sender).getPlayer().getLocation().getX() + " " + ((Player) sender).getPlayer().getLocation().getY() + " " + ((Player) sender).getPlayer().getLocation().getZ()));
                             sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
                             break;
                         }
                     }
+                } else {
+                    sender.sendMessage(Files.getInstance().convert("&cMáu của bạn chưa dưới 50% nên chưa thể gọi bác sĩ. Hiện tại số máu của bạn là &a" + ((Player) sender).getPlayer().getHealth()));
                 }
             }
             if (sender.hasPermission("hangcam")) {

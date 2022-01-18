@@ -38,7 +38,7 @@ public class Interact implements Listener {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
                     } else {
-                        bn.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a " + Double.valueOf(bn.getHealth()) + "&c nên chưa đủ điều kiện để Bác Sĩ " + bs.getName() + " &chồi phục cho bạn"));
+                        bn.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a" + Double.valueOf(bn.getHealth()) + "&c nên chưa đủ điều kiện để Bác Sĩ &a" + bs.getName() + " &chồi phục cho bạn"));
                     }
 
                     ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
