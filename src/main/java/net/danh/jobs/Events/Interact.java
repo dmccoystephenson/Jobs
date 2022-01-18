@@ -33,7 +33,7 @@ public class Interact implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Bac si da click phai vao nguoi choi khac");
                 }
                 String name = e.getRightClicked().getName();
-                Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
                 if (bn.getHealth() <= (bn.getMaxHealth() / 2)) {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
@@ -108,7 +108,7 @@ public class Interact implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "An trom da click phai vao nguoi choi khac");
                 }
                 String name = e.getRightClicked().getName();
-                Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
                 if (Jobs.economy.getBalance(bn) > 100) {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Nan nhan khong co du tien");
