@@ -63,6 +63,9 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             if (Files.getInstance().getdata().getString("players." + p.getName()).equals("ANTROM")) {
                 return "Ăn Trộm";
             }
+            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("CANHSAT")) {
+                return "Cảnh Sát";
+            }
         }
 
         return null;

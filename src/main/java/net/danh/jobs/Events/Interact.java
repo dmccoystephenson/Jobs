@@ -78,13 +78,13 @@ public class Interact implements Listener {
                         }
 
                         bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                        }
                     }
                 }
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Het");
-                }
             }
+            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                Jobs.getInstance().getLogger().log(Level.INFO, "Het");
+            }
+        }
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("ANTROM")) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la an trom");
@@ -138,6 +138,45 @@ public class Interact implements Listener {
                         }
                     }
                 }
+            }
+        }
+        if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("CANHSAT")) {
+            if (Files.getInstance().getconfig().getBoolean("debug")) {
+                Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la canh sat");
+            }
+            if (e.getRightClicked().getType().equals(EntityType.PLAYER)) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Canh satda click phai vao nguoi choi khac");
+                }
+                String name = e.getRightClicked().getName();
+                Player bn = Bukkit.getPlayerExact(name).getPlayer();
+
+                ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("hangcam.MATERIAL")), Files.getInstance().getconfig().getInt("hangcam.AMOUNT"));
+                ItemMeta meta = items.getItemMeta();
+
+                meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.DISPLAY_NAME")));
+                ArrayList<String> lore = new ArrayList<String>();
+                lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE1")));
+                lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE2")));
+                meta.setLore(lore);
+                items.setItemMeta(meta);
+                int amount = 0;
+                int am = 0;
+
+                for (int in = 0; in < 36; in++) {
+                    if (bs.getInventory().getItem(in) == null) {
+                        continue;
+                    }
+                    if (bs.getInventory().getItem(in).equals(items)) {
+                        am += bs.getInventory().getItem(in).getAmount();
+                    }
+                }
+                if (am >= amount) {
+                    return;
+                } else {
+                    bs.sendMessage(Files.getInstance().convert("&cPhát hiện có &a" + amount + " &cvật phẩm cấm trong túi đồ của" + bn.getName()));
+                }
+                return;
             }
         }
     }

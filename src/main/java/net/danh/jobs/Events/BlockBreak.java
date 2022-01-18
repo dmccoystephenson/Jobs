@@ -9,7 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class BlockBreak implements Listener {
@@ -23,18 +26,66 @@ public class BlockBreak implements Listener {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la tho mo");
             }
-            if (b.getType() == Material.GOLD_ORE
-                    || b.getType() == Material.EMERALD_ORE
-                    || b.getType() == Material.IRON_ORE
-                    || b.getType() == Material.MOSSY_COBBLESTONE) {
+
+            ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("miner_items.MATERIAL")), Files.getInstance().getconfig().getInt("miner_items.AMOUNT"));
+            ItemMeta meta = items.getItemMeta();
+
+            meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.DISPLAY_NAME")));
+            ArrayList<String> lore = new ArrayList<String>();
+            lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE1")));
+            lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE2")));
+            meta.setLore(lore);
+            items.setItemMeta(meta);
+            if (p.getItemInHand().equals(items)) {
+
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem trai cup");
                 }
 
+                if (b.getType() == Material.GOLD_ORE
+                        || b.getType() == Material.EMERALD_ORE
+                        || b.getType() == Material.IRON_ORE
+                        || b.getType() == Material.MOSSY_COBBLESTONE) {
+                    if (p.getPlayer().getLevel() <= 3) {
+                        if (b.getType() == Material.GOLD_ORE
+                                || b.getType() == Material.EMERALD_ORE
+                                || b.getType() == Material.IRON_ORE) {
+                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên cấp độ 3 để có thể đào chúng"));
+                            e.setCancelled(true);
+                        }
+                    } else {
+                        e.setCancelled(false);
+                    }
+                    if (p.getPlayer().getLevel() <= 7) {
+                        if (b.getType() == Material.GOLD_ORE
+                                || b.getType() == Material.EMERALD_ORE) {
+                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên cấp độ 7 để có thể đào chúng"));
+                            e.setCancelled(true);
+                        }
+                    } else {
+                        e.setCancelled(false);
+                    }
+
+                    if (p.getPlayer().getLevel() <= 12) {
+                        if (b.getType() == Material.EMERALD_ORE) {
+                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên cấp độ 12 để có thể đào chúng"));
+                            e.setCancelled(true);
+                        }
+                    } else {
+                        e.setCancelled(false);
+                    }
+                    if (Files.getInstance().getconfig().getBoolean("debug")) {
+                        Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
+                    }
+
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                    if (Files.getInstance().getconfig().getBoolean("debug")) {
+                        Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                    }
                 }
+            } else {
+                p.sendMessage(Files.getInstance().convert("&cVật phẩm này không thể dùng để đào quặng"));
+                e.setCancelled(true);
             }
         }
         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("THOMOC")) {

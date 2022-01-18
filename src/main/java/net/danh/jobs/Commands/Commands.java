@@ -87,12 +87,22 @@ public class Commands implements CommandExecutor {
 
                             return true;
                         }
-                        if (sender.hasPermission("bacsi")) {
+                        if (sender.hasPermission("congchuc")) {
                             if (args[0].equalsIgnoreCase("BACSI")) {
                                 Files.getInstance().getdata().set("players." + sender.getName(), "BACSI");
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Bác Sĩ")));
+
+                                return true;
+                            }
+
+                            if (args[0].equalsIgnoreCase("CANHSAT")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "CANHSAT");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Cảnh Sát")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                                 return true;
                             }
@@ -179,12 +189,21 @@ public class Commands implements CommandExecutor {
                         }
 
 
-                        if (sender.hasPermission("bacsi")) {
+                        if (sender.hasPermission("congchuc")) {
                             if (args[0].equalsIgnoreCase("BACSI")) {
                                 Files.getInstance().getdata().set("players." + sender.getName(), "BACSI");
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Bác Sĩ")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+
+                                return true;
+                            }
+                            if (args[0].equalsIgnoreCase("CANHSAT")) {
+                                Files.getInstance().getdata().set("players." + sender.getName(), "CANHSAT");
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Cảnh Sát")));
                                 EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                                 return true;
@@ -206,22 +225,25 @@ public class Commands implements CommandExecutor {
                     }
                 }
             }
-            if (sender.hasPermission("thuocbacsi")) {
-                if (label.equalsIgnoreCase("thuocbacsi")) {
-                    ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
-                    ItemMeta meta = items.getItemMeta();
+            if (sender.hasPermission("congchuc")) {
+                if (Jobs.economy.getBalance((OfflinePlayer) sender) >= 500) {
+                    if (label.equalsIgnoreCase("thuocbacsi")) {
+                        ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
+                        ItemMeta meta = items.getItemMeta();
 
-                    meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.DISPLAY_NAME")));
-                    ArrayList<String> lore = new ArrayList<String>();
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.LORE1")));
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.LORE1")));
-                    meta.setLore(lore);
-                    items.setItemMeta(meta);
-                    sender.sendMessage(Files.getInstance().convert("&7+1 Vật phẩm"));
-                    ((Player) sender).getInventory().addItem(items);
+                        meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.DISPLAY_NAME")));
+                        ArrayList<String> lore = new ArrayList<String>();
+                        lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.LORE1")));
+                        lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("doctor_items.LORE1")));
+                        meta.setLore(lore);
+                        items.setItemMeta(meta);
+                        sender.sendMessage(Files.getInstance().convert("&7+1 Vật phẩm"));
+                        ((Player) sender).getInventory().addItem(items);
+                    }
+                } else {
+                    sender.sendMessage(Files.getInstance().convert("&cBạn cần có ít nhất 500$ để lấy thuốc"));
                 }
             }
-
             if (sender.hasPermission("caydao")) {
                 if (label.equalsIgnoreCase("caydao")) {
 
@@ -238,17 +260,45 @@ public class Commands implements CommandExecutor {
                     ((Player) sender).getInventory().addItem(items);
                 }
             }
-
-            if (args.length == 1) {
-                if (label.equalsIgnoreCase("115")) {
-                    if (((Player) sender).getHealth() >= (((Player) sender).getMaxHealth() / 2)) {
-                        if (Bukkit.getPlayer(args[0]) != null) {
-                            if (Files.getInstance().getdata().getString("players." + Bukkit.getPlayer(args[0]).getName()).equals("BACSI")) {
-                                Bukkit.getPlayer(args[0]).sendMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + ((Player) sender).getPlayer().getLocation().getX() + " " + ((Player) sender).getPlayer().getLocation().getY() + " " + ((Player) sender).getPlayer().getLocation().getZ()));
-                                sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
-                            }
+            if (label.equalsIgnoreCase("115")) {
+                if (((Player) sender).getHealth() >= (((Player) sender).getMaxHealth() / 2)) {
+                    for (Player p : Bukkit.getOnlinePlayers()) {
+                        if (Files.getInstance().getdata().getString("players." + p.getName()).equals("BACSI") || Files.getInstance().getdata().getString("players." + p.getName()).equals("CANHSAT")) {
+                            p.sendMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + ((Player) sender).getPlayer().getLocation().getX() + " " + ((Player) sender).getPlayer().getLocation().getY() + " " + ((Player) sender).getPlayer().getLocation().getZ()));
+                            sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
+                            break;
                         }
                     }
+                }
+            }
+            if (label.equalsIgnoreCase("cupthomo")) {
+                if (Files.getInstance().getdata().getString("players." + ((Player) sender).getPlayer().getName()).equals("THOMO")) {
+
+                    ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("miner_items.MATERIAL")), Files.getInstance().getconfig().getInt("miner_items.AMOUNT"));
+                    ItemMeta meta = items.getItemMeta();
+
+                    meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.DISPLAY_NAME")));
+                    ArrayList<String> lore = new ArrayList<String>();
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE1")));
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE2")));
+                    meta.setLore(lore);
+                    items.setItemMeta(meta);
+                    ((Player) sender).getInventory().addItem(items);
+                }
+            }
+            if (sender.hasPermission("hangcam")) {
+                if (label.equalsIgnoreCase("hangcam")) {
+
+                    ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("hangcam.MATERIAL")), Files.getInstance().getconfig().getInt("hangcam.AMOUNT"));
+                    ItemMeta meta = items.getItemMeta();
+
+                    meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.DISPLAY_NAME")));
+                    ArrayList<String> lore = new ArrayList<String>();
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE1")));
+                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE2")));
+                    meta.setLore(lore);
+                    items.setItemMeta(meta);
+                    ((Player) sender).getInventory().addItem(items);
                 }
             }
         }
