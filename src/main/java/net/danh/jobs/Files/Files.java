@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class Files {
     private static Files instance;
+    private File configFile, languageFile, dataFile;
+    private FileConfiguration config, language, data;
 
     public static Files getInstance() {
 
@@ -18,11 +20,6 @@ public class Files {
         }
         return instance;
     }
-
-
-    private File configFile, languageFile, dataFile;
-    private FileConfiguration config, language, data;
-
 
     public void createconfig() {
         configFile = new File(Jobs.getInstance().getDataFolder(), "config.yml");

@@ -226,8 +226,8 @@ public class Commands implements CommandExecutor {
                 }
             }
             if (sender.hasPermission("congchuc")) {
-                if (Jobs.economy.getBalance((OfflinePlayer) sender) >= 500) {
-                    if (label.equalsIgnoreCase("thuocbacsi")) {
+                if (label.equalsIgnoreCase("thuocbacsi")) {
+                    if (Jobs.economy.getBalance((OfflinePlayer) sender) >= 500) {
                         ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
                         ItemMeta meta = items.getItemMeta();
 
@@ -239,9 +239,9 @@ public class Commands implements CommandExecutor {
                         items.setItemMeta(meta);
                         sender.sendMessage(Files.getInstance().convert("&7+1 Vật phẩm"));
                         ((Player) sender).getInventory().addItem(items);
+                    } else {
+                        sender.sendMessage(Files.getInstance().convert("&cBạn cần có ít nhất 500$ để lấy thuốc"));
                     }
-                } else {
-                    sender.sendMessage(Files.getInstance().convert("&cBạn cần có ít nhất 500$ để lấy thuốc"));
                 }
             }
             if (sender.hasPermission("caydao")) {
@@ -266,24 +266,10 @@ public class Commands implements CommandExecutor {
                         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("BACSI") || Files.getInstance().getdata().getString("players." + p.getName()).equals("CANHSAT")) {
                             p.sendMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + ((Player) sender).getPlayer().getLocation().getX() + " " + ((Player) sender).getPlayer().getLocation().getY() + " " + ((Player) sender).getPlayer().getLocation().getZ()));
                             sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
-                            break;
+
                         }
+                        break;
                     }
-                }
-            }
-            if (label.equalsIgnoreCase("cupthomo")) {
-                if (Files.getInstance().getdata().getString("players." + ((Player) sender).getPlayer().getName()).equals("THOMO")) {
-
-                    ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("miner_items.MATERIAL")), Files.getInstance().getconfig().getInt("miner_items.AMOUNT"));
-                    ItemMeta meta = items.getItemMeta();
-
-                    meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.DISPLAY_NAME")));
-                    ArrayList<String> lore = new ArrayList<String>();
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE1")));
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE2")));
-                    meta.setLore(lore);
-                    items.setItemMeta(meta);
-                    ((Player) sender).getInventory().addItem(items);
                 }
             }
             if (sender.hasPermission("hangcam")) {

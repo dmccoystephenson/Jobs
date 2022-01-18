@@ -14,14 +14,12 @@ import java.util.logging.Level;
 public final class Jobs extends JavaPlugin implements Listener {
 
 
+    public static Economy economy;
     private static Jobs instance;
 
     public static Jobs getInstance() {
         return instance;
     }
-
-
-    public static Economy economy;
 
     @Override
     public void onEnable() {
@@ -54,7 +52,6 @@ public final class Jobs extends JavaPlugin implements Listener {
         getCommand("caydao").setExecutor(new Commands());
         getCommand("thuocbacsi").setExecutor(new Commands());
         getCommand("115").setExecutor(new Commands());
-        getCommand("cupthomo").setExecutor(new Commands());
         getCommand("hangcam").setExecutor(new Commands());
         Files.getInstance().createconfig();
     }

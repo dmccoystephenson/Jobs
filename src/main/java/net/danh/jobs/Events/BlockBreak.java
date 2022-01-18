@@ -9,10 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class BlockBreak implements Listener {
@@ -26,18 +23,7 @@ public class BlockBreak implements Listener {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la tho mo");
             }
-
-            ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("miner_items.MATERIAL")), Files.getInstance().getconfig().getInt("miner_items.AMOUNT"));
-            ItemMeta meta = items.getItemMeta();
-
-            meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.DISPLAY_NAME")));
-            ArrayList<String> lore = new ArrayList<String>();
-            lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE1")));
-            lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE2")));
-            meta.setLore(lore);
-            items.setItemMeta(meta);
-            if (p.getItemInHand().getItemMeta().getDisplayName() == items.getItemMeta().getDisplayName()
-                    && p.getItemInHand().getType() == items.getType()) {
+            if (p.getItemInHand().getType() == Material.STONE_PICKAXE) {
 
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra cup");
