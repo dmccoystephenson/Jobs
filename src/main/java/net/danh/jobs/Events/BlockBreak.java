@@ -120,6 +120,12 @@ public class BlockBreak implements Listener {
                 e.setCancelled(true);
             }
         }
+    }
+
+    @EventHandler
+    public void onBlock(BlockBreakEvent e) {
+        Block b = e.getBlock();
+        Player p = e.getPlayer();
 
         if (p.getItemInHand().getType() == Material.WOOD_HOE) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {

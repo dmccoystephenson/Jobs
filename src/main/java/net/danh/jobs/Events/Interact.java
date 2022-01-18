@@ -61,10 +61,12 @@ public class Interact implements Listener {
                         }
                         if (bs.getItemInHand().getAmount() != 1) {
                             bs.getItemInHand().setAmount(bs.getItemInHand().getAmount() - 1);
+                            bs.updateInventory();
                             bn.setHealth(bn.getMaxHealth());
                         } else {
                             bs.getInventory().remove(item);
                             bn.setHealth(bn.getMaxHealth());
+                            bs.updateInventory();
                             bs.sendMessage(Files.getInstance().convert("&eCảm ơn bạn đã cứu bệnh nhân &c" + bn.getName()));
                             bn.sendMessage(Files.getInstance().convert("&eBạn đã được bác sĩ &c" + bs.getName() + " &ecứu thành công!"));
                         }
