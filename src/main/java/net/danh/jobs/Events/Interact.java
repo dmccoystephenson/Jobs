@@ -94,6 +94,8 @@ public class Interact implements Listener {
                     bn.sendMessage(Files.getInstance().convert("&cBạn không dưới 50% máu nên không thể hồi phục"));
                     e.setCancelled(true);
                 }
+            } else {
+                return;
             }
         }
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("ANTROM")) {

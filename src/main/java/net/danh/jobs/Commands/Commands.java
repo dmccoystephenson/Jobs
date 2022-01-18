@@ -266,12 +266,13 @@ public class Commands implements CommandExecutor {
                 }
             }
             if (label.equalsIgnoreCase("115")) {
-                if (((Player) sender).getHealth() > (((Player) sender).getMaxHealth() / 2)) {
+                if (((Player) sender).getHealth() <= (((Player) sender).getMaxHealth() / 2)) {
                     if (Files.getInstance().getdata().getString("players." + ((Player) sender).getPlayer().getName()).equals("BACSI")) {
                         ((Player) sender).setHealth(((Player) sender).getMaxHealth());
+                        ((Player) sender).setFoodLevel(20);
                         sender.sendMessage(Files.getInstance().convert("&6Hãy nghỉ ngơi cẩn thận để còn đi hỗ trợ những bệnh nhân khác nữa nhé!"));
                     } else {
-                        Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân &e" + ((Player) sender).getPlayer().getName() + "&c ở vị trí &6" + Double.valueOf(((Player) sender).getPlayer().getLocation().getX()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getY()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getZ())));
+                        Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân &e" + ((Player) sender).getPlayer().getName() + "&c ở vị trí &6" + (((Player) sender).getPlayer().getLocation().getBlockX()) + " " + (((Player) sender).getPlayer().getLocation().getBlockY()) + " " + (((Player) sender).getPlayer().getLocation().getBlockZ())));
                         sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đứng chờ!"));
                         ((Player) sender).setWalkSpeed(0);
                     }
