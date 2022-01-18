@@ -266,9 +266,8 @@ public class Commands implements CommandExecutor {
                         if (Files.getInstance().getdata().getString("players." + p.getName()).equals("BACSI") || Files.getInstance().getdata().getString("players." + p.getName()).equals("CANHSAT")) {
                             p.sendMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + ((Player) sender).getPlayer().getLocation().getX() + " " + ((Player) sender).getPlayer().getLocation().getY() + " " + ((Player) sender).getPlayer().getLocation().getZ()));
                             sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
-
+                            break;
                         }
-                        break;
                     }
                 }
             }

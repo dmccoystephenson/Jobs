@@ -16,6 +16,8 @@ public class Join implements Listener {
             Files.getInstance().getdata().set("players." + p.getName(), "KHONGCONGHE");
             Files.getInstance().savedata();
             p.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("select-usage")));
+        } else {
+            p.sendMessage(Files.getInstance().convert("&aBạn đã có nghề nghiệp ! Hãy làm việc chăm chỉ nhé!!"));
         }
     }
 }

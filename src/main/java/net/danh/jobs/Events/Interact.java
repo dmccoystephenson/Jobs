@@ -78,7 +78,14 @@ public class Interact implements Listener {
                         }
 
                         bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                    } else {
+                        bs.sendMessage(Files.getInstance().convert("&cBạn cần phải cầm thuốc trên tay để cứu bệnh nhân"));
+                        e.setCancelled(true);
                     }
+                } else {
+                    bs.sendMessage(Files.getInstance().convert("&cBệnh Nhân không dưới 50% máu nên không thể hồi phục"));
+                    bn.sendMessage(Files.getInstance().convert("&cBạn không dưới 50% máu nên không thể hồi phục"));
+                    e.setCancelled(true);
                 }
             }
             if (Files.getInstance().getconfig().getBoolean("debug")) {
