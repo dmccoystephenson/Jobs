@@ -38,8 +38,8 @@ public class Interact implements Listener {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
                     } else {
-                        bn.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a" + Double.valueOf(bn.getHealth()) + "&c nên chưa đủ điều kiện để Bác Sĩ &a" + bs.getName() + " &chồi phục cho bạn"));
-                        bs.sendMessage(Files.getInstance().convert("&cMáu của bệnh nhân  &6" + Double.valueOf(bn.getName()) + "&c hiện tại là &a" + Double.valueOf(bn.getHealth()) + "&c nên chưa đủ điều kiện để hồi phục"));
+                        bn.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a" + Double.valueOf(bn.getPlayer().getHealth()) + "&c nên chưa đủ điều kiện để Bác Sĩ &a" + bs.getPlayer().getName() + " &chồi phục cho bạn"));
+                        bs.sendMessage(Files.getInstance().convert("&cMáu của bệnh nhân  &6" + bn.getPlayer().getName() + "&c hiện tại là &a" + Double.valueOf(bn.getPlayer().getHealth()) + "&c nên chưa đủ điều kiện để hồi phục"));
                     }
 
                     ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
@@ -94,9 +94,6 @@ public class Interact implements Listener {
                     bn.sendMessage(Files.getInstance().convert("&cBạn không dưới 50% máu nên không thể hồi phục"));
                     e.setCancelled(true);
                 }
-            }
-            if (Files.getInstance().getconfig().getBoolean("debug")) {
-                Jobs.getInstance().getLogger().log(Level.INFO, "Het");
             }
         }
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("ANTROM")) {
