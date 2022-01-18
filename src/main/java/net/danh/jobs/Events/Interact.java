@@ -34,7 +34,7 @@ public class Interact implements Listener {
                 }
                 String name = e.getRightClicked().getName();
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
-                if (bn.getHealth() >= (bn.getMaxHealth() / 2)) {
+                if (bn.getHealth() <= (bn.getMaxHealth() / 2)) {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
                     } else {

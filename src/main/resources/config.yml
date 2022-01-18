@@ -11,12 +11,6 @@ thief_items:
   DISPLAY_NAME: "&eDao Của Cướp"
   LORE1: ""
   LORE2: "&fDùng để cướp đồ nạn nhân"
-miner_items:
-  MATERIAL: STONE_PICKAXE
-  AMOUNT: 1
-  DISPLAY_NAME: "&aCúp"
-  LORE1: ""
-  LORE2: "&fDụng cụ của nghề &2&4&r&fThợ Mỏ&2&4&r&f"
 police_items:
   MATERIAL: BLAZE_ROD
   AMOUNT: 1

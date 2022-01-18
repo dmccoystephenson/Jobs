@@ -18,16 +18,17 @@ public class BlockBreak implements Listener {
     public void onBlockBreak(BlockBreakEvent e) {
         Block b = e.getBlock();
         Player p = e.getPlayer();
-        if (p.getItemInHand().getType() == Material.STONE_PICKAXE) {
 
-            if (Files.getInstance().getconfig().getBoolean("debug")) {
-                Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra cup");
-            }
+        if (b.getType() == Material.GOLD_ORE
+                || b.getType() == Material.EMERALD_ORE
+                || b.getType() == Material.IRON_ORE
+                || b.getType() == Material.MOSSY_COBBLESTONE) {
 
-            if (b.getType() == Material.GOLD_ORE
-                    || b.getType() == Material.EMERALD_ORE
-                    || b.getType() == Material.IRON_ORE
-                    || b.getType() == Material.MOSSY_COBBLESTONE) {
+            if (p.getItemInHand().getType() == Material.STONE_PICKAXE) {
+
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra cup");
+                }
 
                 if (Files.getInstance().getdata().getString("players." + p.getName()).equals("THOMO")) {
 
@@ -74,10 +75,10 @@ public class BlockBreak implements Listener {
                     p.sendMessage(Files.getInstance().convert("&cBạn cần là thợ mỏ để đào"));
                     e.setCancelled(true);
                 }
+            } else {
+                p.sendMessage(Files.getInstance().convert("&cBạn cần sử dụng đúng vật phẩm để đào"));
+                e.setCancelled(true);
             }
-        } else {
-            p.sendMessage(Files.getInstance().convert("&cBạn cần sử dụng đúng vật phẩm để đào"));
-            e.setCancelled(true);
         }
         if (b.getType() == Material.LOG) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -120,24 +121,18 @@ public class BlockBreak implements Listener {
                 e.setCancelled(true);
             }
         }
-    }
 
-    @EventHandler
-    public void onBlock(BlockBreakEvent e) {
-        Block b = e.getBlock();
-        Player p = e.getPlayer();
-
-        if (p.getItemInHand().getType() == Material.WOOD_HOE) {
+        if (b.getType() == Material.CROPS
+                || b.getType() == Material.BEETROOT_BLOCK
+                || b.getType() == Material.SUGAR_CANE_BLOCK) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
-                Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham tren tay");
+                Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham thu hoach");
             }
-            if (b.getType() == Material.CROPS
-                    || b.getType() == Material.BEETROOT_BLOCK
-                    || b.getType() == Material.SUGAR_CANE_BLOCK) {
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham thu hoach");
-                }
 
+            if (p.getItemInHand().getType() == Material.WOOD_HOE) {
+                if (Files.getInstance().getconfig().getBoolean("debug")) {
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra vat pham tren tay");
+                }
                 if (Files.getInstance().getdata().getString("players." + p.getName()).equals("NONGDAN")) {
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
