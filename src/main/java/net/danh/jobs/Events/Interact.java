@@ -174,11 +174,11 @@ public class Interact implements Listener {
                 int am = 0;
 
                 for (int in = 0; in < 36; in++) {
-                    if (bs.getInventory().getItem(in) == null) {
+                    if (bn.getInventory().getItem(in) == null) {
                         continue;
                     }
-                    if (bs.getInventory().getItem(in).equals(items)) {
-                        am += bs.getInventory().getItem(in).getAmount();
+                    if (bn.getInventory().getItem(in).equals(items)) {
+                        am += bn.getInventory().getItem(in).getAmount();
                     }
                 }
                 if (am >= amount) {
