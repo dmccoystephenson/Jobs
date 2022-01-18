@@ -82,7 +82,7 @@ public class Interact implements Listener {
                         }
 
                         bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                        EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
+                        EconomyResponse err = Jobs.economy.depositPlayer(bs.getPlayer().getName(), 600);
                         bn.setWalkSpeed(0.15F);
                         Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
                     } else {
