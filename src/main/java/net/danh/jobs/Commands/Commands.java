@@ -20,7 +20,12 @@ public class Commands implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof ConsoleCommandSender) {
-            sender.sendMessage("Player Only!");
+
+            if (label.equalsIgnoreCase("jobs")) {
+                Files.getInstance().reloadconfig();
+                sender.sendMessage(Files.getInstance().convert("&aReloaded"));
+                return true;
+            }
             return true;
         }
         if (sender instanceof Player) {

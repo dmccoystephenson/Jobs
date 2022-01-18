@@ -53,6 +53,7 @@ public final class Jobs extends JavaPlugin implements Listener {
         getCommand("thuocbacsi").setExecutor(new Commands());
         getCommand("115").setExecutor(new Commands());
         getCommand("hangcam").setExecutor(new Commands());
+        getCommand("jobs").setExecutor(new Commands());
         Files.getInstance().createconfig();
     }
 
