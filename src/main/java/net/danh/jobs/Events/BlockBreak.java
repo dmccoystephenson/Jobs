@@ -36,10 +36,11 @@ public class BlockBreak implements Listener {
             lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("miner_items.LORE2")));
             meta.setLore(lore);
             items.setItemMeta(meta);
-            if (p.getItemInHand().equals(items)) {
+            if (p.getItemInHand().getItemMeta().getDisplayName() == items.getItemMeta().getDisplayName()
+                    && p.getItemInHand().getType() == items.getType()) {
 
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem trai cup");
+                    Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra cup");
                 }
 
                 if (b.getType() == Material.GOLD_ORE

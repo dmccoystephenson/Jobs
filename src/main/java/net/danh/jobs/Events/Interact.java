@@ -149,7 +149,7 @@ public class Interact implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Canh satda click phai vao nguoi choi khac");
                 }
                 String name = e.getRightClicked().getName();
-                Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
 
                 ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("hangcam.MATERIAL")), Files.getInstance().getconfig().getInt("hangcam.AMOUNT"));
                 ItemMeta meta = items.getItemMeta();
