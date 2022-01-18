@@ -39,6 +39,7 @@ public class Interact implements Listener {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
                     } else {
                         bn.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a" + Double.valueOf(bn.getHealth()) + "&c nên chưa đủ điều kiện để Bác Sĩ &a" + bs.getName() + " &chồi phục cho bạn"));
+                        bs.sendMessage(Files.getInstance().convert("&cMáu của bệnh nhân  &6" + Double.valueOf(bn.getName()) + "&c hiện tại là &a" + Double.valueOf(bn.getHealth()) + "&c nên chưa đủ điều kiện để hồi phục"));
                     }
 
                     ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
@@ -55,7 +56,8 @@ public class Interact implements Listener {
                     if (bs.getItemInHand().getType() == null) {
                         return;
                     }
-                    if (bs.getItemInHand().getType() != null && bs.getItemInHand().getType() == item) {
+                    if (bs.getItemInHand().getType() != null && bs.getItemInHand().getType() == item && bs.getItemInHand().getItemMeta().getDisplayName() == items.getItemMeta().getDisplayName()) {
+
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Thuoc dung loai");
                         }
@@ -81,6 +83,8 @@ public class Interact implements Listener {
 
                         bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
                         EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
+                        bn.setWalkSpeed(0.15F);
+                        Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
                     } else {
                         bs.sendMessage(Files.getInstance().convert("&cBạn cần phải cầm thuốc trên tay để cứu bệnh nhân"));
                         e.setCancelled(true);

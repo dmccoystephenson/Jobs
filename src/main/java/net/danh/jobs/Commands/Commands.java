@@ -267,8 +267,9 @@ public class Commands implements CommandExecutor {
             }
             if (label.equalsIgnoreCase("115")) {
                 if (((Player) sender).getHealth() > (((Player) sender).getMaxHealth() / 2)) {
-                    Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + Double.valueOf(((Player) sender).getPlayer().getLocation().getX()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getY()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getZ())));
-                    sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
+                    Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân &e" + sender.getName() + "&c ở vị trí &6" + Double.valueOf(((Player) sender).getPlayer().getLocation().getX()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getY()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getZ())));
+                    sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đứng chờ!"));
+                    ((Player) sender).setWalkSpeed(0);
                 } else {
                     {
                         sender.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a " + Double.valueOf(((Player) sender).getHealth()) + "&c nên chưa đủ điều kiện để gọi Bác Sĩ "));
