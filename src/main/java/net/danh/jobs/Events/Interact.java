@@ -5,7 +5,6 @@ import net.danh.jobs.Jobs;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -81,7 +80,7 @@ public class Interact implements Listener {
                         }
 
                         bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                        EconomyResponse err = Jobs.economy.depositPlayer((OfflinePlayer) bs, 600);
+                        EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
                     } else {
                         bs.sendMessage(Files.getInstance().convert("&cBạn cần phải cầm thuốc trên tay để cứu bệnh nhân"));
                         e.setCancelled(true);

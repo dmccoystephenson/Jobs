@@ -231,7 +231,7 @@ public class Commands implements CommandExecutor {
             }
             if (sender.hasPermission("congchuc")) {
                 if (label.equalsIgnoreCase("thuocbacsi")) {
-                    if (Jobs.economy.getBalance((OfflinePlayer) sender) >= 500) {
+                    if (Jobs.economy.getBalance(sender.getName()) >= 500) {
                         ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
                         ItemMeta meta = items.getItemMeta();
 
@@ -243,6 +243,7 @@ public class Commands implements CommandExecutor {
                         items.setItemMeta(meta);
                         sender.sendMessage(Files.getInstance().convert("&7+1 Vật phẩm"));
                         ((Player) sender).getInventory().addItem(items);
+                        Jobs.economy.withdrawPlayer(sender.getName(), 500);
                     } else {
                         sender.sendMessage(Files.getInstance().convert("&cBạn cần có ít nhất 500$ để lấy thuốc"));
                     }
@@ -265,8 +266,14 @@ public class Commands implements CommandExecutor {
                 }
             }
             if (label.equalsIgnoreCase("115")) {
-                Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + ((Player) sender).getPlayer().getLocation().getX() + " " + ((Player) sender).getPlayer().getLocation().getY() + " " + ((Player) sender).getPlayer().getLocation().getZ()));
-                sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
+                if (((Player) sender).getHealth() > (((Player) sender).getMaxHealth() / 2)) {
+                    Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân ở vị trí &6" + Double.valueOf(((Player) sender).getPlayer().getLocation().getX()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getY()) + " " + Double.valueOf(((Player) sender).getPlayer().getLocation().getZ())));
+                    sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đợi!"));
+                } else {
+                    {
+                        sender.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a " + Double.valueOf(((Player) sender).getHealth()) + "&c nên chưa đủ điều kiện để gọi Bác Sĩ "));
+                    }
+                }
             }
 
             if (sender.hasPermission("hangcam")) {
