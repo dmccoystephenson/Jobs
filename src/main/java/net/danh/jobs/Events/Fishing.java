@@ -21,8 +21,7 @@ public class Fishing implements Listener {
             if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
                 e.getPlayer().giveExp(1);
                 e.setCancelled(false);
-            }
-            if (e.getState() == PlayerFishEvent.State.CAUGHT_ENTITY) {
+            } else {
                 e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
                 e.setCancelled(true);
             }
