@@ -24,7 +24,7 @@ public class Interact implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRev(PlayerInteractAtEntityEvent e) {
         Player bs = e.getPlayer();
-        if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("BACSI")) {
+        if (Files.getInstance().getJobs(bs).equals("BACSI")) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la bac si");
             }
@@ -77,10 +77,17 @@ public class Interact implements Listener {
 
                         }
 
-                        bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                        EconomyResponse err = Jobs.economy.depositPlayer(bs.getPlayer().getName(), 600);
-                        bn.setWalkSpeed(0.15F);
-                        Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
+                        if (Files.getInstance().getPower(bs) >= 50) {
+
+                            bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                            EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
+                            Files.getInstance().removePower(bs, 2);
+                            bn.setWalkSpeed(0.15F);
+                            Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
+                        } else {
+                            bs.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để cứu bệnh nhân"));
+                            e.setCancelled(true);
+                        }
                     } else {
                         bs.sendMessage(Files.getInstance().convert("&cBạn cần phải cầm thuốc trên tay để cứu bệnh nhân"));
                         e.setCancelled(true);
@@ -92,7 +99,7 @@ public class Interact implements Listener {
                 }
             }
         }
-        if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("ANTROM")) {
+        if (Files.getInstance().getJobs(bs).equals("ANTROM")) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la an trom");
             }
@@ -136,9 +143,8 @@ public class Interact implements Listener {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa dung cu");
                         }
 
-                        int randomNum = Files.getInstance().getconfig().getInt("xp.min") + (int) (Math.random() * Files.getInstance().getconfig().getInt("xp.max"));
 
-                        bs.giveExp(randomNum);
+                        e.getPlayer().giveExp(Files.getInstance().getconfig().getInt("xp"));
 
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Het");
@@ -147,7 +153,7 @@ public class Interact implements Listener {
                 }
             }
         }
-        if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("CANHSAT")) {
+        if (Files.getInstance().getJobs(bs).equals("CANHSAT")) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la canh sat");
             }

@@ -5,10 +5,17 @@ import net.danh.jobs.Events.*;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Hook.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 
 public final class Jobs extends JavaPlugin implements Listener {
@@ -45,6 +52,7 @@ public final class Jobs extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new Fishing(), this);
         getServer().getPluginManager().registerEvents(new Interact(), this);
         getServer().getPluginManager().registerEvents(new Regen(), this);
+        getServer().getPluginManager().registerEvents(new Eating(), this);
         getCommand("nghe").setExecutor(new Commands());
         getCommand("chonnghe").setExecutor(new Commands());
         getCommand("doinghe").setExecutor(new Commands());
@@ -55,6 +63,42 @@ public final class Jobs extends JavaPlugin implements Listener {
         getCommand("hangcam").setExecutor(new Commands());
         getCommand("jobs").setExecutor(new Commands());
         Files.getInstance().createconfig();
+        (new BukkitRunnable() {
+            public void run() {
+                Iterator var2 = Bukkit.getOnlinePlayers().iterator();
+                while (var2.hasNext()) {
+                    Player p = (Player) var2.next();
+                    List<String> w = getConfig().getStringList("available-worlds");
+                    if (w.contains(p.getWorld().getName())) {
+                        if (Files.getInstance().getPower(p) >= 81) {
+                            p.getActivePotionEffects().clear();
+                        }
+
+                        if (Files.getInstance().getPower(p) <= 80 && Files.getInstance().getPower(p) >= 51) {
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 2));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, Integer.MAX_VALUE, 2));
+                            p.removePotionEffect(PotionEffectType.BLINDNESS);
+                        }
+
+                        if (Files.getInstance().getPower(p) <= 50 && Files.getInstance().getPower(p) >= 31) {
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 2));
+                            p.removePotionEffect(PotionEffectType.POISON);
+                        }
+
+                        if (Files.getInstance().getPower(p) <= 30 && Files.getInstance().getPower(p) >= 10) {
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.POISON, Integer.MAX_VALUE, 2));
+                            p.removePotionEffect(PotionEffectType.WITHER);
+                        }
+
+
+                        if (Files.getInstance().getPower(p) <= 9 && Files.getInstance().getPower(p) >= 0) {
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, Integer.MAX_VALUE, 2));
+                        }
+
+                    }
+                }
+            }
+        }).runTaskTimer(this, 20L, 20L);
     }
 
     @Override

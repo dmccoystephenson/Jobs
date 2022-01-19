@@ -32,12 +32,12 @@ public class Commands implements CommandExecutor {
             if (label.equalsIgnoreCase("nghe")) {
                 if (args.length == 0) {
                     for (String helpplayer : (Files.getInstance().getlanguage().getStringList("jobs-help")))
-                        sender.sendMessage((Files.getInstance().convert(helpplayer).replace("%job%", Files.getInstance().getdata().getString("players." + sender.getName()))));
+                        sender.sendMessage((Files.getInstance().convert(helpplayer).replace("%job%", Files.getInstance().getJobs(((Player) sender).getPlayer()))));
                     return true;
                 }
             }
             if (label.equalsIgnoreCase("doinghe")) {
-                if (!Files.getInstance().getdata().getString("players." + sender.getName()).equals("KHONGCONGHE")) {
+                if (!Files.getInstance().getJobs(((Player) sender).getPlayer()).equals("KHONGCONGHE")) {
                     if (args.length == 1) {
                         if (args[0].equalsIgnoreCase("THOMO")) {
                             Files.getInstance().getdata().set("players." + sender.getName(), "THOMO");
@@ -132,7 +132,7 @@ public class Commands implements CommandExecutor {
             if (label.equalsIgnoreCase("chonnghe")) {
 
                 if (args.length == 1) {
-                    if (Files.getInstance().getdata().getString("players." + sender.getName()).equals("KHONGCONGHE")) {
+                    if (Files.getInstance().getJobs(((Player) sender).getPlayer()).equals("KHONGCONGHE")) {
                         if (args[0].equalsIgnoreCase("THOMO")) {
                             Files.getInstance().getdata().set("players." + sender.getName(), "THOMO");
                             Files.getInstance().savedata();
@@ -267,15 +267,15 @@ public class Commands implements CommandExecutor {
             }
             if (label.equalsIgnoreCase("115")) {
                 if (((Player) sender).getHealth() <= (((Player) sender).getMaxHealth() / 2)) {
-                    if (Files.getInstance().getdata().getString("players." + ((Player) sender).getPlayer().getName()).equals("BACSI")) {
-                        if (Jobs.economy.getBalance(((Player) sender).getPlayer().getName()) >= 200) {
+                    if (Files.getInstance().getJobs(((Player) sender).getPlayer()).equals("BACSI")) {
+                        if (Jobs.economy.getBalance(sender.getName()) >= 200) {
                             ((Player) sender).setHealth(((Player) sender).getMaxHealth());
                             sender.sendMessage(Files.getInstance().convert("&6Hãy nghỉ ngơi cẩn thận để còn đi hỗ trợ những bệnh nhân khác nữa nhé!"));
                         } else {
                             sender.sendMessage(Files.getInstance().convert("&cBạn cần có ít nhất 200$ để tự nghỉ ngơi"));
                         }
                     } else {
-                        Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân &e" + ((Player) sender).getPlayer().getName() + "&c ở vị trí &6" + (((Player) sender).getPlayer().getLocation().getBlockX()) + " " + (((Player) sender).getPlayer().getLocation().getBlockY()) + " " + (((Player) sender).getPlayer().getLocation().getBlockZ())));
+                        Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&cBệnh nhân &e" + sender.getName() + "&c ở vị trí &6" + (((Player) sender).getPlayer().getLocation().getBlockX()) + " " + (((Player) sender).getPlayer().getLocation().getBlockY()) + " " + (((Player) sender).getPlayer().getLocation().getBlockZ())));
                         sender.sendMessage(Files.getInstance().convert("&aBác sĩ đang tới! Vui lòng đứng chờ!"));
                         ((Player) sender).setWalkSpeed(0);
                     }

@@ -4,6 +4,7 @@ import net.danh.jobs.Jobs;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,6 +82,41 @@ public class Files {
         } catch (IOException ignored) {
         }
     }
+
+    public String getJobs(Player p) {
+        return getdata().getString("players." + p.getName() + ".Jobs");
+    }
+
+    public int getPower(Player p) {
+        return getdata().getInt("players." + p.getName() + ".Power");
+    }
+
+    public void createJobs(Player p) {
+        getdata().set("players." + p.getName() + ".Jobs", "KHONGCONGHE");
+        savedata();
+    }
+
+    public void setPower(Player p, int number) {
+        getdata().set("players." + p.getName() + ".Power", number);
+        savedata();
+    }
+
+    public void createPower(Player p, int number) {
+        getdata().set("players." + p.getName() + ".Power", number);
+        savedata();
+    }
+
+    public void addPower(Player p, int number) {
+        getdata().set("players." + p.getName() + ".Power", getPower(p) + number);
+        savedata();
+    }
+
+
+    public void removePower(Player p, int number) {
+        getdata().set("players." + p.getName() + ".Power", getPower(p) - number);
+        savedata();
+    }
+
 
     public String convert(String s) {
         return s.replaceAll("&", "§");

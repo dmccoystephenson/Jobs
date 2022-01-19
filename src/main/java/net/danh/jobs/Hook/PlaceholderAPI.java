@@ -68,6 +68,23 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             }
         }
 
+        if (identifier.equalsIgnoreCase("nangluong")) {
+            if (Files.getInstance().getPower(p) >= 81) {
+                return "&a" + String.valueOf(Files.getInstance().getPower(p)) + "%";
+            }
+            if (Files.getInstance().getPower(p) <= 80 && Files.getInstance().getPower(p) >= 51) {
+                return "&6" + String.valueOf(Files.getInstance().getPower(p)) + "%";
+            }
+
+            if (Files.getInstance().getPower(p) <= 50 && Files.getInstance().getPower(p) >= 31) {
+                return "&c" + String.valueOf(Files.getInstance().getPower(p)) + "%";
+            }
+
+            if (Files.getInstance().getPower(p) <= 30 && Files.getInstance().getPower(p) >= 0) {
+                return "&4" + String.valueOf(Files.getInstance().getPower(p)) + "%";
+            }
+        }
+
         return null;
     }
 }

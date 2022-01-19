@@ -13,16 +13,22 @@ public class Fishing implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onFishing(PlayerFishEvent e) {
-        if (Files.getInstance().getdata().getString("players." + e.getPlayer().getName()).equals("NGUDAN")) {
+        if (Files.getInstance().getJobs(e.getPlayer()).equals("NGUDAN")) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la ngu dan");
             }
 
-            if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-                e.getPlayer().giveExp(1);
-                e.setCancelled(false);
+            if (Files.getInstance().getPower(e.getPlayer()) >= 50) {
+                if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
+                    Files.getInstance().removePower(e.getPlayer(), 10);
+                    e.getPlayer().giveExp(1);
+                    e.setCancelled(false);
+                } else {
+                    e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
+                    e.setCancelled(true);
+                }
             } else {
-                e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
+                e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần ít nhất trên 50 năng lượng để câu cá"));
                 e.setCancelled(true);
             }
         } else {
