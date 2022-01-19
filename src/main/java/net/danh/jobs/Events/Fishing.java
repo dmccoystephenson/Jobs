@@ -18,6 +18,14 @@ public class Fishing implements Listener {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la ngu dan");
             }
 
+            if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
+                e.getPlayer().giveExp(1);
+                e.setCancelled(false);
+            }
+            if (e.getState() == PlayerFishEvent.State.CAUGHT_ENTITY) {
+                e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
+                e.setCancelled(true);
+            }
         } else {
             e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần là Ngư Dân để câu cá"));
             e.setCancelled(true);
