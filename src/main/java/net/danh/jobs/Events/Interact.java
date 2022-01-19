@@ -8,7 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.ItemStack;
@@ -21,7 +20,7 @@ import java.util.logging.Level;
 public class Interact implements Listener {
 
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler
     public void onRev(PlayerInteractAtEntityEvent e) {
         Player bs = e.getPlayer();
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("BACSI")) {
@@ -34,14 +33,10 @@ public class Interact implements Listener {
                 }
                 String name = e.getRightClicked().getName();
                 Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
-                if (bn.getHealth() <= (bn.getMaxHealth() / 2)) {
+                if (bn.getPlayer().getHealth() <= (bn.getPlayer().getMaxHealth() / 2)) {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Benh nhan khong co du mau");
-                    } else {
-                        bn.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a" + Double.valueOf(bn.getPlayer().getHealth()) + "&c nên chưa đủ điều kiện để Bác Sĩ &a" + bs.getPlayer().getName() + " &chồi phục cho bạn"));
-                        bs.sendMessage(Files.getInstance().convert("&cMáu của bệnh nhân  &6" + bn.getPlayer().getName() + "&c hiện tại là &a" + Double.valueOf(bn.getPlayer().getHealth()) + "&c nên chưa đủ điều kiện để hồi phục"));
                     }
-
                     ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("doctor_items.MATERIAL")), Files.getInstance().getconfig().getInt("doctor_items.AMOUNT"));
                     ItemMeta meta = items.getItemMeta();
 
@@ -94,8 +89,6 @@ public class Interact implements Listener {
                     bn.sendMessage(Files.getInstance().convert("&cBạn không dưới 50% máu nên không thể hồi phục"));
                     e.setCancelled(true);
                 }
-            } else {
-                return;
             }
         }
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("ANTROM")) {
