@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.ItemStack;
@@ -20,7 +21,7 @@ import java.util.logging.Level;
 public class Interact implements Listener {
 
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onRev(PlayerInteractAtEntityEvent e) {
         Player bs = e.getPlayer();
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("BACSI")) {
@@ -51,7 +52,7 @@ public class Interact implements Listener {
                     if (bs.getItemInHand().getType() == null) {
                         return;
                     }
-                    if (bs.getItemInHand().getType() != null && bs.getItemInHand().getType() == item && bs.getItemInHand().getItemMeta().getDisplayName() == items.getItemMeta().getDisplayName()) {
+                    if (bs.getItemInHand().getType() != null && bs.getItemInHand().getType() == item) {
 
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Thuoc dung loai");
