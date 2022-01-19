@@ -21,7 +21,7 @@ import java.util.logging.Level;
 public class Interact implements Listener {
 
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void onRev(PlayerInteractAtEntityEvent e) {
         Player bs = e.getPlayer();
         if (Files.getInstance().getdata().getString("players." + bs.getName()).equals("BACSI")) {
