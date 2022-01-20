@@ -73,7 +73,7 @@ public class BlockBreak implements Listener {
                         }
 
                         p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                        Files.getInstance().removePower(p, 2);
+                        Files.getInstance().removePower(p, 1);
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                         }
@@ -107,7 +107,7 @@ public class BlockBreak implements Listener {
                     }
 
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                    Files.getInstance().removePower(p, 2);
+                    Files.getInstance().removePower(p, 1);
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -158,7 +158,7 @@ public class BlockBreak implements Listener {
                     }
 
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                    Files.getInstance().removePower(p, 2);
+                    Files.getInstance().removePower(p, 1);
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -213,7 +213,7 @@ public class BlockBreak implements Listener {
                             e.setCancelled(false);
                         }
                         p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                        Files.getInstance().removePower(p, 2);
+                        Files.getInstance().removePower(p, 1);
                         e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() - 2);
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");

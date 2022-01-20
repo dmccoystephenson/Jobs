@@ -29,7 +29,7 @@ public class Fishing implements Listener {
                     if (e.getCaught() instanceof Item) {
                         if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
                                 || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
-                            Files.getInstance().removePower(e.getPlayer(), 4);
+                            Files.getInstance().removePower(e.getPlayer(), 2);
                             e.getPlayer().giveExp(1);
                             e.setCancelled(false);
                         } else {
