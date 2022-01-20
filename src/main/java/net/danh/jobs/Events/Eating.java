@@ -16,10 +16,6 @@ public class Eating implements Listener {
         } else {
             if (Files.getInstance().getPower(e.getPlayer()) < 100) {
                 Files.getInstance().addPower(e.getPlayer(), 2);
-                e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 2);
-                e.getPlayer().sendMessage(Files.getInstance().convert("&a+2 Năng Lượng"));
-            } else {
-                e.setCancelled(true);
             }
         }
     }
