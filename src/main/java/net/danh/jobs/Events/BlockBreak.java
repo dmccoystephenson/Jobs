@@ -35,43 +35,49 @@ public class BlockBreak implements Listener {
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la tho mo");
                     }
-                    if (Files.getInstance().getPower(p) <= 30) {
-                        if (b.getType() == Material.GOLD_ORE
-                                || b.getType() == Material.EMERALD_ORE
-                                || b.getType() == Material.IRON_ORE) {
-                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
-                            e.setCancelled(true);
-                        }
-                    } else {
-                        e.setCancelled(false);
-                    }
-                    if (Files.getInstance().getPower(p) <= 50) {
-                        if (b.getType() == Material.GOLD_ORE
-                                || b.getType() == Material.EMERALD_ORE) {
-                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
-                            e.setCancelled(true);
-                        }
-                    } else {
-                        e.setCancelled(false);
-                    }
 
-                    if (Files.getInstance().getPower(p) <= 80) {
-                        if (b.getType() == Material.EMERALD_ORE) {
-                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
-                            e.setCancelled(true);
-                        }
+                    if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
+                        e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
+                        e.setCancelled(true);
                     } else {
-                        e.setCancelled(false);
-                    }
-                    if (Files.getInstance().getconfig().getBoolean("debug")) {
-                        Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
-                    }
+                        if (Files.getInstance().getPower(p) <= 30) {
+                            if (b.getType() == Material.GOLD_ORE
+                                    || b.getType() == Material.EMERALD_ORE
+                                    || b.getType() == Material.IRON_ORE) {
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
+                                e.setCancelled(true);
+                            }
+                        } else {
+                            e.setCancelled(false);
+                        }
+                        if (Files.getInstance().getPower(p) <= 50) {
+                            if (b.getType() == Material.GOLD_ORE
+                                    || b.getType() == Material.EMERALD_ORE) {
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
+                                e.setCancelled(true);
+                            }
+                        } else {
+                            e.setCancelled(false);
+                        }
 
-                    p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                    Files.getInstance().removePower(p, 5);
-                    e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
-                    if (Files.getInstance().getconfig().getBoolean("debug")) {
-                        Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                        if (Files.getInstance().getPower(p) <= 80) {
+                            if (b.getType() == Material.EMERALD_ORE) {
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
+                                e.setCancelled(true);
+                            }
+                        } else {
+                            e.setCancelled(false);
+                        }
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
+                        }
+
+                        p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                        Files.getInstance().removePower(p, 2);
+                        e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() - 2);
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                        }
                     }
                 } else {
                     p.sendMessage(Files.getInstance().convert("&cBạn cần là thợ mỏ để đào"));
@@ -91,16 +97,22 @@ public class BlockBreak implements Listener {
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la tho moc");
                 }
-                if (Files.getInstance().getPower(p) <= 50) {
-                    p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
-                    e.setCancelled(true);
-                }
 
-                p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                Files.getInstance().removePower(p, 5);
-                e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
+                    e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
+                    e.setCancelled(true);
+                } else {
+                    if (Files.getInstance().getPower(p) <= 50) {
+                        p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
+                        e.setCancelled(true);
+                    }
+
+                    p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                    Files.getInstance().removePower(p, 2);
+                    e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() - 2);
+                    if (Files.getInstance().getconfig().getBoolean("debug")) {
+                        Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                    }
                 }
             } else {
                 p.sendMessage(Files.getInstance().convert("&cBạn cần là thợ mộc để đào gỗ"));
@@ -116,37 +128,43 @@ public class BlockBreak implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la cong nhan");
                 }
 
-                if (Files.getInstance().getPower(p) <= 30) {
-                    if (b.getType() == Material.SAND) {
-                        p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
-                        e.setCancelled(true);
-                    }
+                if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
+                    e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
+                    e.setCancelled(true);
                 } else {
-                    e.setCancelled(false);
-                }
-                if (Files.getInstance().getPower(p) <= 50) {
-                    if (b.getType() == Material.CLAY) {
-                        p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
-                        e.setCancelled(true);
-                    }
-                } else {
-                    e.setCancelled(false);
-                }
 
-                if (Files.getInstance().getPower(p) <= 80) {
-                    if (b.getType() == Material.GRAVEL) {
-                        p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
-                        e.setCancelled(true);
+                    if (Files.getInstance().getPower(p) <= 30) {
+                        if (b.getType() == Material.SAND) {
+                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
+                            e.setCancelled(true);
+                        }
+                    } else {
+                        e.setCancelled(false);
                     }
-                } else {
-                    e.setCancelled(false);
-                }
+                    if (Files.getInstance().getPower(p) <= 50) {
+                        if (b.getType() == Material.CLAY) {
+                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
+                            e.setCancelled(true);
+                        }
+                    } else {
+                        e.setCancelled(false);
+                    }
 
-                p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                Files.getInstance().removePower(p, 5);
-                e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
-                if (Files.getInstance().getconfig().getBoolean("debug")) {
-                    Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                    if (Files.getInstance().getPower(p) <= 80) {
+                        if (b.getType() == Material.GRAVEL) {
+                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
+                            e.setCancelled(true);
+                        }
+                    } else {
+                        e.setCancelled(false);
+                    }
+
+                    p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                    Files.getInstance().removePower(p, 2);
+                    e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() - 2);
+                    if (Files.getInstance().getconfig().getBoolean("debug")) {
+                        Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                    }
                 }
             } else {
                 p.sendMessage(Files.getInstance().convert("&CBạn cần là Công Nhân để đào nó!"));
@@ -167,36 +185,42 @@ public class BlockBreak implements Listener {
                 }
                 if (Files.getInstance().getJobs(p).equals("NONGDAN")) {
 
-                    if (Files.getInstance().getPower(p) <= 30) {
-                        if (b.getType() == Material.CROPS) {
-                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
-                            e.setCancelled(true);
-                        }
+                    if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
+                        e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
+                        e.setCancelled(true);
                     } else {
-                        e.setCancelled(false);
-                    }
-                    if (Files.getInstance().getPower(p) <= 50) {
-                        if (b.getType() == Material.BEETROOT_BLOCK) {
-                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
-                            e.setCancelled(true);
-                        }
-                    } else {
-                        e.setCancelled(false);
-                    }
 
-                    if (Files.getInstance().getPower(p) <= 80) {
-                        if (b.getType() == Material.SUGAR_CANE_BLOCK) {
-                            p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
-                            e.setCancelled(true);
+                        if (Files.getInstance().getPower(p) <= 30) {
+                            if (b.getType() == Material.CROPS) {
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
+                                e.setCancelled(true);
+                            }
+                        } else {
+                            e.setCancelled(false);
                         }
-                    } else {
-                        e.setCancelled(false);
-                    }
-                    p.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                    Files.getInstance().removePower(p, 5);
-                    e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
-                    if (Files.getInstance().getconfig().getBoolean("debug")) {
-                        Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                        if (Files.getInstance().getPower(p) <= 50) {
+                            if (b.getType() == Material.BEETROOT_BLOCK) {
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
+                                e.setCancelled(true);
+                            }
+                        } else {
+                            e.setCancelled(false);
+                        }
+
+                        if (Files.getInstance().getPower(p) <= 80) {
+                            if (b.getType() == Material.SUGAR_CANE_BLOCK) {
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
+                                e.setCancelled(true);
+                            }
+                        } else {
+                            e.setCancelled(false);
+                        }
+                        p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                        Files.getInstance().removePower(p, 2);
+                        e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() - 2);
+                        if (Files.getInstance().getconfig().getBoolean("debug")) {
+                            Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
+                        }
                     }
                 } else {
                     p.sendMessage(Files.getInstance().convert("&cBạn cần là Nông Dân để có thể thu hoạch chúng"));

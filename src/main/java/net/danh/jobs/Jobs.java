@@ -79,30 +79,37 @@ public final class Jobs extends JavaPlugin implements Listener {
                             p.removePotionEffect(PotionEffectType.WITHER);
                             p.removePotionEffect(PotionEffectType.HEAL);
                             p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
+                            p.removePotionEffect(PotionEffectType.SPEED);
+                            p.removePotionEffect(PotionEffectType.NIGHT_VISION);
                         }
 
                         if (Files.getInstance().getPower(p) <= 80 && Files.getInstance().getPower(p) >= 51) {
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, Integer.MIN_VALUE));
                             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, Integer.MAX_VALUE, Integer.MIN_VALUE));
                             p.removePotionEffect(PotionEffectType.BLINDNESS);
                             p.removePotionEffect(PotionEffectType.POISON);
                             p.removePotionEffect(PotionEffectType.WITHER);
+                            p.removePotionEffect(PotionEffectType.HEAL);
+                            p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
+                            p.removePotionEffect(PotionEffectType.SPEED);
+                            p.removePotionEffect(PotionEffectType.NIGHT_VISION);
                         }
 
                         if (Files.getInstance().getPower(p) <= 50 && Files.getInstance().getPower(p) >= 31) {
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, Integer.MIN_VALUE));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, Integer.MIN_VALUE));
                             p.removePotionEffect(PotionEffectType.POISON);
                             p.removePotionEffect(PotionEffectType.WITHER);
+                            p.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
                         }
 
                         if (Files.getInstance().getPower(p) <= 30 && Files.getInstance().getPower(p) >= 10) {
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.POISON, Integer.MAX_VALUE, Integer.MIN_VALUE));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, Integer.MIN_VALUE));
                             p.removePotionEffect(PotionEffectType.WITHER);
                         }
 
 
                         if (Files.getInstance().getPower(p) <= 9 && Files.getInstance().getPower(p) >= 0) {
                             p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, Integer.MAX_VALUE, Integer.MIN_VALUE));
+                            p.removePotionEffect(PotionEffectType.NIGHT_VISION);
                         }
 
                     }

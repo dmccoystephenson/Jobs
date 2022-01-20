@@ -20,22 +20,28 @@ public class Fishing implements Listener {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la ngu dan");
             }
 
-            if (Files.getInstance().getPower(e.getPlayer()) >= 50) {
-                if (e.getCaught() instanceof Item) {
-                    if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
-                            || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
-                        Files.getInstance().removePower(e.getPlayer(), 10);
-                        e.getPlayer().sendMessage(Files.getInstance().convert("&c-10 Năng Lượng"));
-                        e.getPlayer().giveExp(1);
-                        e.setCancelled(false);
-                    } else {
-                        e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
-                        e.setCancelled(true);
-                    }
-                }
-            } else {
-                e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần ít nhất trên 50 năng lượng để câu cá"));
+            if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
+                e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                 e.setCancelled(true);
+            } else {
+
+                if (Files.getInstance().getPower(e.getPlayer()) >= 50) {
+                    if (e.getCaught() instanceof Item) {
+                        if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
+                                || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
+                            Files.getInstance().removePower(e.getPlayer(), 4);
+                            e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() - 4);
+                            e.getPlayer().giveExp(1);
+                            e.setCancelled(false);
+                        } else {
+                            e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
+                            e.setCancelled(true);
+                        }
+                    }
+                } else {
+                    e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần ít nhất trên 50 năng lượng để câu cá"));
+                    e.setCancelled(true);
+                }
             }
         } else {
             e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần là Ngư Dân để câu cá"));
