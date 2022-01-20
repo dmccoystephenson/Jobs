@@ -36,34 +36,34 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         }
 
         if (identifier.equalsIgnoreCase("ten")) {
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("THOMO")) {
+            if (Files.getInstance().getJobs(p).equals("THOMO")) {
                 return "Thợ Mỏ";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("THOMOC")) {
+            if (Files.getInstance().getJobs(p).equals("THOMOC")) {
                 return "Thợ Mộc";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("KHONGCONGHE")) {
+            if (Files.getInstance().getJobs(p).equals("KHONGCONGHE")) {
                 return "";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("CONGNHAN")) {
+            if (Files.getInstance().getJobs(p).equals("CONGNHAN")) {
                 return "Công Nhân";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("NGUDAN")) {
+            if (Files.getInstance().getJobs(p).equals("NGUDAN")) {
                 return "Ngư Dân";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("NONGDAN")) {
+            if (Files.getInstance().getJobs(p).equals("NONGDAN")) {
                 return "Nông Dân";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("LAOCONG")) {
+            if (Files.getInstance().getJobs(p).equals("LAOCONG")) {
                 return "Lao Công";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("BACSI")) {
+            if (Files.getInstance().getJobs(p).equals("BACSI")) {
                 return "Bác Sĩ";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("ANTROM")) {
+            if (Files.getInstance().getJobs(p).equals("ANTROM")) {
                 return "Ăn Trộm";
             }
-            if (Files.getInstance().getdata().getString("players." + p.getName()).equals("CANHSAT")) {
+            if (Files.getInstance().getJobs(p).equals("CANHSAT")) {
                 return "Cảnh Sát";
             }
         }

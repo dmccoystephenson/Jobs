@@ -76,6 +76,8 @@ public final class Jobs extends JavaPlugin implements Listener {
                             p.removePotionEffect(PotionEffectType.BLINDNESS);
                             p.removePotionEffect(PotionEffectType.POISON);
                             p.removePotionEffect(PotionEffectType.WITHER);
+                            p.removePotionEffect(PotionEffectType.HEAL);
+                            p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
                         }
 
                         if (Files.getInstance().getPower(p) <= 80 && Files.getInstance().getPower(p) >= 51) {
