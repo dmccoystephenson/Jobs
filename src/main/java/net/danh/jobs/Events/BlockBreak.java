@@ -69,6 +69,7 @@ public class BlockBreak implements Listener {
 
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 5);
+                    e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -97,6 +98,7 @@ public class BlockBreak implements Listener {
 
                 p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                 Files.getInstance().removePower(p, 5);
+                e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                 }
@@ -142,6 +144,7 @@ public class BlockBreak implements Listener {
 
                 p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                 Files.getInstance().removePower(p, 5);
+                e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                 }
@@ -191,6 +194,7 @@ public class BlockBreak implements Listener {
                     }
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 5);
+                    e.getPlayer().sendMessage(Files.getInstance().convert("&c-5 Năng Lượng"));
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }

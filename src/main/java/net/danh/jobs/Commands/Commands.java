@@ -3,6 +3,7 @@ package net.danh.jobs.Commands;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
 import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -25,6 +26,47 @@ public class Commands implements CommandExecutor {
                 Files.getInstance().reloadconfig();
                 sender.sendMessage(Files.getInstance().convert("&aReloaded"));
                 return true;
+            }
+            if (label.equalsIgnoreCase("power")) {
+                if (args.length == 3) {
+                    if (args[0].equalsIgnoreCase("set")) {
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                            Files.getInstance().setPower(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                            sender.sendMessage(Files.getInstance().convert("&aĐã đặt năng lượng của &e" + Bukkit.getPlayer(args[1]) + "&a thành &6" + Integer.parseInt(args[2])));
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    if (args[0].equalsIgnoreCase("add")) {
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                            Files.getInstance().addPower(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                            sender.sendMessage(Files.getInstance().convert("&aĐã thêm năng lượng của &e" + Bukkit.getPlayer(args[1]) + "&a lên &6" + Integer.parseInt(args[2])));
+                        } else {
+                            return true;
+                        }
+                    }
+
+
+                    if (args[0].equalsIgnoreCase("remove")) {
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                            Files.getInstance().removePower(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                            sender.sendMessage(Files.getInstance().convert("&aĐã lấy năng lượng của &e" + Bukkit.getPlayer(args[1]) + "&a xuống &6" + Integer.parseInt(args[2])));
+                        } else {
+                            return true;
+                        }
+                    }
+                }
+
+                if (args.length == 2) {
+                    if (args[0].equalsIgnoreCase("check")) {
+                        sender.sendMessage(Files.getInstance().convert("&a " + Bukkit.getPlayer(args[1]) + " &bcó &a" + Files.getInstance().getPower(Bukkit.getPlayer(args[1]).getPlayer()) + "&b năng lượng"));
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                        } else {
+                            return true;
+                        }
+                    }
+                }
             }
             return true;
         }
@@ -93,7 +135,7 @@ public class Commands implements CommandExecutor {
                         }
                         if (sender.hasPermission("congchuc")) {
                             if (args[0].equalsIgnoreCase("BACSI")) {
-                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0]);
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Bác Sĩ")));
@@ -102,7 +144,7 @@ public class Commands implements CommandExecutor {
                             }
 
                             if (args[0].equalsIgnoreCase("CANHSAT")) {
-                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0]);
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Cảnh Sát")));
@@ -114,11 +156,54 @@ public class Commands implements CommandExecutor {
 
                         if (sender.hasPermission("antrom")) {
                             if (args[0].equalsIgnoreCase("ANTROM")) {
-                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0]);
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Ăn Trộm")));
 
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (sender.hasPermission("jobs.admin")) {
+                if (label.equalsIgnoreCase("power")) {
+                    if (args.length == 3) {
+                        if (args[0].equalsIgnoreCase("set")) {
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                                Files.getInstance().setPower(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã đặt năng lượng của &e" + Bukkit.getPlayer(args[1]) + "&a thành &6" + Integer.parseInt(args[2])));
+                            } else {
+                                return true;
+                            }
+                        }
+
+                        if (args[0].equalsIgnoreCase("add")) {
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                                Files.getInstance().addPower(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã thêm năng lượng của &e" + Bukkit.getPlayer(args[1]) + "&a lên &6" + Integer.parseInt(args[2])));
+                            } else {
+                                return true;
+                            }
+                        }
+
+
+                        if (args[0].equalsIgnoreCase("remove")) {
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                                Files.getInstance().removePower(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã lấy năng lượng của &e" + Bukkit.getPlayer(args[1]) + "&a xuống &6" + Integer.parseInt(args[2])));
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
+
+                    if (args.length == 2) {
+                        if (args[0].equalsIgnoreCase("check")) {
+                            sender.sendMessage(Files.getInstance().convert("&a " + Bukkit.getPlayer(args[1]) + " &bcó &a" + Files.getInstance().getPower(Bukkit.getPlayer(args[1]).getPlayer()) + "&b năng lượng"));
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                            } else {
                                 return true;
                             }
                         }
@@ -195,7 +280,7 @@ public class Commands implements CommandExecutor {
 
                         if (sender.hasPermission("congchuc")) {
                             if (args[0].equalsIgnoreCase("BACSI")) {
-                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0]);
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Bác Sĩ")));
@@ -204,7 +289,7 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                             if (args[0].equalsIgnoreCase("CANHSAT")) {
-                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0]);
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Cảnh Sát")));
@@ -215,7 +300,7 @@ public class Commands implements CommandExecutor {
                         }
                         if (sender.hasPermission("antrom")) {
                             if (args[0].equalsIgnoreCase("ANTROM")) {
-                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0]);
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Ăn Trộm")));

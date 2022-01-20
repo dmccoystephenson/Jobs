@@ -2,6 +2,8 @@ package net.danh.jobs.Events;
 
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
+import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -19,8 +21,10 @@ public class Fishing implements Listener {
             }
 
             if (Files.getInstance().getPower(e.getPlayer()) >= 50) {
-                if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
+                if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
+                        || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
                     Files.getInstance().removePower(e.getPlayer(), 10);
+                    e.getPlayer().sendMessage(Files.getInstance().convert("&c-10 Năng Lượng"));
                     e.getPlayer().giveExp(1);
                     e.setCancelled(false);
                 } else {

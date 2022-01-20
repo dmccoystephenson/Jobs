@@ -12,7 +12,7 @@ public class Join implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        if (Files.getInstance().getJobs(p) == null) {
+        if (Files.getInstance().getJobs(p).equalsIgnoreCase("KHONGCONGHE")) {
             Files.getInstance().createJobs(p);
             Files.getInstance().createPower(p, 100);
             Files.getInstance().savedata();

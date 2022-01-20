@@ -12,15 +12,13 @@ public class Eating implements Listener {
     public void onEating(PlayerItemConsumeEvent e) {
         if (e.getItem().getType() == Material.BEETROOT) {
             e.setCancelled(true);
-        }
-        if (e.getItem().getType() == Material.POTION) {
-            if (Files.getInstance().getPower(e.getPlayer()) <= 100) {
+        } else {
+            if (Files.getInstance().getPower(e.getPlayer()) < 100) {
                 Files.getInstance().addPower(e.getPlayer(), 2);
+                e.getPlayer().sendMessage(Files.getInstance().convert("&a+2 Năng Lượng"));
             } else {
                 e.setCancelled(true);
             }
-        } else {
-            e.setCancelled(true);
         }
     }
 }
