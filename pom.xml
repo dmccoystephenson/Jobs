@@ -6,7 +6,7 @@
 
     <groupId>net.danh</groupId>
     <artifactId>Jobs</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>0.1.3</version>
     <packaging>jar</packaging>
 
     <name>Jobs</name>

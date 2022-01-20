@@ -16,12 +16,12 @@ public class Eating implements Listener {
         } else {
             if (Files.getInstance().getPower(e.getPlayer()) < 100) {
                 if (e.getItem().getType() == Material.POTION) {
-                    Files.getInstance().addPower(e.getPlayer(), 0);
+                    e.getPlayer().setItemInHand(null);
+                    Files.getInstance().addPower(e.getPlayer(), 5);
                 } else {
-                    Files.getInstance().addPower(e.getPlayer(), 2);
+                    e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 2);
                 }
             }
-            e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 2);
         }
     }
 }

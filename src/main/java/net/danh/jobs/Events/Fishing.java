@@ -36,6 +36,17 @@ public class Fishing implements Listener {
                             e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
                             e.setCancelled(true);
                         }
+                        if (((Item) e.getCaught()).getItemStack().getType() == Material.FISHING_ROD) {
+                            e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
+
+                            e.setCancelled(true);
+                        }
+
+                        if (((Item) e.getCaught()).getItemStack().getItemMeta().hasEnchants()) {
+                            e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
+
+                            e.setCancelled(true);
+                        }
                     }
                 } else {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần ít nhất trên 50 năng lượng để câu cá"));
