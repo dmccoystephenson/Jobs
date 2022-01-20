@@ -71,18 +71,25 @@ public final class Jobs extends JavaPlugin implements Listener {
                     List<String> w = getConfig().getStringList("available-worlds");
                     if (w.contains(p.getWorld().getName())) {
                         if (Files.getInstance().getPower(p) >= 81) {
-                            p.getActivePotionEffects().clear();
+                            p.removePotionEffect(PotionEffectType.SLOW);
+                            p.removePotionEffect(PotionEffectType.SLOW_DIGGING);
+                            p.removePotionEffect(PotionEffectType.BLINDNESS);
+                            p.removePotionEffect(PotionEffectType.POISON);
+                            p.removePotionEffect(PotionEffectType.WITHER);
                         }
 
                         if (Files.getInstance().getPower(p) <= 80 && Files.getInstance().getPower(p) >= 51) {
                             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 2));
                             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, Integer.MAX_VALUE, 2));
                             p.removePotionEffect(PotionEffectType.BLINDNESS);
+                            p.removePotionEffect(PotionEffectType.POISON);
+                            p.removePotionEffect(PotionEffectType.WITHER);
                         }
 
                         if (Files.getInstance().getPower(p) <= 50 && Files.getInstance().getPower(p) >= 31) {
                             p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 2));
                             p.removePotionEffect(PotionEffectType.POISON);
+                            p.removePotionEffect(PotionEffectType.WITHER);
                         }
 
                         if (Files.getInstance().getPower(p) <= 30 && Files.getInstance().getPower(p) >= 10) {

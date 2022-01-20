@@ -96,6 +96,11 @@ public class Files {
         savedata();
     }
 
+    public void setJobs(Player p, String name) {
+        getdata().set("players." + p.getName() + ".Jobs", name);
+        savedata();
+    }
+
     public void setPower(Player p, int number) {
         getdata().set("players." + p.getName() + ".Power", number);
         savedata();
