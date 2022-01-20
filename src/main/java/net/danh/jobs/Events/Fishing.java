@@ -21,15 +21,17 @@ public class Fishing implements Listener {
             }
 
             if (Files.getInstance().getPower(e.getPlayer()) >= 50) {
-                if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
-                        || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
-                    Files.getInstance().removePower(e.getPlayer(), 10);
-                    e.getPlayer().sendMessage(Files.getInstance().convert("&c-10 Năng Lượng"));
-                    e.getPlayer().giveExp(1);
-                    e.setCancelled(false);
-                } else {
-                    e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
-                    e.setCancelled(true);
+                if (e.getCaught() instanceof Item) {
+                    if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
+                            || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
+                        Files.getInstance().removePower(e.getPlayer(), 10);
+                        e.getPlayer().sendMessage(Files.getInstance().convert("&c-10 Năng Lượng"));
+                        e.getPlayer().giveExp(1);
+                        e.setCancelled(false);
+                    } else {
+                        e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
+                        e.setCancelled(true);
+                    }
                 }
             } else {
                 e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần ít nhất trên 50 năng lượng để câu cá"));

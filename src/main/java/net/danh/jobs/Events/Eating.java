@@ -11,6 +11,7 @@ public class Eating implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onEating(PlayerItemConsumeEvent e) {
         if (e.getItem().getType() == Material.BEETROOT) {
+            e.getPlayer().sendMessage(Files.getInstance().convert("&cCủ dền không phải để ăn!"));
             e.setCancelled(true);
         } else {
             if (Files.getInstance().getPower(e.getPlayer()) < 100) {
