@@ -19,7 +19,7 @@ jobs:
         run: mvn -B package
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%H:%M %m/%d/%Y')"
+        run: echo "::set-output name=date::$(date +'%d/%m/%Y')"
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
