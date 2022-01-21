@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.logging.Level;
 
@@ -19,12 +21,10 @@ public class Fishing implements Listener {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la ngu dan");
             }
-
             if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                 e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                 e.setCancelled(true);
             } else {
-
                 if (Files.getInstance().getPower(e.getPlayer()) >= 50) {
                     if (e.getCaught() instanceof Item) {
                         if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
