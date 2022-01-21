@@ -69,16 +69,10 @@ public final class Jobs extends JavaPlugin implements Listener {
                     Player p = (Player) var2.next();
                     List<String> w = getConfig().getStringList("available-worlds");
                     if (w.contains(p.getWorld().getName())) {
-                        if (Files.getInstance().getPower(p) >= 81) {
-                        }
-
-                        if (Files.getInstance().getPower(p) <= 80 && Files.getInstance().getPower(p) >= 51) {
-                        }
-
-                        if (Files.getInstance().getPower(p) <= 50 && Files.getInstance().getPower(p) >= 31) {
-                        }
-
-                        if (Files.getInstance().getPower(p) <= 30 && Files.getInstance().getPower(p) >= 0) {
+                        if (Files.getInstance().getPower(p) > 100) {
+                            if (!p.hasPermission("jobs.bypass")) {
+                                Files.getInstance().setPower(p, 100);
+                            }
                         }
 
                     }

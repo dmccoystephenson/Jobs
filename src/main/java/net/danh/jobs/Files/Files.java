@@ -36,12 +36,14 @@ public class Files {
 
         try {
             config.load(configFile);
-            language.load(languageFile);
+            lang.load(langFile);
             data.load(dataFile);
+            mob.load(mobFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
     }
+
 
     public FileConfiguration getconfig() {
         return config;

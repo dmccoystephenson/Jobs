@@ -37,7 +37,7 @@ public class Interact implements Listener {
                     e.setCancelled(true);
                 } else {
                     String name = e.getRightClicked().getName();
-                    Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
+                    Player bn = Bukkit.getPlayerExact(name).getPlayer();
                     if (bn instanceof Player) {
                         if (bn.getPlayer().getHealth() <= (bn.getPlayer().getMaxHealth() / 2)) {
                             if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -62,18 +62,11 @@ public class Interact implements Listener {
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Thuoc dung loai");
                                 }
-                                if (bs.getItemInHand().getAmount() != 1) {
-                                    bs.getItemInHand().setAmount(bs.getItemInHand().getAmount() - 1);
-                                    bs.updateInventory();
-                                    bn.setHealth(bn.getMaxHealth());
-                                } else {
-                                    bs.getInventory().remove(item);
-                                    bn.setHealth(bn.getMaxHealth());
-                                    bs.updateInventory();
-                                    bs.sendMessage(Files.getInstance().convert("&eCảm ơn bạn đã cứu bệnh nhân &c" + bn.getName()));
-                                    bn.sendMessage(Files.getInstance().convert("&eBạn đã được bác sĩ &c" + bs.getName() + " &ecứu thành công!"));
-                                }
-
+                                bs.getItemInHand().setAmount(bs.getItemInHand().getAmount() - 1);
+                                bs.updateInventory();
+                                bn.setHealth(bn.getMaxHealth());
+                                bs.sendMessage(Files.getInstance().convert("&eCảm ơn bạn đã cứu bệnh nhân &c" + bn.getName()));
+                                bn.sendMessage(Files.getInstance().convert("&eBạn đã được bác sĩ &c" + bs.getName() + " &ecứu thành công!"));
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa thuoc");
                                 }
@@ -116,7 +109,7 @@ public class Interact implements Listener {
                 }
 
                 String name = e.getRightClicked().getName();
-                Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
+                Player bn = Bukkit.getPlayerExact(name).getPlayer();
 
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
@@ -180,7 +173,7 @@ public class Interact implements Listener {
                     e.setCancelled(true);
                 } else {
                     String name = e.getRightClicked().getName();
-                    Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
+                    Player bn = Bukkit.getPlayerExact(name).getPlayer();
 
                     ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("hangcam.MATERIAL")), Files.getInstance().getconfig().getInt("hangcam.AMOUNT"));
                     ItemMeta meta = items.getItemMeta();
