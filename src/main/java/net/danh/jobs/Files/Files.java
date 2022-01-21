@@ -38,7 +38,6 @@ public class Files {
             config.load(configFile);
             language.load(languageFile);
             data.load(dataFile);
-            mob.load(mobFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
