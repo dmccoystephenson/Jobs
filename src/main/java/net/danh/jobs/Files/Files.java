@@ -36,7 +36,7 @@ public class Files {
 
         try {
             config.load(configFile);
-            lang.load(langFile);
+            language.load(languageFile);
             data.load(dataFile);
             mob.load(mobFile);
         } catch (IOException | InvalidConfigurationException e) {
