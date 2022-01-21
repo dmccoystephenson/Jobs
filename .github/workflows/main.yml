@@ -20,8 +20,8 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "DevBuild"
+          automatic_release_tag: "0.1.5-SNAPSHOT"
           prerelease: false
-          title: "Development Build"
+          title: "v0.1.5-SNAPSHOT"
           files: |
-            ./target/*.jar
+            ./target/Jobs.jar

@@ -1,5 +1,5 @@
 name: Jobs
-version: '${project.version}'
+version: '${project.version}-${devbuild.version}'
 main: net.danh.jobs.Jobs
 depend: [Vault, PlaceholderAPI]
 authors: [VoChiDanh]

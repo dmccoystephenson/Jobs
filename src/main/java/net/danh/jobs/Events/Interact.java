@@ -184,25 +184,18 @@ public class Interact implements Listener {
                     lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE2")));
                     meta.setLore(lore);
                     items.setItemMeta(meta);
-                    int amount = 0;
-                    int am = 0;
-
-                    if (bn instanceof Player) {
-                        for (int in = 0; in < 36; in++) {
-                            if (bn.getInventory().getItem(in) == null) {
-                                continue;
-                            }
-                            if (bn.getInventory().getItem(in).equals(items)) {
-                                am += bn.getInventory().getItem(in).getAmount();
-                            }
-                        }
-                        if (am >= amount) {
-                            return;
-                        } else {
-                            bs.sendMessage(Files.getInstance().convert("&cPhát hiện có &a" + amount + " &cvật phẩm cấm trong túi đồ của" + bn.getName()));
-                        }
+                    if (items == null) {
                         return;
                     }
+                    int amount = 0;
+                    for (int i = 0; i < 36; i++) {
+                        ItemStack slot = bn.getInventory().getItem(i);
+                        if (slot == null || slot.getType() != items.getType()) {
+                            continue;
+                        }
+                        amount += slot.getAmount();
+                    }
+                    bs.sendMessage(Files.getInstance().convert("&aĐối tượng có &c" + amount + "&a vật phẩm cấm"));
                 }
             }
         }
