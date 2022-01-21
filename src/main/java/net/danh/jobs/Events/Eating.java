@@ -17,8 +17,9 @@ public class Eating implements Listener {
             e.getPlayer().sendMessage(Files.getInstance().convert("&cCủ dền không phải để ăn!"));
             e.setCancelled(true);
         } else {
-            if (Files.getInstance().getPower(e.getPlayer()) < 100) {
-                if (e.getItem().getType() == Material.POTION) {
+
+            if (e.getItem().getType() == Material.POTION) {
+                if (Files.getInstance().getPower(e.getPlayer()) < 100) {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
@@ -27,8 +28,10 @@ public class Eating implements Listener {
                     }.runTaskLaterAsynchronously(Jobs.getInstance(), 1L);
                     Files.getInstance().addPower(e.getPlayer(), 5);
                 } else {
-                    e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 2);
+                    e.setCancelled(true);
                 }
+            } else {
+                e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 2);
             }
         }
     }

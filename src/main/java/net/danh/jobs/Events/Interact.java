@@ -6,6 +6,7 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -168,34 +169,27 @@ public class Interact implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Canh satda click phai vao nguoi choi khac");
                 }
 
-                if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
-                    e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
-                    e.setCancelled(true);
-                } else {
-                    String name = e.getRightClicked().getName();
-                    Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                if (bs.getPlayer().getItemInHand().getType() == Material.DIAMOND_BARDING){
 
-                    ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("hangcam.MATERIAL")), Files.getInstance().getconfig().getInt("hangcam.AMOUNT"));
-                    ItemMeta meta = items.getItemMeta();
 
-                    meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.DISPLAY_NAME")));
-                    ArrayList<String> lore = new ArrayList<String>();
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE1")));
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE2")));
-                    meta.setLore(lore);
-                    items.setItemMeta(meta);
-                    if (items == null) {
-                        return;
-                    }
-                    int amount = 0;
-                    for (int i = 0; i < 36; i++) {
-                        ItemStack slot = bn.getInventory().getItem(i);
-                        if (slot == null || slot.getType() != items.getType()) {
-                            continue;
+                    if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
+                        e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
+                        e.setCancelled(true);
+                    } else {
+                        String name = e.getRightClicked().getName();
+                        Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                        int amount = 0;
+                        for (int i = 0; i < 36; i++) {
+                            ItemStack slot = bn.getInventory().getItem(i);
+                            if (slot == null
+                                    || slot.getType() != Material.GOLD_SWORD
+                                    || slot.getType() != Material.STONE_SWORD) {
+                                continue;
+                            }
+                            amount += slot.getAmount();
                         }
-                        amount += slot.getAmount();
+                        bs.sendMessage(Files.getInstance().convert("&aĐối tượng có &c" + amount + "&a vật phẩm cấm"));
                     }
-                    bs.sendMessage(Files.getInstance().convert("&aĐối tượng có &c" + amount + "&a vật phẩm cấm"));
                 }
             }
         }
