@@ -1,5 +1,6 @@
 package net.danh.jobs.Events;
 
+import net.danh.gang.Manager.Gangs;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -81,6 +82,9 @@ public class Interact implements Listener {
                                     bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
                                     EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
                                     Files.getInstance().removePower(e.getPlayer(), 1);
+                                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                    }
                                     bn.setWalkSpeed(0.15F);
                                     Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
                                 } else {
@@ -146,6 +150,9 @@ public class Interact implements Listener {
                                 }
                                 bs.setItemInHand(null);
                                 bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                                if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                                    Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                }
 
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa dung cu");
@@ -187,6 +194,9 @@ public class Interact implements Listener {
                                 continue;
                             }
                             amount += slot.getAmount();
+                        }
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
                         }
                         bs.sendMessage(Files.getInstance().convert("&aĐối tượng có &c" + amount + "&a vật phẩm cấm"));
                     }

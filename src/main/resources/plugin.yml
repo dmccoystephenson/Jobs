@@ -2,6 +2,8 @@ name: Jobs
 version: '${project.version}-${devbuild.version}'
 main: net.danh.jobs.Jobs
 depend: [Vault, PlaceholderAPI]
+softdepend:
+  - Gang
 authors: [VoChiDanh]
 commands:
   nghe:

@@ -1,5 +1,7 @@
 package net.danh.jobs.Events;
 
+import net.danh.gang.Gang;
+import net.danh.gang.Manager.Gangs;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
 import org.bukkit.Material;
@@ -74,6 +76,9 @@ public class BlockBreak implements Listener {
 
                         p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                         Files.getInstance().removePower(p, 1);
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                        }
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                         }
@@ -108,6 +113,9 @@ public class BlockBreak implements Listener {
 
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
+                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                    }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -159,6 +167,9 @@ public class BlockBreak implements Listener {
 
                     p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
+                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                    }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -214,6 +225,9 @@ public class BlockBreak implements Listener {
                         }
                         p.giveExp(Files.getInstance().getconfig().getInt("xp"));
                         Files.getInstance().removePower(p, 1);
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                        }
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                         }

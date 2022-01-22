@@ -1,5 +1,6 @@
 package net.danh.jobs.Events;
 
+import net.danh.gang.Manager.Gangs;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
 import org.bukkit.Material;
@@ -28,6 +29,9 @@ public class Fishing implements Listener {
                         if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
                                 || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
                             Files.getInstance().removePower(e.getPlayer(), 2);
+                            if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
+                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                            }
                             e.getPlayer().giveExp(1);
                             e.setCancelled(false);
                         } else {
