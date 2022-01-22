@@ -94,20 +94,64 @@ public class Files {
 
     public void createJobs(Player p) {
         getdata().set("players." + p.getName() + ".Jobs", "KHONGCONGHE");
+        getdata().set("players." + p.getName() + ".Power", 100);
         savedata();
     }
 
     public void setJobs(Player p, String name) {
         getdata().set("players." + p.getName() + ".Jobs", name);
+        getdata().set("players." + p.getName() + ".Level." + name, 1);
+        getdata().set("players." + p.getName() + ".XP." + name, 0);
         savedata();
+    }
+    public int getLevel(Player p){
+        return getdata().getInt("players." + p.getName() + ".Level." + getJobs(p));
+    }
+
+    public int getXP(Player p){
+        return getdata().getInt("players." + p.getName() + ".XP." + getJobs(p));
+    }
+
+    public void setLevel(Player p, int number){
+        getdata().set("players." + p.getName() + ".Level." + getJobs(p), number);
+        savedata();
+    }
+
+    public void setXP(Player p, int number){
+        getdata().set("players." + p.getName() + ".XP." + getJobs(p), number);
+        savedata();
+    }
+
+    public void addLevel(Player p, int number){
+        getdata().set("players." + p.getName() + ".Level." + getJobs(p), getLevel(p) + number);
+        savedata();
+    }
+
+    public void addXP(Player p, int number){
+        getdata().set("players." + p.getName() + ".XP." + getJobs(p), getXP(p) + number);
+        checkLevelup(p);
+        savedata();
+    }
+
+    public void removeLevel(Player p, int number){
+        getdata().set("players." + p.getName() + ".Level." + getJobs(p), getLevel(p) - number);
+        savedata();
+    }
+
+    public void removeXP(Player p, int number){
+        getdata().set("players." + p.getName() + ".XP." + getJobs(p), getXP(p) - number);
+        savedata();
+    }
+
+    public void checkLevelup(Player p){
+        if (getXP(p) >= (getLevel(p)*100)){
+            addLevel(p, 1);
+            setXP(p, 0);
+            p.sendMessage(convert("&aChúc mừng bạn đã lên cấp &6" + getLevel(p) + "&a nghề &c" + getJobs(p)));
+        }
     }
 
     public void setPower(Player p, int number) {
-        getdata().set("players." + p.getName() + ".Power", number);
-        savedata();
-    }
-
-    public void createPower(Player p, int number) {
         getdata().set("players." + p.getName() + ".Power", number);
         savedata();
     }

@@ -27,6 +27,73 @@ public class Commands implements CommandExecutor {
                 sender.sendMessage(Files.getInstance().convert("&aReloaded"));
                 return true;
             }
+
+            if (label.equalsIgnoreCase("thongtin")) {
+                if (args.length == 1){
+                    if(Bukkit.getPlayer(args[0]) != null ){
+                        sender.sendMessage(Files.getInstance().convert("&aJobs &b" + Files.getInstance().getJobs(Bukkit.getPlayer(args[0]))));
+                        sender.sendMessage(Files.getInstance().convert("&aLevel &b" + Files.getInstance().getLevel(Bukkit.getPlayer(args[0]))));
+                        sender.sendMessage(Files.getInstance().convert("&aXP &b" + Files.getInstance().getXP(Bukkit.getPlayer(args[0]))));
+                    }
+                }
+                if (args.length == 4) {
+                    if (args[0].equalsIgnoreCase("capdo")) {
+                        if (args[1].equalsIgnoreCase("set")) {
+                            if (Bukkit.getPlayer(args[2]) != null) {
+                                Files.getInstance().setLevel(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã đặt cấp độ nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a thành &6" + Integer.parseInt(args[3])));
+                            } else {
+                                return true;
+                            }
+                        }
+                        if (args[1].equalsIgnoreCase("remove")) {
+                            if (Bukkit.getPlayer(args[2]) != null) {
+                                Files.getInstance().removeLevel(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã lấy cấp độ nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a đi &6" + Integer.parseInt(args[3])));
+                            } else {
+                                return true;
+                            }
+                        }
+
+                        if (args[1].equalsIgnoreCase("add")) {
+                            if (Bukkit.getPlayer(args[2]) != null) {
+                                Files.getInstance().addLevel(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã thêm cấp độ nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a lên &6" + Integer.parseInt(args[3])));
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
+                    if (args[0].equalsIgnoreCase("kinhnghiem")) {
+                        if (args[1].equalsIgnoreCase("set")) {
+                            if (Bukkit.getPlayer(args[2]) != null) {
+                                Files.getInstance().setXP(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã đặt kinh nghiệm nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a thành &6" + Integer.parseInt(args[3])));
+                            } else {
+                                return true;
+                            }
+                        }
+                        if (args[1].equalsIgnoreCase("remove")) {
+                            if (Bukkit.getPlayer(args[2]) != null) {
+                                Files.getInstance().removeXP(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã lấy kinh nghiệm nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a đi &6" + Integer.parseInt(args[3])));
+                            } else {
+                                return true;
+                            }
+                        }
+
+                        if (args[1].equalsIgnoreCase("add")) {
+                            if (Bukkit.getPlayer(args[2]) != null) {
+                                Files.getInstance().addXP(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã thêm kinh nghiệm nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a lên &6" + Integer.parseInt(args[3])));
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
             if (label.equalsIgnoreCase("power")) {
                 if (args.length == 3) {
                     if (args[0].equalsIgnoreCase("set")) {
@@ -167,7 +234,73 @@ public class Commands implements CommandExecutor {
                     }
                 }
             }
+
             if (sender.hasPermission("jobs.admin")) {
+                if (label.equalsIgnoreCase("thongtin")) {
+                    if (args.length == 1){
+                        if(Bukkit.getPlayer(args[0]) != null ){
+                            sender.sendMessage(Files.getInstance().convert("&aJobs &b" + Files.getInstance().getJobs(Bukkit.getPlayer(args[0]))));
+                            sender.sendMessage(Files.getInstance().convert("&aLevel &b" + Files.getInstance().getLevel(Bukkit.getPlayer(args[0]))));
+                            sender.sendMessage(Files.getInstance().convert("&aXP &b" + Files.getInstance().getXP(Bukkit.getPlayer(args[0]))));
+                        }
+                    }
+                    if (args.length == 4) {
+                        if (args[0].equalsIgnoreCase("capdo")) {
+                            if (args[1].equalsIgnoreCase("set")) {
+                                if (Bukkit.getPlayer(args[2]) != null) {
+                                    Files.getInstance().setLevel(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                    sender.sendMessage(Files.getInstance().convert("&aĐã đặt cấp độ nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a thành &6" + Integer.parseInt(args[3])));
+                                } else {
+                                    return true;
+                                }
+                            }
+                            if (args[1].equalsIgnoreCase("remove")) {
+                                if (Bukkit.getPlayer(args[2]) != null) {
+                                    Files.getInstance().removeLevel(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                    sender.sendMessage(Files.getInstance().convert("&aĐã lấy cấp độ nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a đi &6" +Integer.parseInt(args[3])));
+                                } else {
+                                    return true;
+                                }
+                            }
+
+                            if (args[1].equalsIgnoreCase("add")) {
+                                if (Bukkit.getPlayer(args[2]) != null) {
+                                    Files.getInstance().addLevel(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                    sender.sendMessage(Files.getInstance().convert("&aĐã thêm cấp độ nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a lên &6" + Integer.parseInt(args[3])));
+                                } else {
+                                    return true;
+                                }
+                            }
+                        }
+                        if (args[0].equalsIgnoreCase("kinhnghiem")) {
+                            if (args[1].equalsIgnoreCase("set")) {
+                                if (Bukkit.getPlayer(args[2]) != null) {
+                                    Files.getInstance().setXP(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                    sender.sendMessage(Files.getInstance().convert("&aĐã đặt kinh nghiệm nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a thành &6" + Integer.parseInt(args[3])));
+                                } else {
+                                    return true;
+                                }
+                            }
+                            if (args[1].equalsIgnoreCase("remove")) {
+                                if (Bukkit.getPlayer(args[2]) != null) {
+                                    Files.getInstance().removeXP(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                    sender.sendMessage(Files.getInstance().convert("&aĐã lấy kinh nghiệm nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a đi &6" + Integer.parseInt(args[3])));
+                                } else {
+                                    return true;
+                                }
+                            }
+
+                            if (args[1].equalsIgnoreCase("add")) {
+                                if (Bukkit.getPlayer(args[2]) != null) {
+                                    Files.getInstance().addXP(Bukkit.getPlayer(args[2]), Integer.parseInt(args[3]));
+                                    sender.sendMessage(Files.getInstance().convert("&aĐã thêm kinh nghiệm nghề &e" + Files.getInstance().getJobs(Bukkit.getPlayer(args[2])) + "&a của &e" + Bukkit.getPlayer(args[2]).getName() + "&a lên &6" + Integer.parseInt(args[3])));
+                                } else {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
                 if (label.equalsIgnoreCase("power")) {
                     if (args.length == 3) {
                         if (args[0].equalsIgnoreCase("set")) {

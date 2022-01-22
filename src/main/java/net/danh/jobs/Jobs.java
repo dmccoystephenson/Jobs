@@ -68,6 +68,7 @@ public final class Jobs extends JavaPlugin implements Listener {
         getCommand("hangcam").setExecutor(new Commands());
         getCommand("jobs").setExecutor(new Commands());
         getCommand("power").setExecutor(new Commands());
+        getCommand("thongtin").setExecutor(new Commands());
         Files.getInstance().createconfig();
         (new BukkitRunnable() {
             public void run() {

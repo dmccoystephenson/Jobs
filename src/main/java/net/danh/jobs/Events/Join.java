@@ -14,7 +14,6 @@ public class Join implements Listener {
         Player p = e.getPlayer();
         if (Files.getInstance().getJobs(p) == null) {
             Files.getInstance().createJobs(p);
-            Files.getInstance().createPower(p, 100);
             Files.getInstance().savedata();
             p.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("select-usage")));
         } else {

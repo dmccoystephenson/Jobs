@@ -79,11 +79,14 @@ public class Interact implements Listener {
 
                                 if (Files.getInstance().getPower(bs) >= 50) {
 
-                                    bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                                    Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                                     EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
                                     Files.getInstance().removePower(e.getPlayer(), 1);
-                                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+
+                                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                                        if (Gangs.inGang(e.getPlayer())) {
+                                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                        }
                                     }
                                     bn.setWalkSpeed(0.15F);
                                     Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
@@ -149,9 +152,12 @@ public class Interact implements Listener {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da an trom tien");
                                 }
                                 bs.setItemInHand(null);
-                                bs.giveExp(Files.getInstance().getconfig().getInt("xp"));
-                                if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                                    Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
+
+                                if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                                    if (Gangs.inGang(e.getPlayer())) {
+                                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                    }
                                 }
 
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -195,9 +201,13 @@ public class Interact implements Listener {
                             }
                             amount += slot.getAmount();
                         }
-                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
-                        }
+
+                            if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                                if (Gangs.inGang(e.getPlayer())) {
+                                    Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                }
+                            }
+                        Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         bs.sendMessage(Files.getInstance().convert("&aĐối tượng có &c" + amount + "&a vật phẩm cấm"));
                     }
                 }

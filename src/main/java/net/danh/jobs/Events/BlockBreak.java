@@ -73,11 +73,12 @@ public class BlockBreak implements Listener {
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
                         }
-
-                        p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                        Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         Files.getInstance().removePower(p, 1);
-                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                            if (Gangs.inGang(p)) {
+                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                            }
                         }
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
@@ -111,11 +112,14 @@ public class BlockBreak implements Listener {
                         e.setCancelled(true);
                     }
 
-                    p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+
+                    Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
-                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
-                    }
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                            if (Gangs.inGang(p)) {
+                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                            }
+                        }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -165,11 +169,14 @@ public class BlockBreak implements Listener {
                         e.setCancelled(false);
                     }
 
-                    p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+
+                    Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
-                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
-                    }
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                            if (Gangs.inGang(p)) {
+                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                            }
+                        }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -223,10 +230,12 @@ public class BlockBreak implements Listener {
                         } else {
                             e.setCancelled(false);
                         }
-                        p.giveExp(Files.getInstance().getconfig().getInt("xp"));
+                        Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         Files.getInstance().removePower(p, 1);
-                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                            if (Gangs.inGang(p)) {
+                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                            }
                         }
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");

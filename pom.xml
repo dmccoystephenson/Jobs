@@ -6,14 +6,14 @@
 
     <groupId>net.danh</groupId>
     <artifactId>Jobs</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
     <packaging>jar</packaging>
 
     <name>Jobs</name>
 
     <properties>
         <java.version>1.8</java.version>
-        <devbuild.version>SNAPSHOT-3</devbuild.version>
+        <devbuild.version>SNAPSHOT</devbuild.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

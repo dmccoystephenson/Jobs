@@ -29,10 +29,13 @@ public class Fishing implements Listener {
                         if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
                                 || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
                             Files.getInstance().removePower(e.getPlayer(), 2);
-                            if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")){
-                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                            if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                                if (Gangs.inGang(e.getPlayer())) {
+                                    Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                }
                             }
-                            e.getPlayer().giveExp(1);
+
+                            Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             e.setCancelled(false);
                         } else {
                             e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
