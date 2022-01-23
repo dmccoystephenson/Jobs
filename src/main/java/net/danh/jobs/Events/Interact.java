@@ -85,7 +85,7 @@ public class Interact implements Listener {
 
                                     if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                                         if (Gangs.inGang(e.getPlayer())) {
-                                            Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                            net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                                         }
                                     }
                                     bn.setWalkSpeed(0.15F);
@@ -156,7 +156,7 @@ public class Interact implements Listener {
 
                                 if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                                     if (Gangs.inGang(e.getPlayer())) {
-                                        Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                        net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                                     }
                                 }
 
@@ -204,7 +204,7 @@ public class Interact implements Listener {
 
                             if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                                 if (Gangs.inGang(e.getPlayer())) {
-                                    Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                    net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                                 }
                             }
                         Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));

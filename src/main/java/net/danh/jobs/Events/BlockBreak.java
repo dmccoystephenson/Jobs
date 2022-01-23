@@ -77,7 +77,7 @@ public class BlockBreak implements Listener {
                         Files.getInstance().removePower(p, 1);
                         if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                             if (Gangs.inGang(p)) {
-                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             }
                         }
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -117,7 +117,7 @@ public class BlockBreak implements Listener {
                     Files.getInstance().removePower(p, 1);
                         if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                             if (Gangs.inGang(p)) {
-                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             }
                         }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -174,7 +174,7 @@ public class BlockBreak implements Listener {
                     Files.getInstance().removePower(p, 1);
                         if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                             if (Gangs.inGang(p)) {
-                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             }
                         }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -234,7 +234,7 @@ public class BlockBreak implements Listener {
                         Files.getInstance().removePower(p, 1);
                         if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                             if (Gangs.inGang(p)) {
-                                Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             }
                         }
                         if (Files.getInstance().getconfig().getBoolean("debug")) {

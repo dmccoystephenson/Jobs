@@ -31,7 +31,7 @@ public class Fishing implements Listener {
                             Files.getInstance().removePower(e.getPlayer(), 1);
                             if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                                 if (Gangs.inGang(e.getPlayer())) {
-                                    Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));
+                                    net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                                 }
                             }
 
