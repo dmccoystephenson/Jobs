@@ -7,7 +7,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class Death implements Listener {
     @EventHandler(ignoreCancelled = true)
-    public void onDeath(PlayerDeathEvent e){
-        Files.getInstance().removeXP(e.getEntity().getPlayer(), Files.getInstance().getXP(e.getEntity().getPlayer())/2);
+    public void onDeath(PlayerDeathEvent e) {
+        Files.getInstance().removeXP(e.getEntity().getPlayer(), Files.getInstance().getXP(e.getEntity().getPlayer()) / 2);
     }
 }

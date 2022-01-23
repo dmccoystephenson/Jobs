@@ -138,7 +138,7 @@ public class Files {
         if (getLevel(p) > number) {
             getdata().set("players." + p.getName() + ".Level." + getJobs(p), getLevel(p) - number);
             savedata();
-        }  else {
+        } else {
             getdata().set("players." + p.getName() + ".Level", 1);
             savedata();
         }
