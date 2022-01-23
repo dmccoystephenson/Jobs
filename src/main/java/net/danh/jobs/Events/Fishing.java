@@ -23,6 +23,7 @@ public class Fishing implements Listener {
             if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                 e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                 e.setCancelled(true);
+                            return;
             } else {
                 if (Files.getInstance().getPower(e.getPlayer()) >= 50) {
                     if (e.getCaught() instanceof Item) {
@@ -40,27 +41,32 @@ public class Fishing implements Listener {
                         } else {
                             e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
                             e.setCancelled(true);
+                            return;
                         }
                         if (((Item) e.getCaught()).getItemStack().getType() == Material.FISHING_ROD) {
                             e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
 
                             e.setCancelled(true);
+                            return;
                         }
 
                         if (((Item) e.getCaught()).getItemStack().getItemMeta().hasEnchants()) {
                             e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));
 
                             e.setCancelled(true);
+                            return;
                         }
                     }
                 } else {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần ít nhất trên 50 năng lượng để câu cá"));
                     e.setCancelled(true);
+                            return;
                 }
             }
         } else {
             e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần là Ngư Dân để câu cá"));
             e.setCancelled(true);
+                            return;
         }
     }
 }

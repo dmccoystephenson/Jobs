@@ -135,13 +135,23 @@ public class Files {
     }
 
     public void removeLevel(Player p, int number) {
-        getdata().set("players." + p.getName() + ".Level." + getJobs(p), getLevel(p) - number);
-        savedata();
+        if (getLevel(p) > number) {
+            getdata().set("players." + p.getName() + ".Level." + getJobs(p), getLevel(p) - number);
+            savedata();
+        }  else {
+            getdata().set("players." + p.getName() + ".Level", 1);
+            savedata();
+        }
     }
 
     public void removeXP(Player p, int number) {
-        getdata().set("players." + p.getName() + ".XP." + getJobs(p), getXP(p) - number);
-        savedata();
+        if (getXP(p) > number) {
+            getdata().set("players." + p.getName() + ".XP." + getJobs(p), getXP(p) - number);
+            savedata();
+        } else {
+            getdata().set("players." + p.getName() + ".XP", 0);
+            savedata();
+        }
     }
 
     public void checkLevelup(Player p) {
@@ -164,8 +174,13 @@ public class Files {
 
 
     public void removePower(Player p, int number) {
-        getdata().set("players." + p.getName() + ".Power", getPower(p) - number);
-        savedata();
+        if (getPower(p) > number) {
+            getdata().set("players." + p.getName() + ".Power", getPower(p) - number);
+            savedata();
+        } else {
+            getdata().set("players." + p.getName() + ".Power", 0);
+            savedata();
+        }
     }
 
 

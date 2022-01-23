@@ -36,6 +36,7 @@ public class Interact implements Listener {
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                     e.setCancelled(true);
+                            return;
                 } else {
                     String name = e.getRightClicked().getName();
                     Player bn = Bukkit.getPlayerExact(name).getPlayer();
@@ -92,15 +93,18 @@ public class Interact implements Listener {
                                 } else {
                                     bs.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để cứu bệnh nhân"));
                                     e.setCancelled(true);
+                            return;
                                 }
                             } else {
                                 bs.sendMessage(Files.getInstance().convert("&cBạn cần phải cầm thuốc trên tay để cứu bệnh nhân"));
                                 e.setCancelled(true);
+                            return;
                             }
                         } else {
                             bs.sendMessage(Files.getInstance().convert("&cBệnh Nhân không dưới 50% máu nên không thể hồi phục"));
                             bn.sendMessage(Files.getInstance().convert("&cBạn không dưới 50% máu nên không thể hồi phục"));
                             e.setCancelled(true);
+                            return;
                         }
                     }
                 }
@@ -121,6 +125,7 @@ public class Interact implements Listener {
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                     e.setCancelled(true);
+                            return;
                 } else {
                     if (bn instanceof Player) {
                         if (Jobs.economy.getBalance(bn) > 100) {
@@ -187,6 +192,7 @@ public class Interact implements Listener {
                     if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                         e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                         e.setCancelled(true);
+                            return;
                     } else {
                         String name = e.getRightClicked().getName();
                         Player bn = Bukkit.getPlayerExact(name).getPlayer();

@@ -55,6 +55,7 @@ public final class Jobs extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new Interact(), this);
         getServer().getPluginManager().registerEvents(new Regen(), this);
         getServer().getPluginManager().registerEvents(new Eating(), this);
+        getServer().getPluginManager().registerEvents(new Death(), this);
         getCommand("nghe").setExecutor(new Commands());
         getCommand("chonnghe").setExecutor(new Commands());
         getCommand("doinghe").setExecutor(new Commands());

@@ -47,6 +47,7 @@ public class BlockBreak implements Listener {
                                     || b.getType() == Material.IRON_ORE) {
                                 p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
                                 e.setCancelled(true);
+                                return;
                             }
                         } else {
                             e.setCancelled(false);
@@ -56,6 +57,7 @@ public class BlockBreak implements Listener {
                                     || b.getType() == Material.EMERALD_ORE) {
                                 p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
                                 e.setCancelled(true);
+                                return;
                             }
                         } else {
                             e.setCancelled(false);
@@ -65,6 +67,7 @@ public class BlockBreak implements Listener {
                             if (b.getType() == Material.EMERALD_ORE) {
                                 p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
                                 e.setCancelled(true);
+                                return;
                             }
                         } else {
                             e.setCancelled(false);
@@ -86,10 +89,12 @@ public class BlockBreak implements Listener {
                 } else {
                     p.sendMessage(Files.getInstance().convert("&cBạn cần là thợ mỏ để đào"));
                     e.setCancelled(true);
+                    return;
                 }
             } else {
                 p.sendMessage(Files.getInstance().convert("&cBạn cần sử dụng đúng vật phẩm để đào"));
                 e.setCancelled(true);
+                return;
             }
         }
         if (b.getType() == Material.LOG) {
@@ -105,10 +110,12 @@ public class BlockBreak implements Listener {
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                     e.setCancelled(true);
+                    return;
                 } else {
                     if (Files.getInstance().getPower(p) <= 50) {
                         p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
                         e.setCancelled(true);
+                        return;
                     }
 
 
@@ -126,6 +133,7 @@ public class BlockBreak implements Listener {
             } else {
                 p.sendMessage(Files.getInstance().convert("&cBạn cần là thợ mộc để đào gỗ"));
                 e.setCancelled(true);
+                return;
             }
         }
         if (b.getType() == Material.GRAVEL
@@ -140,12 +148,14 @@ public class BlockBreak implements Listener {
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                     e.setCancelled(true);
+                    return;
                 } else {
 
                     if (Files.getInstance().getPower(p) <= 30) {
                         if (b.getType() == Material.SAND) {
                             p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
                             e.setCancelled(true);
+                            return;
                         }
                     } else {
                         e.setCancelled(false);
@@ -154,6 +164,7 @@ public class BlockBreak implements Listener {
                         if (b.getType() == Material.CLAY) {
                             p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
                             e.setCancelled(true);
+                            return;
                         }
                     } else {
                         e.setCancelled(false);
@@ -163,6 +174,7 @@ public class BlockBreak implements Listener {
                         if (b.getType() == Material.GRAVEL) {
                             p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
                             e.setCancelled(true);
+                            return;
                         }
                     } else {
                         e.setCancelled(false);
@@ -183,6 +195,7 @@ public class BlockBreak implements Listener {
             } else {
                 p.sendMessage(Files.getInstance().convert("&CBạn cần là Công Nhân để đào nó!"));
                 e.setCancelled(true);
+                return;
             }
         }
 
@@ -202,12 +215,14 @@ public class BlockBreak implements Listener {
                     if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                         e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                         e.setCancelled(true);
+                        return;
                     } else {
 
                         if (Files.getInstance().getPower(p) <= 5) {
                             if (b.getType() == Material.CROPS) {
                                 p.sendMessage(Files.getInstance().convert("&cBạn cần trên 5 năng lượng để có thể đào chúng!"));
                                 e.setCancelled(true);
+                                return;
                             }
                         } else {
                             e.setCancelled(false);
@@ -216,6 +231,7 @@ public class BlockBreak implements Listener {
                             if (b.getType() == Material.BEETROOT_BLOCK) {
                                 p.sendMessage(Files.getInstance().convert("&cBạn cần trên 10 năng lượng để có thể đào chúng"));
                                 e.setCancelled(true);
+                                return;
                             }
                         } else {
                             e.setCancelled(false);
@@ -225,6 +241,7 @@ public class BlockBreak implements Listener {
                             if (b.getType() == Material.SUGAR_CANE_BLOCK) {
                                 p.sendMessage(Files.getInstance().convert("&cBạn cần trên 20 năng lượng để có thể đào chúng"));
                                 e.setCancelled(true);
+                                return;
                             }
                         } else {
                             e.setCancelled(false);
@@ -243,6 +260,7 @@ public class BlockBreak implements Listener {
                 } else {
                     p.sendMessage(Files.getInstance().convert("&cBạn cần là Nông Dân để có thể thu hoạch chúng"));
                     e.setCancelled(true);
+                    return;
                 }
             }
         }
