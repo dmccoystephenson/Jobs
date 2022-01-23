@@ -1,4 +1,4 @@
-package net.danh.jobs.Files;
+package net.danh.jobs.Manager;
 
 import net.danh.jobs.Jobs;
 import org.bukkit.configuration.InvalidConfigurationException;

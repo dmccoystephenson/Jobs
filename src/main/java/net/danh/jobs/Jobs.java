@@ -3,7 +3,7 @@ package net.danh.jobs;
 import net.danh.gang.Gang;
 import net.danh.jobs.Commands.Commands;
 import net.danh.jobs.Events.*;
-import net.danh.jobs.Files.Files;
+import net.danh.jobs.Manager.Files;
 import net.danh.jobs.Hook.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;

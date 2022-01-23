@@ -1,8 +1,9 @@
 package net.danh.jobs.Events;
 
 import net.danh.gang.Manager.Gangs;
-import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
+import net.danh.jobs.Manager.Cooldown;
+import net.danh.jobs.Manager.Files;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,6 +16,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -39,8 +41,28 @@ public class Interact implements Listener {
                     return;
                 } else {
                     String name = e.getRightClicked().getName();
-                    Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
+                    Player bn = Bukkit.getPlayerExact(name).getPlayer();
 
+                    int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
+                    if (timeLeft == 0) {
+                        Cooldown.getInstance().setCooldown(bn.getUniqueId(), Cooldown.DEFAULT_COOLDOWN);
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
+                                Cooldown.getInstance().setCooldown(bn.getUniqueId(), --timeLeft);
+                                if (timeLeft == 0) {
+                                    this.cancel();
+                                }
+                            }
+                        }.runTaskTimer(Jobs.getInstance(), 20, 20);
+
+                    } else {
+                        //Hasn't expired yet, shows how many seconds left until it does
+                        bn.sendMessage(Files.getInstance().convert("&cBạn cần chờ &6" + timeLeft + " &cđể được cứu chữa!"));
+                        bs.sendMessage(Files.getInstance().convert("&cBệnh nhân sẽ được chữa trị sau &6" + timeLeft));
+                        return;
+                    }
                     if (bn instanceof Player) {
                         if (bn.getPlayer().getHealth() <= (bn.getPlayer().getMaxHealth() / 2)) {
                             if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -121,8 +143,8 @@ public class Interact implements Listener {
                 }
 
                 String name = e.getRightClicked().getName();
-                Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
-                
+                Player bn = Bukkit.getPlayerExact(name).getPlayer();
+
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                     e.setCancelled(true);
@@ -196,8 +218,8 @@ public class Interact implements Listener {
                         return;
                     } else {
                         String name = e.getRightClicked().getName();
-                        Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
-                        
+                        Player bn = Bukkit.getPlayerExact(name).getPlayer();
+
                         int amount = 0;
                         for (int i = 0; i < 36; i++) {
                             ItemStack slot = bn.getInventory().getItem(i);

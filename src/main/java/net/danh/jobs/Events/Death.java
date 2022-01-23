@@ -1,6 +1,6 @@
 package net.danh.jobs.Events;
 
-import net.danh.jobs.Files.Files;
+import net.danh.jobs.Manager.Files;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;

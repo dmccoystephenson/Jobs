@@ -1,6 +1,6 @@
 package net.danh.jobs.Commands;
 
-import net.danh.jobs.Files.Files;
+import net.danh.jobs.Manager.Files;
 import net.danh.jobs.Jobs;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;

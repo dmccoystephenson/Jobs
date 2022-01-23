@@ -1,6 +1,6 @@
 package net.danh.jobs.Events;
 
-import net.danh.jobs.Files.Files;
+import net.danh.jobs.Manager.Files;
 import net.danh.jobs.Jobs;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
