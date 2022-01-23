@@ -205,26 +205,26 @@ public class BlockBreak implements Listener {
                         e.setCancelled(true);
                     } else {
 
-                        if (Files.getInstance().getPower(p) <= 30) {
+                        if (Files.getInstance().getPower(p) <= 5) {
                             if (b.getType() == Material.CROPS) {
-                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 30 năng lượng để có thể đào chúng!"));
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 5 năng lượng để có thể đào chúng!"));
                                 e.setCancelled(true);
                             }
                         } else {
                             e.setCancelled(false);
                         }
-                        if (Files.getInstance().getPower(p) <= 50) {
+                        if (Files.getInstance().getPower(p) <= 10) {
                             if (b.getType() == Material.BEETROOT_BLOCK) {
-                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 10 năng lượng để có thể đào chúng"));
                                 e.setCancelled(true);
                             }
                         } else {
                             e.setCancelled(false);
                         }
 
-                        if (Files.getInstance().getPower(p) <= 80) {
+                        if (Files.getInstance().getPower(p) <= 20) {
                             if (b.getType() == Material.SUGAR_CANE_BLOCK) {
-                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 80 năng lượng để có thể đào chúng"));
+                                p.sendMessage(Files.getInstance().convert("&cBạn cần trên 20 năng lượng để có thể đào chúng"));
                                 e.setCancelled(true);
                             }
                         } else {

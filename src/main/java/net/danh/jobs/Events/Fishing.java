@@ -28,7 +28,7 @@ public class Fishing implements Listener {
                     if (e.getCaught() instanceof Item) {
                         if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
                                 || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
-                            Files.getInstance().removePower(e.getPlayer(), 2);
+                            Files.getInstance().removePower(e.getPlayer(), 1);
                             if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
                                 if (Gangs.inGang(e.getPlayer())) {
                                     Gangs.getGang(e.getPlayer()).addXP(Files.getInstance().getconfig().getInt("xp"));

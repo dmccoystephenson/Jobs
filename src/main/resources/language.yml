@@ -9,8 +9,8 @@ available-jobs: "&fCác nghề có thể kiếm ra tiền: &eThợ Mộc (THOMOC
 invalid-job: "&fNghề chưa ra mắt hoặc không tồn tại"
 check-job: "&fNgười chơi &6%player% &fđang làm nghề &6%job%"
 check-error: "&fNgười chơi &6%player% &fkhông tồn tại"
-check-usage: "&fDùng: &6/Xemnghe (tên người chơi)"
-join-usage: "&fDùng: &6/Chonnghe (tên nghề)" # available jobs will show automatically
+check-usage: "&fBạn hãy đến khu chọn nghề và chọn lại nghề"
+join-usage: "&fBạn hãy đến khu chọn nghề và chọn lại nghề" # available jobs will show automatically
 select-usage: "&fBạn chưa có nghề! Hãy gõ /chonnghe (tên nghề) để chọn nghề. Các tên nghề đã có: &eThợ Mộc (THOMOC), Thợ Mỏ (THOMO), Ngư Dân (NGUDAN), Nông Dân (NONGDAN), Công Nhân (CONGNHAN) và Lao Công (LAOCONG)"
 no-permission: "&cBạn không có quyền!"
 config-reloaded: "&fĐã tải lại"
