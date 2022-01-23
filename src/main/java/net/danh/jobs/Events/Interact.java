@@ -7,7 +7,6 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -182,7 +181,7 @@ public class Interact implements Listener {
                     Jobs.getInstance().getLogger().log(Level.INFO, "Canh satda click phai vao nguoi choi khac");
                 }
 
-                if (bs.getPlayer().getItemInHand().getType() == Material.DIAMOND_BARDING){
+                if (bs.getPlayer().getItemInHand().getType() == Material.DIAMOND_BARDING) {
 
 
                     if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
@@ -202,11 +201,11 @@ public class Interact implements Listener {
                             amount += slot.getAmount();
                         }
 
-                            if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
-                                if (Gangs.inGang(e.getPlayer())) {
-                                    net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                                }
+                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                            if (Gangs.inGang(e.getPlayer())) {
+                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             }
+                        }
                         Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         bs.sendMessage(Files.getInstance().convert("&aĐối tượng có &c" + amount + "&a vật phẩm cấm"));
                     }

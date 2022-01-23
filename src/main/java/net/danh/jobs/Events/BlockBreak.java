@@ -1,6 +1,5 @@
 package net.danh.jobs.Events;
 
-import net.danh.gang.Gang;
 import net.danh.gang.Manager.Gangs;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
@@ -115,11 +114,11 @@ public class BlockBreak implements Listener {
 
                     Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
-                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
-                            if (Gangs.inGang(p)) {
-                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                            }
+                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                        if (Gangs.inGang(p)) {
+                            net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         }
+                    }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }
@@ -172,11 +171,11 @@ public class BlockBreak implements Listener {
 
                     Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
-                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
-                            if (Gangs.inGang(p)) {
-                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                            }
+                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
+                        if (Gangs.inGang(p)) {
+                            net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         }
+                    }
                     if (Files.getInstance().getconfig().getBoolean("debug")) {
                         Jobs.getInstance().getLogger().log(Level.INFO, "Add xp");
                     }

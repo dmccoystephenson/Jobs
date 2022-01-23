@@ -1,10 +1,10 @@
 name: Jobs
-version: '${project.version}-${devbuild.version}'
+version: '${project.version}'
 main: net.danh.jobs.Jobs
-depend: [Vault, PlaceholderAPI]
+depend: [ Vault, PlaceholderAPI ]
 softdepend:
   - Gang
-authors: [VoChiDanh]
+authors: [ VoChiDanh ]
 commands:
   nghe:
   chonnghe:

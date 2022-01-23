@@ -46,11 +46,8 @@ public final class Jobs extends JavaPlugin implements Listener {
         } else {
             getServer().getPluginManager().disablePlugin(this);
         }
-        if (getServer().getPluginManager().isPluginEnabled("Gang")){
-            getLogger().log(Level.INFO, "Hooked on to Gang");
-        }
-        if (getServer().getPluginManager().isPluginEnabled("Fee")){
-            getLogger().log(Level.INFO, "Hooked on to Fee");
+        if (getServer().getPluginManager().isPluginEnabled("Gang")) {
+            getLogger().log(Level.INFO, "Hooked on to Gang " + Gang.getInstance().getDescription().getVersion());
         }
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new Join(), this);

@@ -24,6 +24,6 @@ hangcam:
   LORE1: "&fLà hàng cấm, khi bị cảnh sát phát hiện"
   LORE2: "&fbạn sẽ bị tịch thu và bỏ tù."
 available-worlds:
- - MAPTEST
- - covid
+  - MAPTEST
+  - covid
 debug: false
