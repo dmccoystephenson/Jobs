@@ -1,5 +1,7 @@
 package net.danh.jobs.Events;
 
+import net.citizensnpcs.Citizens;
+import net.citizensnpcs.api.CitizensAPI;
 import net.danh.gang.Manager.Gangs;
 import net.danh.jobs.Files.Files;
 import net.danh.jobs.Jobs;
@@ -12,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
@@ -39,7 +42,10 @@ public class Interact implements Listener {
                             return;
                 } else {
                     String name = e.getRightClicked().getName();
-                    Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                    Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
+                    if (bn instanceof Citizens){
+                        return;
+                    }
                     if (bn instanceof Player) {
                         if (bn.getPlayer().getHealth() <= (bn.getPlayer().getMaxHealth() / 2)) {
                             if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -120,8 +126,10 @@ public class Interact implements Listener {
                 }
 
                 String name = e.getRightClicked().getName();
-                Player bn = Bukkit.getPlayerExact(name).getPlayer();
-
+                Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
+                if (bn instanceof Citizens){
+                    return;
+                }
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                     e.setCancelled(true);
@@ -195,15 +203,20 @@ public class Interact implements Listener {
                             return;
                     } else {
                         String name = e.getRightClicked().getName();
-                        Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                        Player bn = (Player) Bukkit.getPlayerExact(name).getPlayer();
+                        if (bn instanceof Citizens){
+                            return;
+                        }
                         int amount = 0;
                         for (int i = 0; i < 36; i++) {
                             ItemStack slot = bn.getInventory().getItem(i);
-                            if (slot == null
-                                    || slot.getType() != Material.GOLD_SWORD
-                                    || slot.getType() != Material.STONE_SWORD) {
-                                continue;
-                            }
+                            if (slot == null ) {
+                                if (slot.getType() != Material.GOLD_SWORD || slot.getType() != Material.STONE_SWORD) {
+                                    if (slot.getType() != Material.IRON_HOE && slot.getType().getMaxDurability() != 32 || slot.getType().getMaxDurability() != 31) {
+                                            continue;
+                                        }
+                                    }
+                                }
                             amount += slot.getAmount();
                         }
 

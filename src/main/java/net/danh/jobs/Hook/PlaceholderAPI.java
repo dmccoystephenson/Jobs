@@ -95,7 +95,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
 
         if (identifier.equalsIgnoreCase("kinhnghiemlencap")) {
-            return String.valueOf(Files.getInstance().getLevel(p) * 100);
+            return String.valueOf(Files.getInstance().getLevel(p) * 500);
         }
 
 

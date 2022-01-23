@@ -155,7 +155,7 @@ public class Files {
     }
 
     public void checkLevelup(Player p) {
-        if (getXP(p) >= (getLevel(p) * 100)) {
+        if (getXP(p) >= (getLevel(p) * 500)) {
             addLevel(p, 1);
             setXP(p, 0);
             p.sendMessage(convert("&aChúc mừng bạn đã lên cấp &6" + getLevel(p) + "&a nghề &c" + getJobs(p)));
