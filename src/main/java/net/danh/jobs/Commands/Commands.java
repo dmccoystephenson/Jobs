@@ -500,7 +500,7 @@ public class Commands implements CommandExecutor {
                         ((Player) sender).setWalkSpeed(0);
                     }
                 } else {
-                    sender.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a " + Double.valueOf(((Player) sender).getHealth()) + "&c nên chưa đủ điều kiện để gọi Bác Sĩ "));
+                    sender.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a" + Double.valueOf(((Player) sender).getHealth()) + "&c nên chưa đủ điều kiện để gọi Bác Sĩ "));
 
                 }
             }

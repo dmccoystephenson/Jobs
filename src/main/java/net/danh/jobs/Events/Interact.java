@@ -145,6 +145,24 @@ public class Interact implements Listener {
                 String name = e.getRightClicked().getName();
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
 
+
+                int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
+                if (timeLeft == 0) {
+                    Cooldown.getInstance().setCooldown(bn.getUniqueId(), Cooldown.DEFAULT_COOLDOWN);
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
+                            Cooldown.getInstance().setCooldown(bn.getUniqueId(), --timeLeft);
+                            if (timeLeft == 0) {
+                                this.cancel();
+                            }
+                        }
+                    }.runTaskTimer(Jobs.getInstance(), 20, 20);
+
+                } else {
+                    bs.sendMessage(Files.getInstance().convert("&cBạn không thể ăn trộm nạn nhân &a" + bn.getName() +"&c trong &6" + timeLeft));
+                }
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
                     e.setCancelled(true);
@@ -166,15 +184,16 @@ public class Interact implements Listener {
                             items.setItemMeta(meta);
                             Material item = items.getType();
 
-                            if (bs.getItemInHand().getType() == item) {
+                            if (bs.getItemInHand().getType() == item && bs.getItemInHand().hasItemMeta()) {
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Dung loai vu khi an trom");
                                 }
 
-                                bs.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(1800 * 20, 3));
+                                bs.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(3600 * 20, 1));
                                 EconomyResponse er = Jobs.economy.withdrawPlayer(bn, 100);
                                 EconomyResponse es = Jobs.economy.depositPlayer(bs, 100);
-
+                                bn.sendMessage(Files.getInstance().convert("&cBạn đã bị ăn trộm đánh cắp mất &6100$"));
+                                bs.sendMessage(Files.getInstance().convert("&cBạn đã ăn trộm &6100$ &ctừ &b" + bn.getName()));
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da an trom tien");
                                 }
@@ -219,28 +238,14 @@ public class Interact implements Listener {
                     } else {
                         String name = e.getRightClicked().getName();
                         Player bn = Bukkit.getPlayerExact(name).getPlayer();
-
-                        int amount = 0;
-                        for (int i = 0; i < 36; i++) {
-                            ItemStack slot = bn.getInventory().getItem(i);
-                            if (slot == null) {
-                                if (slot.getType() != Material.GOLD_SWORD || slot.getType() != Material.STONE_SWORD) {
-                                    continue;
-                                }
-                            }
-                            amount += slot.getAmount();
+                        if (Files.getInstance().getJobs(bn).equalsIgnoreCase("ANTROM")){
+                            bs.sendMessage(Files.getInstance().convert("&cƠ, &b" +  bn.getName() + "&c là ăn trộm kìa.."));
+                            bn.sendMessage(Files.getInstance().convert("&cBạn vừa bị cảnh sát lục soát và phát hiện bạn là ăn trộm!"));
                         }
-
-                        if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
-                            if (Gangs.inGang(e.getPlayer())) {
-                                net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                            }
-                        }
-                        Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                        bs.sendMessage(Files.getInstance().convert("&aĐối tượng có &c" + amount + "&a vật phẩm cấm"));
                     }
                 }
             }
         }
     }
 }
+
