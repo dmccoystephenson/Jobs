@@ -59,8 +59,8 @@ public class Interact implements Listener {
 
                     } else {
                         //Hasn't expired yet, shows how many seconds left until it does
-                        bn.sendMessage(Files.getInstance().convert("&cBạn cần chờ &6" + timeLeft + " &cđể được cứu chữa!"));
-                        bs.sendMessage(Files.getInstance().convert("&cBệnh nhân sẽ được chữa trị sau &6" + timeLeft));
+                        bn.sendMessage(Files.getInstance().convert("&cBạn cần chờ &6" + timeLeft + "&6s &cđể được cứu chữa!"));
+                        bs.sendMessage(Files.getInstance().convert("&cBệnh nhân sẽ được chữa trị sau &6" + timeLeft + "&6s"));
                         return;
                     }
                     if (bn instanceof Player) {
@@ -225,9 +225,7 @@ public class Interact implements Listener {
                             ItemStack slot = bn.getInventory().getItem(i);
                             if (slot == null) {
                                 if (slot.getType() != Material.GOLD_SWORD || slot.getType() != Material.STONE_SWORD) {
-                                    if (slot.getType() != Material.IRON_HOE && slot.getType().getMaxDurability() != 32 || slot.getType().getMaxDurability() != 31) {
-                                        continue;
-                                    }
+                                    continue;
                                 }
                             }
                             amount += slot.getAmount();
