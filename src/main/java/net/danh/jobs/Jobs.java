@@ -80,7 +80,6 @@ public final class Jobs extends JavaPlugin implements Listener {
                                 Files.getInstance().setPower(p, 100);
                             }
                         }
-
                     }
                 }
             }

@@ -217,14 +217,12 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Cảnh Sát")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
                                 return true;
                             }
                         }
-
-                        if (sender.hasPermission("antrom")) {
-                            if (args[0].equalsIgnoreCase("ANTROM")) {
+                        if (Files.getInstance().getLevel(((Player) sender).getPlayer()) > 5) {
+                            if (args[0].equalsIgnoreCase("NBANTROMNB")) {
                                 Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
@@ -359,7 +357,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Thợ Mỏ")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
                                 return true;
                             }
@@ -368,7 +366,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Thợ Mộc")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
                                 return true;
                             }
@@ -377,7 +375,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Công Nhân")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
                                 return true;
                             }
@@ -398,7 +396,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Nông Dân")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
                                 return true;
                             }
@@ -408,7 +406,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Lao Công")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
                                 return true;
                             }
@@ -419,7 +417,7 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Bác Sĩ")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
                                 return true;
                             }
@@ -428,22 +426,24 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
                                         .replaceAll("%job%", "Cảnh Sát")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
                                 return true;
                             }
                         }
-                        if (sender.hasPermission("antrom")) {
-                            if (args[0].equalsIgnoreCase("ANTROM")) {
-                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                Files.getInstance().savedata();
-                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                        .replaceAll("%job%", "Ăn Trộm")));
-                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                            if (Files.getInstance().getLevel(((Player) sender).getPlayer()) > 5) {
+                                if (args[0].equalsIgnoreCase("NBANTROMNB")) {
+                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                    Files.getInstance().savedata();
+                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                            .replaceAll("%job%", "Ăn Trộm")));
+                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
-                                return true;
+                                    return true;
+                                }
+                            } else {
+                                sender.sendMessage(Files.getInstance().convert("&cBạn cần cấp độ 5 trở lên để có thể trở thành &aăn trộm"));
                             }
-                        }
                     } else {
                         sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng tới khu chọn nghề"));
                     }
@@ -469,7 +469,7 @@ public class Commands implements CommandExecutor {
                     }
                 }
             }
-            if (sender.hasPermission("caydao")) {
+            if (Files.getInstance().getJobs(((Player) sender).getPlayer()).equals("ANTROM")) {
                 if (label.equalsIgnoreCase("caydao")) {
 
                     ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("thief_items.MATERIAL")), Files.getInstance().getconfig().getInt("thief_items.AMOUNT"));
