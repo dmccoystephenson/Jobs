@@ -1,6 +1,5 @@
 package net.danh.jobs.Events;
 
-import net.danh.gang.Manager.Gangs;
 import net.danh.jobs.Jobs;
 import net.danh.jobs.Manager.Cooldown;
 import net.danh.jobs.Manager.Files;
@@ -115,11 +114,7 @@ public class Interact implements Listener {
                                     EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
                                     Files.getInstance().removePower(e.getPlayer(), 1);
 
-                                    if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
-                                        if (Gangs.inGang(e.getPlayer())) {
-                                            net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                                        }
-                                    }
+
                                     bn.setWalkSpeed(0.15F);
                                     Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
                                 } else {
@@ -198,23 +193,18 @@ public class Interact implements Listener {
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Dung loai vu khi an trom");
                                 }
-                                bs.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 180*20, 1));
-                                bs.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 180*20, 1));
-                                bn.sendMessage(Files.getInstance().convert("&cBạn đã bị ăn trộm đánh cắp mất &6$" + Jobs.economy.getBalance(bn.getName())/5));
-                                bs.sendMessage(Files.getInstance().convert("&cBạn đã ăn trộm &6$" + (Jobs.economy.getBalance(bn.getName())/5) + " &ctừ &b" + bn.getName()));
-                                EconomyResponse er = Jobs.economy.withdrawPlayer(bn.getName(), Jobs.economy.getBalance(bn.getName())/5);
-                                EconomyResponse es = Jobs.economy.depositPlayer(bs.getName(), Jobs.economy.getBalance(bn.getName())/5);
+                                bs.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 180 * 20, 1));
+                                bs.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 180 * 20, 1));
+                                bn.sendMessage(Files.getInstance().convert("&cBạn đã bị ăn trộm đánh cắp mất &6$" + Jobs.economy.getBalance(bn.getName()) / 5));
+                                bs.sendMessage(Files.getInstance().convert("&cBạn đã ăn trộm &6$" + (Jobs.economy.getBalance(bn.getName()) / 5) + " &ctừ &b" + bn.getName()));
+                                EconomyResponse er = Jobs.economy.withdrawPlayer(bn.getName(), Jobs.economy.getBalance(bn.getName()) / 5);
+                                EconomyResponse es = Jobs.economy.depositPlayer(bs.getName(), Jobs.economy.getBalance(bn.getName()) / 5);
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da an trom tien");
                                 }
                                 bs.setItemInHand(null);
                                 Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                                 Files.getInstance().removePower(e.getPlayer(), 10);
-                                if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
-                                    if (Gangs.inGang(e.getPlayer())) {
-                                        net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                                    }
-                                }
 
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da xoa dung cu");

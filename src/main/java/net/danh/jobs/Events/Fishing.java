@@ -1,6 +1,5 @@
 package net.danh.jobs.Events;
 
-import net.danh.gang.Manager.Gangs;
 import net.danh.jobs.Jobs;
 import net.danh.jobs.Manager.Files;
 import org.bukkit.Material;
@@ -38,12 +37,6 @@ public class Fishing implements Listener {
                                 return;
                             }
                             Files.getInstance().removePower(e.getPlayer(), 1);
-                            if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
-                                if (Gangs.inGang(e.getPlayer())) {
-                                    net.danh.gang.Files.Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
-                                }
-                            }
-
                             Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             e.setCancelled(false);
                         } else {

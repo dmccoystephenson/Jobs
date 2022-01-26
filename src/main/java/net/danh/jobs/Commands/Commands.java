@@ -431,19 +431,19 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                         }
-                            if (Files.getInstance().getLevel(((Player) sender).getPlayer()) > 5) {
-                                if (args[0].equalsIgnoreCase("ANTROM")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Ăn Trộm")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
+                        if (Files.getInstance().getLevel(((Player) sender).getPlayer()) > 5) {
+                            if (args[0].equalsIgnoreCase("ANTROM")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Ăn Trộm")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) ((Player) sender).getPlayer(), 500);
 
-                                    return true;
-                                }
-                            } else {
-                                sender.sendMessage(Files.getInstance().convert("&cBạn cần cấp độ 5 trở lên để có thể trở thành &aăn trộm"));
+                                return true;
                             }
+                        } else {
+                            sender.sendMessage(Files.getInstance().convert("&cBạn cần cấp độ 5 trở lên để có thể trở thành &aăn trộm"));
+                        }
                     } else {
                         sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng tới khu chọn nghề"));
                     }
