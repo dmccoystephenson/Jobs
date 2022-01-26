@@ -171,6 +171,7 @@ public class Interact implements Listener {
 
                 } else {
                     bs.sendMessage(Files.getInstance().convert("&cBạn không thể ăn trộm nạn nhân &a" + bn.getName() + "&c trong &6" + timeLeft));
+                    return;
                 }
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
@@ -197,8 +198,8 @@ public class Interact implements Listener {
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Dung loai vu khi an trom");
                                 }
-                                bs.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 180, 1));
-                                bs.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 180, 1));
+                                bs.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 180*20, 1));
+                                bs.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 180*20, 1));
                                 bn.sendMessage(Files.getInstance().convert("&cBạn đã bị ăn trộm đánh cắp mất &6$" + Jobs.economy.getBalance(bn.getName())/5));
                                 bs.sendMessage(Files.getInstance().convert("&cBạn đã ăn trộm &6$" + (Jobs.economy.getBalance(bn.getName())/5) + " &ctừ &b" + bn.getName()));
                                 EconomyResponse er = Jobs.economy.withdrawPlayer(bn.getName(), Jobs.economy.getBalance(bn.getName())/5);

@@ -222,7 +222,7 @@ public class Commands implements CommandExecutor {
                             }
                         }
                         if (Files.getInstance().getLevel(((Player) sender).getPlayer()) > 5) {
-                            if (args[0].equalsIgnoreCase("NBANTROMNB")) {
+                            if (args[0].equalsIgnoreCase("ANTROM")) {
                                 Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
                                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
@@ -432,7 +432,7 @@ public class Commands implements CommandExecutor {
                             }
                         }
                             if (Files.getInstance().getLevel(((Player) sender).getPlayer()) > 5) {
-                                if (args[0].equalsIgnoreCase("NBANTROMNB")) {
+                                if (args[0].equalsIgnoreCase("ANTROM")) {
                                     Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                     Files.getInstance().savedata();
                                     sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
