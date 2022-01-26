@@ -1,6 +1,5 @@
 package net.danh.jobs;
 
-import net.danh.gang.Gang;
 import net.danh.jobs.Commands.Commands;
 import net.danh.jobs.Events.*;
 import net.danh.jobs.Hook.PlaceholderAPI;
@@ -45,9 +44,6 @@ public final class Jobs extends JavaPlugin implements Listener {
             getLogger().log(Level.INFO, "Hooked onto Vault");
         } else {
             getServer().getPluginManager().disablePlugin(this);
-        }
-        if (getServer().getPluginManager().isPluginEnabled("Gang")) {
-            getLogger().log(Level.INFO, "Hooked on to Gang " + Gang.getInstance().getDescription().getVersion());
         }
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new Join(), this);
