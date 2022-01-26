@@ -121,7 +121,7 @@ public class BlockBreak implements Listener {
                     return;
                 } else {
                     if (Files.getInstance().getPower(p) <= 20) {
-                        p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
+                        p.sendMessage(Files.getInstance().convert("&cBạn cần trên 20 năng lượng để có thể đào chúng"));
                         e.setCancelled(true);
                         return;
                     }
