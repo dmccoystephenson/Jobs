@@ -70,18 +70,18 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
         if (identifier.equalsIgnoreCase("nangluong")) {
             if (Files.getInstance().getPower(p) >= 81) {
-                return "&a" + Files.getInstance().getPower(p) + "%";
+                return "&a" + Files.getInstance().getPower(p);
             }
             if (Files.getInstance().getPower(p) <= 80 && Files.getInstance().getPower(p) >= 51) {
-                return "&6" + Files.getInstance().getPower(p) + "%";
+                return "&6" + Files.getInstance().getPower(p);
             }
 
             if (Files.getInstance().getPower(p) <= 50 && Files.getInstance().getPower(p) >= 31) {
-                return "&c" + Files.getInstance().getPower(p) + "%";
+                return "&c" + Files.getInstance().getPower(p);
             }
 
             if (Files.getInstance().getPower(p) <= 30 && Files.getInstance().getPower(p) >= 0) {
-                return "&4" + Files.getInstance().getPower(p) + "%";
+                return "&4" + Files.getInstance().getPower(p);
             }
         }
 
@@ -95,7 +95,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
 
         if (identifier.equalsIgnoreCase("kinhnghiemlencap")) {
-            return String.valueOf(Files.getInstance().getLevel(p) * 500);
+            return String.valueOf(Files.getInstance().getLevel(p) * 100);
         }
 
 

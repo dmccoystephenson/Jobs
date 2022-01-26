@@ -75,9 +75,41 @@ public final class Jobs extends JavaPlugin implements Listener {
                     Player p = (Player) var2.next();
                     List<String> w = getConfig().getStringList("available-worlds");
                     if (w.contains(p.getWorld().getName())) {
-                        if (Files.getInstance().getPower(p) > 100) {
-                            if (!p.hasPermission("jobs.bypass")) {
+                        if (Files.getInstance().getLevel(p) == 1) {
+                            if (Files.getInstance().getPower(p) > 100) {
                                 Files.getInstance().setPower(p, 100);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 2 && Files.getInstance().getLevel(p) < 5) {
+                            if (Files.getInstance().getPower(p) > 200) {
+                                Files.getInstance().setPower(p, 200);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 5 && Files.getInstance().getLevel(p) < 7) {
+                            if (Files.getInstance().getPower(p) > 300) {
+                                Files.getInstance().setPower(p, 300);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 7 && Files.getInstance().getLevel(p) < 10) {
+                            if (Files.getInstance().getPower(p) > 500) {
+                                Files.getInstance().setPower(p, 500);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 10 && Files.getInstance().getLevel(p) < 15) {
+                            if (Files.getInstance().getPower(p) > 700) {
+                                Files.getInstance().setPower(p, 700);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 15 && Files.getInstance().getLevel(p) < 20) {
+                            if (Files.getInstance().getPower(p) > 900) {
+                                Files.getInstance().setPower(p, 900);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 20 && Files.getInstance().getLevel(p) < 30) {
+                            if (Files.getInstance().getPower(p) > 1200) {
+                                Files.getInstance().setPower(p, 1200);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 30 && Files.getInstance().getLevel(p) < 50) {
+                            if (Files.getInstance().getPower(p) > 1500) {
+                                Files.getInstance().setPower(p, 1500);
+                            }
+                        } else if (Files.getInstance().getLevel(p) >= 50) {
+                            if (Files.getInstance().getPower(p) > 2000) {
+                                Files.getInstance().setPower(p, 2000);
                             }
                         }
                     }
