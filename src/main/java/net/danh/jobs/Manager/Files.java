@@ -100,8 +100,13 @@ public class Files {
 
     public void setJobs(Player p, String name) {
         getdata().set("players." + p.getName() + ".Jobs", name);
-        getdata().set("players." + p.getName() + ".Level." + name, 1);
-        getdata().set("players." + p.getName() + ".XP." + name, 0);
+        if (getdata().getInt("players." + p.getName() + ".Level." + name) >= 1 && getdata().getInt("players." + p.getName() + ".XP." + name) >= 0){
+            getdata().set("players." + p.getName() + ".Level." + name, getLevel(p));
+            getdata().set("players." + p.getName() + ".XP." + name, + getXP(p));
+        } else {
+            getdata().set("players." + p.getName() + ".Level." + name, 1);
+            getdata().set("players." + p.getName() + ".XP." + name, 0);
+        }
         savedata();
     }
 
