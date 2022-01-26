@@ -11,19 +11,9 @@ thief_items:
   DISPLAY_NAME: "&eDao Của Cướp"
   LORE1: ""
   LORE2: "&fDùng để cướp đồ nạn nhân"
-police_items:
-  MATERIAL: BLAZE_ROD
-  AMOUNT: 1
-  DISPLAY_NAME: "&aGậy Kiểm Soát"
-  LORE1: ""
-  LORE2: "&fDụng cụ của nghề &a&rCảnh Sát&a&r"
-hangcam:
-  MATERIAL: RECORD_3
-  AMOUNT: 1
-  DISPLAY_NAME: "&aThuốc thảo dược &f(&4Hàng cấm&f)"
-  LORE1: "&fLà hàng cấm, khi bị cảnh sát phát hiện"
-  LORE2: "&fbạn sẽ bị tịch thu và bỏ tù."
 available-worlds:
   - MAPTEST
   - covid
+  - Oldvale
+  - Resort
 debug: false

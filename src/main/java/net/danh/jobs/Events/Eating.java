@@ -1,7 +1,7 @@
 package net.danh.jobs.Events;
 
-import net.danh.jobs.Manager.Files;
 import net.danh.jobs.Jobs;
+import net.danh.jobs.Manager.Files;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -31,7 +31,7 @@ public class Eating implements Listener {
                     e.setCancelled(true);
                 }
             } else {
-                e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 2);
+                e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 3);
             }
         }
     }

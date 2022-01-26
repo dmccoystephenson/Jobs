@@ -1,7 +1,7 @@
 package net.danh.jobs.Commands;
 
-import net.danh.jobs.Manager.Files;
 import net.danh.jobs.Jobs;
+import net.danh.jobs.Manager.Files;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -348,107 +348,107 @@ public class Commands implements CommandExecutor {
             if (label.equalsIgnoreCase("danhsachnghe")) {
                 sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("available-jobs")));
             }
-                if (label.equalsIgnoreCase("chonnghe")) {
+            if (label.equalsIgnoreCase("chonnghe")) {
 
-                    if (args.length == 1) {
-                        if (Files.getInstance().getJobs(((Player) sender).getPlayer()).equals("KHONGCONGHE")) {
+                if (args.length == 1) {
+                    if (Files.getInstance().getJobs(((Player) sender).getPlayer()).equals("KHONGCONGHE")) {
 
-                            if (sender.isOp()) {
-                                if (args[0].equalsIgnoreCase("THOMO")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Thợ Mỏ")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                        if (sender.isOp()) {
+                            if (args[0].equalsIgnoreCase("THOMO")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Thợ Mỏ")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
-                                    return true;
-                                }
-                                if (args[0].equalsIgnoreCase("THOMOC")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Thợ Mộc")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
-
-                                    return true;
-                                }
-                                if (args[0].equalsIgnoreCase("CONGNHAN")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Công Nhân")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
-
-                                    return true;
-                                }
-
-                                if (args[0].equalsIgnoreCase("NGUDAN")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Ngư Dân")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
-
-                                    return true;
-                                }
-
-
-                                if (args[0].equalsIgnoreCase("NONGDAN")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Nông Dân")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
-
-                                    return true;
-                                }
-
-                                if (args[0].equalsIgnoreCase("LAOCONG")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Lao Công")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
-
-                                    return true;
-                                }
+                                return true;
                             }
-                            if (sender.hasPermission("congchuc")) {
-                                if (args[0].equalsIgnoreCase("BACSI")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Bác Sĩ")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                            if (args[0].equalsIgnoreCase("THOMOC")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Thợ Mộc")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
-                                    return true;
-                                }
-                                if (args[0].equalsIgnoreCase("CANHSAT")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Cảnh Sát")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
-
-                                    return true;
-                                }
+                                return true;
                             }
-                            if (sender.hasPermission("antrom")) {
-                                if (args[0].equalsIgnoreCase("ANTROM")) {
-                                    Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
-                                    Files.getInstance().savedata();
-                                    sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
-                                            .replaceAll("%job%", "Ăn Trộm")));
-                                    EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+                            if (args[0].equalsIgnoreCase("CONGNHAN")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Công Nhân")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
 
-                                    return true;
-                                }
+                                return true;
                             }
-                        } else {
-                            sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng tới khu chọn nghề"));
+
+                            if (args[0].equalsIgnoreCase("NGUDAN")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Ngư Dân")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+
+                                return true;
+                            }
+
+
+                            if (args[0].equalsIgnoreCase("NONGDAN")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Nông Dân")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+
+                                return true;
+                            }
+
+                            if (args[0].equalsIgnoreCase("LAOCONG")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Lao Công")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+
+                                return true;
+                            }
                         }
+                        if (sender.hasPermission("congchuc")) {
+                            if (args[0].equalsIgnoreCase("BACSI")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Bác Sĩ")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+
+                                return true;
+                            }
+                            if (args[0].equalsIgnoreCase("CANHSAT")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Cảnh Sát")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+
+                                return true;
+                            }
+                        }
+                        if (sender.hasPermission("antrom")) {
+                            if (args[0].equalsIgnoreCase("ANTROM")) {
+                                Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
+                                Files.getInstance().savedata();
+                                sender.sendMessage(Files.getInstance().convert(Files.getInstance().getlanguage().getString("job-switched")
+                                        .replaceAll("%job%", "Ăn Trộm")));
+                                EconomyResponse r = Jobs.economy.depositPlayer((OfflinePlayer) sender, 500);
+
+                                return true;
+                            }
+                        }
+                    } else {
+                        sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng tới khu chọn nghề"));
                     }
                 }
+            }
             if (sender.hasPermission("congchuc")) {
                 if (label.equalsIgnoreCase("thuocbacsi")) {
                     if (Jobs.economy.getBalance(sender.getName()) >= 500) {
@@ -502,22 +502,6 @@ public class Commands implements CommandExecutor {
                 } else {
                     sender.sendMessage(Files.getInstance().convert("&cMáu của bạn hiện tại là &a" + Double.valueOf(((Player) sender).getHealth()) + "&c nên chưa đủ điều kiện để gọi Bác Sĩ "));
 
-                }
-            }
-
-            if (sender.hasPermission("hangcam")) {
-                if (label.equalsIgnoreCase("hangcam")) {
-
-                    ItemStack items = new ItemStack(Material.valueOf(Files.getInstance().getconfig().getString("hangcam.MATERIAL")), Files.getInstance().getconfig().getInt("hangcam.AMOUNT"));
-                    ItemMeta meta = items.getItemMeta();
-
-                    meta.setDisplayName(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.DISPLAY_NAME")));
-                    ArrayList<String> lore = new ArrayList<String>();
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE1")));
-                    lore.add(Files.getInstance().convert(Files.getInstance().getconfig().getString("hangcam.LORE2")));
-                    meta.setLore(lore);
-                    items.setItemMeta(meta);
-                    ((Player) sender).getInventory().addItem(items);
                 }
             }
         }

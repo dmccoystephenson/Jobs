@@ -11,9 +11,9 @@ public class Regen implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onHealthRegen(EntityRegainHealthEvent e) {
-        if (!(e.getEntity() instanceof Player))
+        if (!(e.getEntity() instanceof Player)) {
             return;
-
+        }
         EntityRegainHealthEvent.RegainReason r = e.getRegainReason();
 
         if (r == e.getRegainReason().EATING || r == e.getRegainReason().MAGIC || r == e.getRegainReason().MAGIC_REGEN || r == e.getRegainReason().REGEN || r == e.getRegainReason().SATIATED) {

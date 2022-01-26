@@ -1,8 +1,8 @@
 package net.danh.jobs.Hook;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import net.danh.jobs.Manager.Files;
 import net.danh.jobs.Jobs;
+import net.danh.jobs.Manager.Files;
 import org.bukkit.entity.Player;
 
 public class PlaceholderAPI extends PlaceholderExpansion {

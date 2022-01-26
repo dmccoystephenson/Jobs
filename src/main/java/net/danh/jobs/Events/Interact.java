@@ -100,8 +100,16 @@ public class Interact implements Listener {
 
                                 }
 
-                                if (Files.getInstance().getPower(bs) >= 50) {
+                                if (Files.getInstance().getPower(bs) >= 5) {
 
+                                    double systemchance = Math.random() * 100.0D;
+                                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                                    if (playerchance >= systemchance) {
+                                        Files.getInstance().addXP(e.getPlayer(), 2);
+                                        Files.getInstance().addPower(e.getPlayer(), 5);
+                                        e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn cứu được bệnh nhân may mắn! Bạn nhận được 5 năng lượng, 2 kinh nghiệm!"));
+                                        return;
+                                    }
                                     Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                                     EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
                                     Files.getInstance().removePower(e.getPlayer(), 1);
@@ -114,7 +122,7 @@ public class Interact implements Listener {
                                     bn.setWalkSpeed(0.15F);
                                     Jobs.getInstance().getServer().broadcastMessage(Files.getInstance().convert("&aBệnh Nhân &6" + bn.getName() + "&a được được Bác Sĩ &b" + bs.getName() + "&a cứu giúp"));
                                 } else {
-                                    bs.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để cứu bệnh nhân"));
+                                    bs.sendMessage(Files.getInstance().convert("&cBạn cần trên 5 năng lượng để cứu bệnh nhân"));
                                     e.setCancelled(true);
                                     return;
                                 }
@@ -146,14 +154,14 @@ public class Interact implements Listener {
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
 
 
-                int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
+                int timeLeft = Cooldown.getInstance().getCooldown(bs.getUniqueId());
                 if (timeLeft == 0) {
-                    Cooldown.getInstance().setCooldown(bn.getUniqueId(), Cooldown.DEFAULT_COOLDOWN);
+                    Cooldown.getInstance().setCooldown(bs.getUniqueId(), Cooldown.DEFAULT_COOLDOWN);
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
-                            Cooldown.getInstance().setCooldown(bn.getUniqueId(), --timeLeft);
+                            int timeLeft = Cooldown.getInstance().getCooldown(bs.getUniqueId());
+                            Cooldown.getInstance().setCooldown(bs.getUniqueId(), --timeLeft);
                             if (timeLeft == 0) {
                                 this.cancel();
                             }
@@ -161,7 +169,7 @@ public class Interact implements Listener {
                     }.runTaskTimer(Jobs.getInstance(), 20, 20);
 
                 } else {
-                    bs.sendMessage(Files.getInstance().convert("&cBạn không thể ăn trộm nạn nhân &a" + bn.getName() +"&c trong &6" + timeLeft));
+                    bs.sendMessage(Files.getInstance().convert("&cBạn không thể ăn trộm nạn nhân &a" + bn.getName() + "&c trong &6" + timeLeft));
                 }
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
                     e.getPlayer().sendMessage(Files.getInstance().convert("&cBạn cần phải trên 0 năng lượng để làm việc"));
@@ -238,8 +246,8 @@ public class Interact implements Listener {
                     } else {
                         String name = e.getRightClicked().getName();
                         Player bn = Bukkit.getPlayerExact(name).getPlayer();
-                        if (Files.getInstance().getJobs(bn).equalsIgnoreCase("ANTROM")){
-                            bs.sendMessage(Files.getInstance().convert("&cƠ, &b" +  bn.getName() + "&c là ăn trộm kìa.."));
+                        if (Files.getInstance().getJobs(bn).equalsIgnoreCase("ANTROM")) {
+                            bs.sendMessage(Files.getInstance().convert("&cƠ, &b" + bn.getName() + "&c là ăn trộm kìa.."));
                             bn.sendMessage(Files.getInstance().convert("&cBạn vừa bị cảnh sát lục soát và phát hiện bạn là ăn trộm!"));
                         }
                     }

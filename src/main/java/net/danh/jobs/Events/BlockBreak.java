@@ -1,8 +1,8 @@
 package net.danh.jobs.Events;
 
 import net.danh.gang.Manager.Gangs;
-import net.danh.jobs.Manager.Files;
 import net.danh.jobs.Jobs;
+import net.danh.jobs.Manager.Files;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -75,6 +75,14 @@ public class BlockBreak implements Listener {
                         if (Files.getInstance().getconfig().getBoolean("debug")) {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
                         }
+                        double systemchance = Math.random() * 100.0D;
+                        double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                        if (playerchance >= systemchance) {
+                            Files.getInstance().addXP(e.getPlayer(), 2);
+                            Files.getInstance().addPower(e.getPlayer(), 5);
+                            e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn đào được khối may mắn! Bạn nhận được 5 năng lượng, 2 kinh nghiệm!"));
+                            return;
+                        }
                         Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         Files.getInstance().removePower(p, 1);
                         if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
@@ -112,13 +120,20 @@ public class BlockBreak implements Listener {
                     e.setCancelled(true);
                     return;
                 } else {
-                    if (Files.getInstance().getPower(p) <= 50) {
+                    if (Files.getInstance().getPower(p) <= 20) {
                         p.sendMessage(Files.getInstance().convert("&cBạn cần trên 50 năng lượng để có thể đào chúng"));
                         e.setCancelled(true);
                         return;
                     }
 
-
+                    double systemchance = Math.random() * 100.0D;
+                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                    if (playerchance >= systemchance) {
+                        Files.getInstance().addXP(e.getPlayer(), 2);
+                        Files.getInstance().addPower(e.getPlayer(), 5);
+                        e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn đào được khối may mắn! Bạn nhận được 5 năng lượng, 2 kinh nghiệm!"));
+                        return;
+                    }
                     Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
                     if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
@@ -180,7 +195,14 @@ public class BlockBreak implements Listener {
                         e.setCancelled(false);
                     }
 
-
+                    double systemchance = Math.random() * 100.0D;
+                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                    if (playerchance >= systemchance) {
+                        Files.getInstance().addXP(e.getPlayer(), 2);
+                        Files.getInstance().addPower(e.getPlayer(), 5);
+                        e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn đào được khối may mắn! Bạn nhận được 5 năng lượng, 2 kinh nghiệm!"));
+                        return;
+                    }
                     Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                     Files.getInstance().removePower(p, 1);
                     if (Jobs.getInstance().getServer().getPluginManager().isPluginEnabled("Gang")) {
@@ -245,6 +267,14 @@ public class BlockBreak implements Listener {
                             }
                         } else {
                             e.setCancelled(false);
+                        }
+                        double systemchance = Math.random() * 100.0D;
+                        double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                        if (playerchance >= systemchance) {
+                            Files.getInstance().addXP(e.getPlayer(), 2);
+                            Files.getInstance().addPower(e.getPlayer(), 5);
+                            e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn đào được khối may mắn! Bạn nhận được 5 năng lượng, 2 kinh nghiệm!"));
+                            return;
                         }
                         Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                         Files.getInstance().removePower(p, 1);
