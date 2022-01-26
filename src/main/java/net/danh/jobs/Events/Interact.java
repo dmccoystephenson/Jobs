@@ -15,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -196,12 +197,12 @@ public class Interact implements Listener {
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Dung loai vu khi an trom");
                                 }
-                                bs.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(3600 * 20, 1));
-                                bs.addPotionEffect(PotionEffectType.SLOW_DIGGING.createEffect(3600 * 20, 1));
-                                bn.sendMessage(Files.getInstance().convert("&cBạn đã bị ăn trộm đánh cắp mất &6$" + Jobs.economy.getBalance(bn.getName())/2));
-                                bs.sendMessage(Files.getInstance().convert("&cBạn đã ăn trộm &6$" + (Jobs.economy.getBalance(bn.getName())/2) + " &ctừ &b" + bn.getName()));
-                                EconomyResponse er = Jobs.economy.withdrawPlayer(bn.getName(), Jobs.economy.getBalance(bn.getName())/2);
-                                EconomyResponse es = Jobs.economy.depositPlayer(bs.getName(), Jobs.economy.getBalance(bn.getName())/2);
+                                bs.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 180, 1));
+                                bs.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 180, 1));
+                                bn.sendMessage(Files.getInstance().convert("&cBạn đã bị ăn trộm đánh cắp mất &6$" + Jobs.economy.getBalance(bn.getName())/5));
+                                bs.sendMessage(Files.getInstance().convert("&cBạn đã ăn trộm &6$" + (Jobs.economy.getBalance(bn.getName())/5) + " &ctừ &b" + bn.getName()));
+                                EconomyResponse er = Jobs.economy.withdrawPlayer(bn.getName(), Jobs.economy.getBalance(bn.getName())/5);
+                                EconomyResponse es = Jobs.economy.depositPlayer(bs.getName(), Jobs.economy.getBalance(bn.getName())/5);
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da an trom tien");
                                 }
