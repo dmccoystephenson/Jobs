@@ -157,7 +157,7 @@ public class Interact implements Listener {
 
                 int timeLeft = Cooldown.getInstance().getCooldown(bs.getUniqueId());
                 if (timeLeft == 0) {
-                    Cooldown.getInstance().setCooldown(bs.getUniqueId(), Cooldown.DEFAULT_COOLDOWN);
+                    Cooldown.getInstance().setCooldown(bs.getUniqueId(), 180);
                     new BukkitRunnable() {
                         @Override
                         public void run() {
@@ -170,7 +170,7 @@ public class Interact implements Listener {
                     }.runTaskTimer(Jobs.getInstance(), 20, 20);
 
                 } else {
-                    bs.sendMessage(Files.getInstance().convert("&cBạn không thể ăn trộm nạn nhân &a" + bn.getName() + "&c trong &6" + timeLeft));
+                    bs.sendMessage(Files.getInstance().convert("&cBạn không thể ăn trộm nạn nhân &a" + bn.getName() + "&c trong &6" + timeLeft + "s"));
                     return;
                 }
                 if (Files.getInstance().getPower(e.getPlayer()) <= 0) {
