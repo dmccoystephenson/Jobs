@@ -30,7 +30,7 @@ public class Fishing implements Listener {
                         if (((Item) e.getCaught()).getItemStack().getType() == Material.RAW_FISH
                                 || (((Item) e.getCaught()).getItemStack().getType()) == Material.LEATHER) {
                             double systemchance = Math.random() * 100.0D;
-                            double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                            double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 10);
                             if (playerchance >= systemchance) {
                                 Files.getInstance().addXP(e.getPlayer(), 2);
                                 Files.getInstance().addPower(e.getPlayer(), 5);

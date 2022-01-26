@@ -104,7 +104,7 @@ public class Interact implements Listener {
                                 if (Files.getInstance().getPower(bs) >= 5) {
 
                                     double systemchance = Math.random() * 100.0D;
-                                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 10);
                                     if (playerchance >= systemchance) {
                                         Files.getInstance().addXP(e.getPlayer(), 2);
                                         Files.getInstance().addPower(e.getPlayer(), 5);

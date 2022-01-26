@@ -76,7 +76,7 @@ public class BlockBreak implements Listener {
                             Jobs.getInstance().getLogger().log(Level.INFO, "Kiem tra block");
                         }
                         double systemchance = Math.random() * 100.0D;
-                        double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                        double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 10);
                         if (playerchance >= systemchance) {
                             Files.getInstance().addXP(e.getPlayer(), 2);
                             Files.getInstance().addPower(e.getPlayer(), 5);
@@ -127,7 +127,7 @@ public class BlockBreak implements Listener {
                     }
 
                     double systemchance = Math.random() * 100.0D;
-                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 10);
                     if (playerchance >= systemchance) {
                         Files.getInstance().addXP(e.getPlayer(), 2);
                         Files.getInstance().addPower(e.getPlayer(), 5);
@@ -196,7 +196,7 @@ public class BlockBreak implements Listener {
                     }
 
                     double systemchance = Math.random() * 100.0D;
-                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                    double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 10);
                     if (playerchance >= systemchance) {
                         Files.getInstance().addXP(e.getPlayer(), 2);
                         Files.getInstance().addPower(e.getPlayer(), 5);
@@ -269,7 +269,7 @@ public class BlockBreak implements Listener {
                             e.setCancelled(false);
                         }
                         double systemchance = Math.random() * 100.0D;
-                        double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 2);
+                        double playerchance = (double) (Files.getInstance().getLevel(e.getPlayer()) / 10);
                         if (playerchance >= systemchance) {
                             Files.getInstance().addXP(e.getPlayer(), 2);
                             Files.getInstance().addPower(e.getPlayer(), 5);
