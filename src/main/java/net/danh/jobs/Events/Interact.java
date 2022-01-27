@@ -42,7 +42,9 @@ public class Interact implements Listener {
                 } else {
                     String name = e.getRightClicked().getName();
                     Player bn = Bukkit.getPlayerExact(name).getPlayer();
-
+                    if (bn == null){
+                        return;
+                    }
                     int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
                     if (timeLeft == 0) {
                         Cooldown.getInstance().setCooldown(bn.getUniqueId(), Cooldown.DEFAULT_COOLDOWN);
@@ -149,7 +151,9 @@ public class Interact implements Listener {
                 String name = e.getRightClicked().getName();
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
 
-
+                if (bn == null){
+                    return;
+                }
                 int timeLeft = Cooldown.getInstance().getCooldown(bs.getUniqueId());
                 if (timeLeft == 0) {
                     Cooldown.getInstance().setCooldown(bs.getUniqueId(), 180);
@@ -238,6 +242,9 @@ public class Interact implements Listener {
                     } else {
                         String name = e.getRightClicked().getName();
                         Player bn = Bukkit.getPlayerExact(name).getPlayer();
+                        if (bn == null){
+                            return;
+                        }
                         if (Files.getInstance().getJobs(bn).equalsIgnoreCase("ANTROM")) {
                             bs.sendMessage(Files.getInstance().convert("&cƠ, &b" + bn.getName() + "&c là ăn trộm kìa.."));
                             bn.sendMessage(Files.getInstance().convert("&cBạn vừa bị cảnh sát lục soát và phát hiện bạn là ăn trộm!"));
