@@ -100,26 +100,19 @@ public class Files {
 
     public void setJobs(Player p, String name) {
         getdata().set("players." + p.getName() + ".Jobs", name);
-        if (getdata().getInt("players." + p.getName() + ".Level." + name) >= 1 && getdata().getInt("players." + p.getName() + ".XP." + name) >= 0) {
-            getdata().set("players." + p.getName() + ".Level." + name, getLevel(p));
-            getdata().set("players." + p.getName() + ".XP." + name, +getXP(p));
-        } else {
-            getdata().set("players." + p.getName() + ".Level." + name, 1);
-            getdata().set("players." + p.getName() + ".XP." + name, 0);
-        }
         savedata();
     }
 
-    public int getLevel(Player p) {
-        return getdata().getInt("players." + p.getName() + ".Level." + getJobs(p));
+    public int getAge(Player p) {
+        return getdata().getInt("players." + p.getName() + ".Age");
     }
 
     public int getXP(Player p) {
         return getdata().getInt("players." + p.getName() + ".XP." + getJobs(p));
     }
 
-    public void setLevel(Player p, int number) {
-        getdata().set("players." + p.getName() + ".Level." + getJobs(p), number);
+    public void setAge(Player p, int number) {
+        getdata().set("players." + p.getName() + ".Age", number);
         savedata();
     }
 
@@ -128,23 +121,64 @@ public class Files {
         savedata();
     }
 
-    public void addLevel(Player p, int number) {
-        getdata().set("players." + p.getName() + ".Level." + getJobs(p), getLevel(p) + number);
+    public void addAge(Player p, int number) {
+        getdata().set("players." + p.getName() + ".Age", getAge(p) + number);
         savedata();
+        if (getAge(p) >= 2 && getAge(p) < 5) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 200"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 2 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 5 năng lượng"));
+        } else if (getAge(p) >= 5 && getAge(p) < 7) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Mở khóa nghề ăn trộm"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 300"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 3 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 10 năng lượng"));
+        } else if (getAge(p) >= 7 && getAge(p) < 10) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 500"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 3 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 20 năng lượng"));
+        } else if (getAge(p) >= 10 && getAge(p) < 15) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 700"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 30 năng lượng"));
+        } else if (getAge(p) >= 15 && getAge(p) < 20) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 900"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 40 năng lượng"));
+        } else if (getAge(p) >= 20 && getAge(p) < 30) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 1200"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 50 năng lượng"));
+        } else if (getAge(p) >= 30 && getAge(p) < 50) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 1500"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 70 năng lượng"));
+        } else if (getAge(p) >= 50) {
+            p.sendMessage(convert("&aChúc mừng bạn đã lên &6" + getAge(p) + " &atuổi và bạn đã có thể"));
+            p.sendMessage(convert("&a+ Năng lượng tối đa lên 2000"));
+            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 7 thức ăn"));
+            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 100 năng lượng"));
+        }
     }
 
     public void addXP(Player p, int number) {
         getdata().set("players." + p.getName() + ".XP." + getJobs(p), getXP(p) + number);
-        checkLevelup(p);
         savedata();
     }
 
-    public void removeLevel(Player p, int number) {
-        if (getLevel(p) > number) {
-            getdata().set("players." + p.getName() + ".Level." + getJobs(p), getLevel(p) - number);
+    public void removeAge(Player p, int number) {
+        if (getAge(p) > number) {
+            getdata().set("players." + p.getName() + ".Age", getAge(p) - number);
             savedata();
         } else {
-            getdata().set("players." + p.getName() + ".Level", 1);
+            getdata().set("players." + p.getName() + ".Age", 1);
             savedata();
         }
     }
@@ -156,56 +190,6 @@ public class Files {
         } else {
             getdata().set("players." + p.getName() + ".XP", 0);
             savedata();
-        }
-    }
-
-    public void checkLevelup(Player p) {
-        if (getXP(p) >= (getLevel(p) * 100)) {
-            addLevel(p, 1);
-            setXP(p, 0);
-            p.sendMessage(convert("&aChúc mừng bạn đã lên cấp &6" + getLevel(p) + "&a nghề &c" + getJobs(p)));
-        }
-        if (getLevel(p) >= 2 && getLevel(p) < 5) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 200"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 2 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 5 năng lượng"));
-        } else if (getLevel(p) >= 5 && getLevel(p) < 7) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Mở khóa nghề ăn trộm"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 300"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 3 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 10 năng lượng"));
-        } else if (getLevel(p) >= 7 && getLevel(p) < 10) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 500"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 3 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 20 năng lượng"));
-        } else if (getLevel(p) >= 10 && getLevel(p) < 15) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 700"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 30 năng lượng"));
-        } else if (getLevel(p) >= 15 && getLevel(p) < 20) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 900"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 40 năng lượng"));
-        } else if (getLevel(p) >= 20 && getLevel(p) < 30) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 1200"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 50 năng lượng"));
-        } else if (getLevel(p) >= 30 && getLevel(p) < 50) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 1500"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 5 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 70 năng lượng"));
-        } else if (getLevel(p) >= 50) {
-            p.sendMessage(convert("&aCấp độ &6" + getLevel(p) + " &ađã mở khóa:"));
-            p.sendMessage(convert("&a+ Năng lượng tối đa lên 2000"));
-            p.sendMessage(convert("&a+ Khi ăn sẽ hồi phục 7 thức ăn"));
-            p.sendMessage(convert("&a+ Khi uống nước sẽ hồi phục 100 năng lượng"));
         }
     }
 

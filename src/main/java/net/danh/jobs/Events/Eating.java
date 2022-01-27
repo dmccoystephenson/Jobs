@@ -26,34 +26,34 @@ public class Eating implements Listener {
                             e.getPlayer().setItemInHand(new ItemStack(Material.AIR));
                         }
                     }.runTaskLaterAsynchronously(Jobs.getInstance(), 1L);
-                    if (Files.getInstance().getLevel(e.getPlayer()) == 1) {
+                    if (Files.getInstance().getAge(e.getPlayer()) == 1) {
                         Files.getInstance().addPower(e.getPlayer(), 2);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 2 && Files.getInstance().getLevel(e.getPlayer()) < 5) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 2 && Files.getInstance().getAge(e.getPlayer()) < 5) {
                         Files.getInstance().addPower(e.getPlayer(), 5);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 5 && Files.getInstance().getLevel(e.getPlayer()) < 7) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 5 && Files.getInstance().getAge(e.getPlayer()) < 7) {
                         Files.getInstance().addPower(e.getPlayer(), 10);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 7 && Files.getInstance().getLevel(e.getPlayer()) < 10) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 7 && Files.getInstance().getAge(e.getPlayer()) < 10) {
                         Files.getInstance().addPower(e.getPlayer(), 20);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 10 && Files.getInstance().getLevel(e.getPlayer()) < 15) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 10 && Files.getInstance().getAge(e.getPlayer()) < 15) {
                         Files.getInstance().addPower(e.getPlayer(), 30);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 15 && Files.getInstance().getLevel(e.getPlayer()) < 20) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 15 && Files.getInstance().getAge(e.getPlayer()) < 20) {
                         Files.getInstance().addPower(e.getPlayer(), 40);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 20 && Files.getInstance().getLevel(e.getPlayer()) < 30) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 20 && Files.getInstance().getAge(e.getPlayer()) < 30) {
                         Files.getInstance().addPower(e.getPlayer(), 50);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 30 && Files.getInstance().getLevel(e.getPlayer()) < 50) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 30 && Files.getInstance().getAge(e.getPlayer()) < 50) {
                         Files.getInstance().addPower(e.getPlayer(), 70);
-                    } else if (Files.getInstance().getLevel(e.getPlayer()) >= 50) {
+                    } else if (Files.getInstance().getAge(e.getPlayer()) >= 50) {
                         Files.getInstance().addPower(e.getPlayer(), 100);
                     }
                 } else {
                     e.setCancelled(true);
                 }
             } else {
-                if (Files.getInstance().getLevel(e.getPlayer()) >= 1 && Files.getInstance().getLevel(e.getPlayer()) < 10) {
+                if (Files.getInstance().getAge(e.getPlayer()) >= 1 && Files.getInstance().getAge(e.getPlayer()) < 10) {
                     e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 3);
-                } else if (Files.getInstance().getLevel(e.getPlayer()) >= 10 && Files.getInstance().getLevel(e.getPlayer()) < 50) {
+                } else if (Files.getInstance().getAge(e.getPlayer()) >= 10 && Files.getInstance().getAge(e.getPlayer()) < 50) {
                     e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 5);
-                } else if (Files.getInstance().getLevel(e.getPlayer()) >= 50) {
+                } else if (Files.getInstance().getAge(e.getPlayer()) >= 50) {
                     e.getPlayer().setFoodLevel(e.getPlayer().getFoodLevel() + 7);
                 }
             }

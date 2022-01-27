@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Iterator;
@@ -71,47 +73,68 @@ public final class Jobs extends JavaPlugin implements Listener {
                     Player p = (Player) var2.next();
                     List<String> w = getConfig().getStringList("available-worlds");
                     if (w.contains(p.getWorld().getName())) {
-                        if (Files.getInstance().getLevel(p) == 1) {
+                        if (Files.getInstance().getAge(p) == 1) {
                             if (Files.getInstance().getPower(p) > 100) {
                                 Files.getInstance().setPower(p, 100);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 2 && Files.getInstance().getLevel(p) < 5) {
+                        } else if (Files.getInstance().getAge(p) >= 2 && Files.getInstance().getAge(p) < 5) {
                             if (Files.getInstance().getPower(p) > 200) {
                                 Files.getInstance().setPower(p, 200);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 5 && Files.getInstance().getLevel(p) < 7) {
+                        } else if (Files.getInstance().getAge(p) >= 5 && Files.getInstance().getAge(p) < 7) {
                             if (Files.getInstance().getPower(p) > 300) {
                                 Files.getInstance().setPower(p, 300);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 7 && Files.getInstance().getLevel(p) < 10) {
+                        } else if (Files.getInstance().getAge(p) >= 7 && Files.getInstance().getAge(p) < 10) {
                             if (Files.getInstance().getPower(p) > 500) {
                                 Files.getInstance().setPower(p, 500);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 10 && Files.getInstance().getLevel(p) < 15) {
+                        } else if (Files.getInstance().getAge(p) >= 10 && Files.getInstance().getAge(p) < 15) {
                             if (Files.getInstance().getPower(p) > 700) {
                                 Files.getInstance().setPower(p, 700);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 15 && Files.getInstance().getLevel(p) < 20) {
+                        } else if (Files.getInstance().getAge(p) >= 15 && Files.getInstance().getAge(p) < 20) {
                             if (Files.getInstance().getPower(p) > 900) {
                                 Files.getInstance().setPower(p, 900);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 20 && Files.getInstance().getLevel(p) < 30) {
+                        } else if (Files.getInstance().getAge(p) >= 20 && Files.getInstance().getAge(p) < 30) {
                             if (Files.getInstance().getPower(p) > 1200) {
                                 Files.getInstance().setPower(p, 1200);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 30 && Files.getInstance().getLevel(p) < 50) {
+                        } else if (Files.getInstance().getAge(p) >= 30 && Files.getInstance().getAge(p) < 50) {
                             if (Files.getInstance().getPower(p) > 1500) {
                                 Files.getInstance().setPower(p, 1500);
                             }
-                        } else if (Files.getInstance().getLevel(p) >= 50) {
+                        } else if (Files.getInstance().getAge(p) >= 50) {
                             if (Files.getInstance().getPower(p) > 2000) {
                                 Files.getInstance().setPower(p, 2000);
                             }
+                        }
+                        if (Files.getInstance().getPower(p) <= 30) {
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, Integer.MAX_VALUE, Integer.MIN_VALUE));
+                        } else {
+                            p.removePotionEffect(PotionEffectType.CONFUSION);
                         }
                     }
                 }
             }
         }).runTaskTimer(this, 20L, 20L);
+        (new BukkitRunnable() {
+            public void run() {
+                Iterator var2 = Bukkit.getOnlinePlayers().iterator();
+                while (var2.hasNext()) {
+                    Player p = (Player) var2.next();
+                    List<String> w = getConfig().getStringList("available-worlds");
+                    if (w.contains(p.getWorld().getName())) {
+                        if (Files.getInstance().getconfig().getBoolean("EnableAge")) {
+                            Files.getInstance().addAge(p, 1);
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+        }).runTaskTimer(this, 7200 * 20L, 7200 * 20L);
     }
 
     @Override

@@ -85,19 +85,13 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             }
         }
 
-        if (identifier.equalsIgnoreCase("capdo")) {
-            return String.valueOf(Files.getInstance().getLevel(p));
+        if (identifier.equalsIgnoreCase("tuoi")) {
+            return String.valueOf(Files.getInstance().getAge(p));
         }
 
         if (identifier.equalsIgnoreCase("kinhnghiem")) {
             return String.valueOf(Files.getInstance().getXP(p));
         }
-
-
-        if (identifier.equalsIgnoreCase("kinhnghiemlencap")) {
-            return String.valueOf(Files.getInstance().getLevel(p) * 100);
-        }
-
 
         return null;
     }
