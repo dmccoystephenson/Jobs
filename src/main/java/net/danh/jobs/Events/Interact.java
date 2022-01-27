@@ -245,6 +245,7 @@ public class Interact implements Listener {
                         if (bn == null){
                             return;
                         }
+                        bs.sendMessage(Files.getInstance().convert("&aNgười Dân &6" + bn.getName() + "&a đang ở độ tuổi là &6" + Files.getInstance().getAge(bn.getPlayer())));
                         if (Files.getInstance().getJobs(bn).equalsIgnoreCase("ANTROM")) {
                             bs.sendMessage(Files.getInstance().convert("&cƠ, &b" + bn.getName() + "&c là ăn trộm kìa.."));
                             bn.sendMessage(Files.getInstance().convert("&cBạn vừa bị cảnh sát lục soát và phát hiện bạn là ăn trộm!"));
