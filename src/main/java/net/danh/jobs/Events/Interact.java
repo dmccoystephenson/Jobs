@@ -246,6 +246,11 @@ public class Interact implements Listener {
                             return;
                         }
                         bs.sendMessage(Files.getInstance().convert("&aNgười Dân &6" + bn.getName() + "&a đang ở độ tuổi là &6" + Files.getInstance().getAge(bn.getPlayer())));
+                        if (Files.getInstance().getAge(bn.getPlayer()) < 24){
+                            bs.sendMessage(Files.getInstance().convert("&cNgười dân &6" + bn.getName() + "&c chưa đủ tuổi dùng súng và các vũ khí khác"));
+                        } else {
+                            bs.sendMessage(Files.getInstance().convert("&aNgười dân &6" + bn.getName() + "&a đã đủ tuổi dùng súng"));
+                        }
                         if (Files.getInstance().getJobs(bn).equalsIgnoreCase("ANTROM")) {
                             bs.sendMessage(Files.getInstance().convert("&cƠ, &b" + bn.getName() + "&c là ăn trộm kìa.."));
                             bn.sendMessage(Files.getInstance().convert("&cBạn vừa bị cảnh sát lục soát và phát hiện bạn là ăn trộm!"));
