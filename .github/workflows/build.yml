@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    if: contains(github.event.head_commit.message, '0.1.8-RELEASE')
+    if: contains(github.event.head_commit.message, 'RELEASE')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,8 +21,8 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "v0.1.8"
+          automatic_release_tag: "v0.1.9"
           prerelease: true
-          title: "0.1.8"
+          title: "0.1.9"
           files: |
             ./target/Jobs.jar
