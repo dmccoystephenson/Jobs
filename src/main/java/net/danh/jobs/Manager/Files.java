@@ -170,6 +170,7 @@ public class Files {
 
     public void addXP(Player p, int number) {
         getdata().set("players." + p.getName() + ".XP." + getJobs(p), getXP(p) + number);
+        checkLevelUp(p);
         savedata();
     }
 
@@ -214,6 +215,80 @@ public class Files {
         }
     }
 
+    public String getGang(Player p) {
+        return getdata().getString("players." + p.getName() + ".Gang");
+    }
+
+    public void selectGang(Player p, String name) {
+        if (getGang(p) != null) {
+            removeMemberGang(p);
+        }
+        getdata().set("players." + p.getName() + ".Gang", name.toUpperCase());
+        addMemberGang(p);
+        setLeveluptimes(p);
+        savedata();
+    }
+
+    public int getMemberGang(Player p) {
+        return getdata().getInt("gangs." + getGang(p) + ".Member");
+    }
+
+    public void removeMemberGang(Player p) {
+        getdata().set("gangs." + getGang(p) + ".Member", getMemberGang(p) - 1);
+        savedata();
+    }
+
+    public void addMemberGang(Player p) {
+        getdata().set("gangs." + getGang(p) + ".Member", getMemberGang(p) + 1);
+        savedata();
+    }
+
+    public int getLevelGang(Player p) {
+        return getdata().getInt("gangs." + getGang(p) + ".Level");
+    }
+
+    public void addLevelGang(Player p, Integer number) {
+        getdata().set("gangs." + getGang(p) + ".Level", getLevelGang(p) + number);
+        savedata();
+    }
+
+
+    public void setLevelGang(Player p, Integer number) {
+        getdata().set("gangs." + getGang(p) + ".Level", number);
+        savedata();
+    }
+
+    public void removeLevelGang(Player p, Integer number) {
+        if (getLevelGang(p) > 1) {
+            getdata().set("gangs." + getGang(p) + ".Level", getLevelGang(p) - number);
+        } else {
+            getdata().set("gangs." + getGang(p) + ".Level", 1);
+        }
+        savedata();
+    }
+
+    public void checkLevelUp(Player p) {
+        if (getXP(p) == (((getAge(p) + getLevelGang(p)) / 2)) * 1000) {
+            addLevelGang(p, 1);
+            setXP(p, 0);
+            addLeveluptimes(p);
+            p.sendMessage(Files.getInstance().convert("&aBạn đã giúp Gang lên cấp độ &6" + getLevelGang(p) + "&a vì thế bạn sẽ được &6+1 &a điểm Gang &b(Điểm của bạn là &d" + getleveluptimes(p) + "&b)"));
+        }
+    }
+
+    public int getleveluptimes(Player p) {
+        return getdata().getInt("gangs." + getGang(p) + ".LevelUpTimes." + p.getName());
+    }
+
+    public void addLeveluptimes(Player p) {
+        getdata().set("gangs." + getGang(p) + ".LevelUpTimes." + p.getName(), 1);
+        savedata();
+    }
+
+    public void setLeveluptimes(Player p) {
+        getdata().set("gangs." + getGang(p) + ".LevelUpTimes." + p.getName(), 0);
+        savedata();
+    }
 
     public String convert(String s) {
         return s.replaceAll("&", "§");

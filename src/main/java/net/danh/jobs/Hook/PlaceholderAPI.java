@@ -42,9 +42,6 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             if (Files.getInstance().getJobs(p).equals("THOMOC")) {
                 return "Thợ Mộc";
             }
-            if (Files.getInstance().getJobs(p).equals("KHONGCONGHE")) {
-                return "";
-            }
             if (Files.getInstance().getJobs(p).equals("CONGNHAN")) {
                 return "Công Nhân";
             }
@@ -66,6 +63,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             if (Files.getInstance().getJobs(p).equals("CANHSAT")) {
                 return "Cảnh Sát";
             }
+            return "";
         }
 
         if (identifier.equalsIgnoreCase("nangluong")) {
@@ -105,7 +103,50 @@ public class PlaceholderAPI extends PlaceholderExpansion {
         if (identifier.equalsIgnoreCase("phienban")) {
             return "v0.1.9-SNAPSHOT";
         }
-
+        if (identifier.equalsIgnoreCase("tengang")) {
+            if (Files.getInstance().getGang(p).equals("THOMO")) {
+                return "Thợ Mỏ";
+            }
+            if (Files.getInstance().getGang(p).equals("THOMOC")) {
+                return "Thợ Mộc";
+            }
+            if (Files.getInstance().getGang(p).equals("CONGNHAN")) {
+                return "Công Nhân";
+            }
+            if (Files.getInstance().getGang(p).equals("NGUDAN")) {
+                return "Ngư Dân";
+            }
+            if (Files.getInstance().getGang(p).equals("NONGDAN")) {
+                return "Nông Dân";
+            }
+            if (Files.getInstance().getGang(p).equals("LAOCONG")) {
+                return "Lao Công";
+            }
+            if (Files.getInstance().getGang(p).equals("BACSI")) {
+                return "Bác Sĩ";
+            }
+            if (Files.getInstance().getGang(p).equals("ANTROM")) {
+                return "Ăn Trộm";
+            }
+            if (Files.getInstance().getGang(p).equals("CANHSAT")) {
+                return "Cảnh Sát";
+            }
+            return "";
+        }
+        if (identifier.equalsIgnoreCase("capdogang")) {
+            if (Files.getInstance().getJobs(p).equals("KHONGCONGHE")) {
+                return "";
+            } else {
+                return String.valueOf(Files.getInstance().getLevelGang(p));
+            }
+        }
+        if (identifier.equalsIgnoreCase("diem")) {
+            if (Files.getInstance().getJobs(p).equals("KHONGCONGHE")) {
+                return "";
+            } else {
+                return String.valueOf(Files.getInstance().getleveluptimes(p));
+            }
+        }
         return null;
     }
 }

@@ -31,13 +31,13 @@ public class Fishing implements Listener {
                             double systemchance = Math.random() * 100.0D;
                             double playerchance = (double) (Files.getInstance().getAge(e.getPlayer()) / 10);
                             if (playerchance >= systemchance) {
-                                Files.getInstance().addXP(e.getPlayer(), 2);
-                                Files.getInstance().addPower(e.getPlayer(), 5);
-                                e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn câu được vật phẩm may mắn! Bạn nhận được 5 năng lượng, 2 kinh nghiệm!"));
+                                Files.getInstance().addXP(e.getPlayer(), 2 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                Files.getInstance().addPower(e.getPlayer(), 5 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn đào được khối may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b)  kinh nghiệm!"));
                                 return;
                             }
+                            Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp") + Files.getInstance().getleveluptimes(e.getPlayer()));
                             Files.getInstance().removePower(e.getPlayer(), 1);
-                            Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
                             e.setCancelled(false);
                         } else {
                             e.getPlayer().sendMessage(Files.getInstance().convert("&cVật phẩm bạn câu không phải là cá"));

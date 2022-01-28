@@ -27,6 +27,8 @@ public class Interact implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onRev(PlayerInteractAtEntityEvent e) {
         Player bs = e.getPlayer();
+        double systemchance = Math.random() * 100.0D;
+        double playerchance = (double) (Files.getInstance().getAge(e.getPlayer()) / 10);
         if (Files.getInstance().getJobs(bs).equals("BACSI")) {
             if (Files.getInstance().getconfig().getBoolean("debug")) {
                 Jobs.getInstance().getLogger().log(Level.INFO, "Nguoi choi la bac si");
@@ -42,7 +44,7 @@ public class Interact implements Listener {
                 } else {
                     String name = e.getRightClicked().getName();
                     Player bn = Bukkit.getPlayerExact(name).getPlayer();
-                    if (bn == null){
+                    if (bn == null) {
                         return;
                     }
                     int timeLeft = Cooldown.getInstance().getCooldown(bn.getUniqueId());
@@ -103,16 +105,13 @@ public class Interact implements Listener {
                                 }
 
                                 if (Files.getInstance().getPower(bs) >= 5) {
-
-                                    double systemchance = Math.random() * 100.0D;
-                                    double playerchance = (double) (Files.getInstance().getAge(e.getPlayer()) / 10);
                                     if (playerchance >= systemchance) {
-                                        Files.getInstance().addXP(e.getPlayer(), 2);
-                                        Files.getInstance().addPower(e.getPlayer(), 5);
-                                        e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn cứu được bệnh nhân may mắn! Bạn nhận được 5 năng lượng, 2 kinh nghiệm!"));
+                                        Files.getInstance().addXP(e.getPlayer(), 2 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                        Files.getInstance().addPower(e.getPlayer(), 5 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                        e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b)  kinh nghiệm!"));
                                         return;
                                     }
-                                    Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
+                                    Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp") + Files.getInstance().getleveluptimes(e.getPlayer()));
                                     EconomyResponse err = Jobs.economy.depositPlayer(bs.getName(), 600);
                                     Files.getInstance().removePower(e.getPlayer(), 1);
 
@@ -151,7 +150,7 @@ public class Interact implements Listener {
                 String name = e.getRightClicked().getName();
                 Player bn = Bukkit.getPlayerExact(name).getPlayer();
 
-                if (bn == null){
+                if (bn == null) {
                     return;
                 }
                 int timeLeft = Cooldown.getInstance().getCooldown(bs.getUniqueId());
@@ -207,7 +206,13 @@ public class Interact implements Listener {
                                     Jobs.getInstance().getLogger().log(Level.INFO, "Da an trom tien");
                                 }
                                 bs.setItemInHand(null);
-                                Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp"));
+                                if (playerchance >= systemchance) {
+                                    Files.getInstance().addXP(e.getPlayer(), 2 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                    Files.getInstance().addPower(e.getPlayer(), 5 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                    e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b)  kinh nghiệm!"));
+                                    return;
+                                }
+                                Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp") + Files.getInstance().getleveluptimes(e.getPlayer()));
                                 Files.getInstance().removePower(e.getPlayer(), 10);
 
                                 if (Files.getInstance().getconfig().getBoolean("debug")) {
@@ -242,11 +247,11 @@ public class Interact implements Listener {
                     } else {
                         String name = e.getRightClicked().getName();
                         Player bn = Bukkit.getPlayerExact(name).getPlayer();
-                        if (bn == null){
+                        if (bn == null) {
                             return;
                         }
                         bs.sendMessage(Files.getInstance().convert("&aNgười Dân &6" + bn.getName() + "&a đang ở độ tuổi là &6" + Files.getInstance().getAge(bn.getPlayer())));
-                        if (Files.getInstance().getAge(bn.getPlayer()) < 24){
+                        if (Files.getInstance().getAge(bn.getPlayer()) < 24) {
                             bs.sendMessage(Files.getInstance().convert("&cNgười dân &6" + bn.getName() + "&c chưa đủ tuổi dùng súng và các vũ khí khác"));
                         } else {
                             bs.sendMessage(Files.getInstance().convert("&aNgười dân &6" + bn.getName() + "&a đã đủ tuổi dùng súng"));
@@ -254,6 +259,14 @@ public class Interact implements Listener {
                         if (Files.getInstance().getJobs(bn).equalsIgnoreCase("ANTROM")) {
                             bs.sendMessage(Files.getInstance().convert("&cƠ, &b" + bn.getName() + "&c là ăn trộm kìa.."));
                             bn.sendMessage(Files.getInstance().convert("&cBạn vừa bị cảnh sát lục soát và phát hiện bạn là ăn trộm!"));
+
+                            if (playerchance >= systemchance) {
+                                Files.getInstance().addXP(e.getPlayer(), 2 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                Files.getInstance().addPower(e.getPlayer(), 5 + Files.getInstance().getleveluptimes(e.getPlayer()));
+                                e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b)  kinh nghiệm!"));
+                                return;
+                            }
+                            Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp") + Files.getInstance().getleveluptimes(e.getPlayer()));
                         }
                     }
                 }
