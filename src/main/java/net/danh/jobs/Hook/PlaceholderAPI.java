@@ -93,6 +93,15 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             return String.valueOf(Files.getInstance().getXP(p));
         }
 
+        if (identifier.equalsIgnoreCase("thanhpho")){
+            if (p.getWorld().getName().equalsIgnoreCase("MAPTEST")){
+                return "&fThành Phố: &61";
+            } else if (p.getWorld().getName().equalsIgnoreCase("covid")){
+                return "&fThành Phố: &62";
+            }
+            return "";
+        }
+
         return null;
     }
 }
