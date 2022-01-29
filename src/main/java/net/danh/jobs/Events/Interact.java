@@ -108,7 +108,7 @@ public class Interact implements Listener {
                                     if (playerchance >= systemchance) {
                                         Files.getInstance().addXP(e.getPlayer(), 2 + Files.getInstance().getleveluptimes(e.getPlayer()));
                                         Files.getInstance().addPower(e.getPlayer(), 5 + Files.getInstance().getleveluptimes(e.getPlayer()));
-                                        e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b)  kinh nghiệm!"));
+                                        e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) kinh nghiệm!"));
                                         return;
                                     }
                                     Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp") + Files.getInstance().getleveluptimes(e.getPlayer()));
@@ -209,7 +209,7 @@ public class Interact implements Listener {
                                 if (playerchance >= systemchance) {
                                     Files.getInstance().addXP(e.getPlayer(), 2 + Files.getInstance().getleveluptimes(e.getPlayer()));
                                     Files.getInstance().addPower(e.getPlayer(), 5 + Files.getInstance().getleveluptimes(e.getPlayer()));
-                                    e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b)  kinh nghiệm!"));
+                                    e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) kinh nghiệm!"));
                                     return;
                                 }
                                 Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp") + Files.getInstance().getleveluptimes(e.getPlayer()));
@@ -263,7 +263,7 @@ public class Interact implements Listener {
                             if (playerchance >= systemchance) {
                                 Files.getInstance().addXP(e.getPlayer(), 2 + Files.getInstance().getleveluptimes(e.getPlayer()));
                                 Files.getInstance().addPower(e.getPlayer(), 5 + Files.getInstance().getleveluptimes(e.getPlayer()));
-                                e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b)  kinh nghiệm!"));
+                                e.getPlayer().sendMessage(Files.getInstance().convert("&aChúc mừng bạn nhận được may mắn! Bạn nhận được &65 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) năng lượng, &62 &b+(" + Files.getInstance().getleveluptimes(e.getPlayer()) + "&b) kinh nghiệm!"));
                                 return;
                             }
                             Files.getInstance().addXP(e.getPlayer(), Files.getInstance().getconfig().getInt("xp") + Files.getInstance().getleveluptimes(e.getPlayer()));

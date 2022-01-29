@@ -278,8 +278,8 @@ public class Files {
         if (getXP(p) >= (((getAge(p) + getLevelGang(p)) / 2)) * 1000) {
             addLevelGang(p, 1);
             setXP(p, 0);
-            addLeveluptimes(p);
-            p.sendMessage(Files.getInstance().convert("&aBạn đã giúp Gang lên cấp độ &6" + getLevelGang(p) + "&a vì thế bạn sẽ được &6+1 &a điểm Gang &b(Điểm của bạn là &d" + getleveluptimes(p) + "&b)"));
+            addLeveluptimes(p, 1);
+            p.sendMessage(Files.getInstance().convert("&aBạn đã giúp Gang lên cấp độ &6" + getLevelGang(p) + "&a vì thế bạn sẽ được &6+1 &ađiểm Gang &b(Điểm của bạn là &d" + getleveluptimes(p) + "&b)"));
         }
     }
 
@@ -287,8 +287,8 @@ public class Files {
         return getdata().getInt("gangs." + getGang(p) + ".LevelUpTimes." + p.getName());
     }
 
-    public void addLeveluptimes(Player p) {
-        getdata().set("gangs." + getGang(p) + ".LevelUpTimes." + p.getName(), 1);
+    public void addLeveluptimes(Player p, Integer number) {
+        getdata().set("gangs." + getGang(p) + ".LevelUpTimes." + p.getName(), getLevelGang(p) + number);
         savedata();
     }
 
