@@ -224,6 +224,9 @@ public class Files {
             removeMemberGang(p);
         }
         getdata().set("players." + p.getName() + ".Gang", name.toUpperCase());
+        if (getLevelGang(p) == 0){
+            setLevelGang(p);
+        }
         addMemberGang(p);
         setLeveluptimes(p);
         savedata();
@@ -251,6 +254,10 @@ public class Files {
         getdata().set("gangs." + getGang(p) + ".Level", getLevelGang(p) + number);
         savedata();
     }
+    public void setLevelGang(Player p) {
+        getdata().set("gangs." + getGang(p) + ".Level", 1);
+        savedata();
+    }
 
 
     public void setLevelGang(Player p, Integer number) {
@@ -268,7 +275,7 @@ public class Files {
     }
 
     public void checkLevelUp(Player p) {
-        if (getXP(p) == (((getAge(p) + getLevelGang(p)) / 2)) * 1000) {
+        if (getXP(p) >= (((getAge(p) + getLevelGang(p)) / 2)) * 1000) {
             addLevelGang(p, 1);
             setXP(p, 0);
             addLeveluptimes(p);
