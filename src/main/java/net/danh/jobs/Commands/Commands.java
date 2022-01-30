@@ -93,6 +93,47 @@ public class Commands implements CommandExecutor {
                 }
             }
 
+            if (label.equalsIgnoreCase("ganglevel")) {
+                if (args.length == 3) {
+                    if (args[0].equalsIgnoreCase("set")) {
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                            Files.getInstance().setLevelGang(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                            sender.sendMessage(Files.getInstance().convert("&aĐã đặt cấp độ Gang của &e" + Bukkit.getPlayer(args[1]) + "&a thành &6" + Integer.parseInt(args[2])));
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    if (args[0].equalsIgnoreCase("add")) {
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                            Files.getInstance().addLevelGang(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                            sender.sendMessage(Files.getInstance().convert("&aĐã thêm cấp độ Gang của &e" + Bukkit.getPlayer(args[1]) + "&a lên &6" + Integer.parseInt(args[2])));
+                        } else {
+                            return true;
+                        }
+                    }
+
+
+                    if (args[0].equalsIgnoreCase("remove")) {
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                            Files.getInstance().removeLevelGang(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                            sender.sendMessage(Files.getInstance().convert("&aĐã lấy cấp độ Gang của &e" + Bukkit.getPlayer(args[1]) + "&a xuống &6" + Integer.parseInt(args[2])));
+                        } else {
+                            return true;
+                        }
+                    }
+                }
+
+                if (args.length == 2) {
+                    if (args[0].equalsIgnoreCase("check")) {
+                        sender.sendMessage(Files.getInstance().convert("&a " + Bukkit.getPlayer(args[1]) + " &bđang ở Gang có cấp độ là &a" + Files.getInstance().getLevelGang(Bukkit.getPlayer(args[1]).getPlayer())));
+                        if (Bukkit.getPlayer(args[1]) != null) {
+                        } else {
+                            return true;
+                        }
+                    }
+                }
+            }
             if (label.equalsIgnoreCase("power")) {
                 if (args.length == 3) {
                     if (args[0].equalsIgnoreCase("set")) {
@@ -220,7 +261,7 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                         }
-                        if (Files.getInstance().getAge(((Player) sender).getPlayer()) > 5) {
+                        if (Files.getInstance().getAge(((Player) sender).getPlayer()) >= 30) {
                             if (args[0].equalsIgnoreCase("ANTROM")) {
                                 Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
@@ -229,6 +270,8 @@ public class Commands implements CommandExecutor {
                                 Files.getInstance().selectGang(((Player) sender).getPlayer(), args[0]);
                                 return true;
                             }
+                        } else {
+                            sender.sendMessage(Files.getInstance().convert("&c Bạn cần đạt cấp độ 30 trở lên để chọn nghề Ăn Trộm"));
                         }
                     }
                 }
@@ -340,6 +383,48 @@ public class Commands implements CommandExecutor {
                         }
                     }
                 }
+
+                if (label.equalsIgnoreCase("ganglevel")) {
+                    if (args.length == 3) {
+                        if (args[0].equalsIgnoreCase("set")) {
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                                Files.getInstance().setLevelGang(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã đặt cấp độ Gang của &e" + Bukkit.getPlayer(args[1]) + "&a thành &6" + Integer.parseInt(args[2])));
+                            } else {
+                                return true;
+                            }
+                        }
+
+                        if (args[0].equalsIgnoreCase("add")) {
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                                Files.getInstance().addLevelGang(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã thêm cấp độ Gang của &e" + Bukkit.getPlayer(args[1]) + "&a lên &6" + Integer.parseInt(args[2])));
+                            } else {
+                                return true;
+                            }
+                        }
+
+
+                        if (args[0].equalsIgnoreCase("remove")) {
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                                Files.getInstance().removeLevelGang(Bukkit.getPlayer(args[1]), Integer.parseInt(args[2]));
+                                sender.sendMessage(Files.getInstance().convert("&aĐã lấy cấp độ Gang của &e" + Bukkit.getPlayer(args[1]) + "&a xuống &6" + Integer.parseInt(args[2])));
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
+
+                    if (args.length == 2) {
+                        if (args[0].equalsIgnoreCase("check")) {
+                            sender.sendMessage(Files.getInstance().convert("&a " + Bukkit.getPlayer(args[1]) + " &bđang ở Gang có cấp độ là &a" + Files.getInstance().getLevelGang(Bukkit.getPlayer(args[1]).getPlayer())));
+                            if (Bukkit.getPlayer(args[1]) != null) {
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
+                }
             }
 
             if (label.equalsIgnoreCase("danhsachnghe")) {
@@ -430,7 +515,7 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                         }
-                        if (Files.getInstance().getAge(((Player) sender).getPlayer()) > 5) {
+                        if (Files.getInstance().getAge(((Player) sender).getPlayer()) >= 30) {
                             if (args[0].equalsIgnoreCase("ANTROM")) {
                                 Files.getInstance().setJobs(((Player) sender).getPlayer(), args[0].toUpperCase());
                                 Files.getInstance().savedata();
@@ -441,7 +526,7 @@ public class Commands implements CommandExecutor {
                                 return true;
                             }
                         } else {
-                            sender.sendMessage(Files.getInstance().convert("&cBạn cần cấp độ 5 trở lên để có thể trở thành &aăn trộm"));
+                            sender.sendMessage(Files.getInstance().convert("&cBạn cần cấp độ 30 trở lên để có thể trở thành &aăn trộm"));
                         }
                     } else {
                         sender.sendMessage(Files.getInstance().convert("&cBạn đã có nghề! Muốn đổi nghề vui lòng tới khu chọn nghề"));

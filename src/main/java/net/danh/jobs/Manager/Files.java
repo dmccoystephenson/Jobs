@@ -224,7 +224,7 @@ public class Files {
             removeMemberGang(p);
         }
         getdata().set("players." + p.getName() + ".Gang", name.toUpperCase());
-        if (getLevelGang(p) == 0){
+        if (getLevelGang(p) == 0) {
             setLevelGang(p);
         }
         addMemberGang(p);
@@ -254,6 +254,7 @@ public class Files {
         getdata().set("gangs." + getGang(p) + ".Level", getLevelGang(p) + number);
         savedata();
     }
+
     public void setLevelGang(Player p) {
         getdata().set("gangs." + getGang(p) + ".Level", 1);
         savedata();
