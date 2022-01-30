@@ -1,6 +1,9 @@
 ---
-name: Báo lỗi about: Tạo để có thể giúp tôi cải thiện lỗi title: "[BUG]"
-labels: bug assignees: ''
+name: Báo lỗi
+about: Tạo để có thể giúp tôi cải thiện lỗi
+title: "[BUG]"
+labels: bug
+assignees: ''
 
 ---
 

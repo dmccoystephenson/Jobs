@@ -1,6 +1,9 @@
 ---
-name: Góp ý about: Góp ý cho tôi title: "[SUGGEST]"
-labels: enhancement assignees: ''
+name: Góp ý
+about: Góp ý cho tôi
+title: "[SUGGEST]"
+labels: enhancement
+assignees: ''
 
 ---
 
